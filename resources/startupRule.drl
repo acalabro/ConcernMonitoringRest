@@ -1,0 +1,9 @@
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+
+dialect "java"
+
+declare ConcernAbstractEvent
+    @role( event )
+    @timestamp( timestamp )
+end

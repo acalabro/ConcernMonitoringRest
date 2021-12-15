@@ -1,0 +1,29 @@
+//created on: May 13, 2021
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.KieLauncher;
+
+dialect "java"
+
+declare ConcernArduinoEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "SERVICE_NAME_MACHINE_IP_INFRASTRUCTUREVIOLATION"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernArduinoEvent(
+			this.getName == "SLA Alert");
+			
+			$bEvent : ConcernArduinoEvent(
+			this.getName == "load_one",
+			this after[0,10s] $aEvent);
+		then
+			KieLauncher.printer("retracted");	
+			retract($aEvent);
+			retract($bEvent);	
+		end
