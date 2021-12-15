@@ -25,23 +25,33 @@ public class Monitoring {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces({MediaType.TEXT_PLAIN})
+    @Produces({MediaType.TEXT_HTML})
     public String getIt() {
-        return "Methods available:\nPOST:\n"
-        		+ "@QueryParam(\"jobID\"),\n"
-        		+ "@QueryParam(\"timestamp\"),\n"
-        		+ "@QueryParam(\"messageClass\"),\n"
-        		+ "@QueryParam(\"source-ip\"),\n"
-        		+ "@QueryParam(\"source-id\"),\n"
-        		+ "@QueryParam(\"destination-ip\"),\n"
-        		+ "@QueryParam(\"event\"),\n"
-        		+ "@QueryParam(\"accessLevel\"),\n"
-        		+ "@QueryParam(\"priority\"),\n"
-        		+ "@QueryParam(\"crc\"),\n"
-        		+ "@QueryParam(\"body-format\"),\n"
-        		+ "@QueryParam(\"body-compression\"),\n"
-        		+ "@QueryParam(\"body\")"
-        		+ "\n\n\nMonitoring status:" + MonitoringStatus();
+        return homePage();
+        
+    }
+    
+    private String homePage() {
+    	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Concern - Monitoring Infrastructure</title>"
+    			+ "</head><body><h2>Monitoring Infrastructure</h2><h3>Monitoring status: " + MonitoringStatus() + "</h3><br /><br />"
+    			+ postDetails() + "</body></html>";
+    }
+    
+    private String postDetails() {
+    	return "POST method parameters required:<br />"
+        		+ "@QueryParam(\"jobID\"),<br />"
+        		+ "@QueryParam(\"timestamp\"),<br />"
+        		+ "@QueryParam(\"messageClass\"),<br />"
+        		+ "@QueryParam(\"source-ip\"),<br />"
+        		+ "@QueryParam(\"source-id\"),<br />"
+        		+ "@QueryParam(\"destination-ip\"),<br />"
+        		+ "@QueryParam(\"event\"),<br />"
+        		+ "@QueryParam(\"accessLevel\"),<br />"
+        		+ "@QueryParam(\"priority\"),<br />"
+        		+ "@QueryParam(\"crc\"),<br />"
+        		+ "@QueryParam(\"body-format\"),<br />"
+        		+ "@QueryParam(\"body-compression\"),<br />"
+        		+ "@QueryParam(\"body\")";
     }
     
     @POST
@@ -89,9 +99,9 @@ public class Monitoring {
 	
 	private String MonitoringStatus() {
 		if (ConcernApp.isRunning()) {
-			return " is running";
+			return " running";
 		}
-		return " is stopped";
+		return " stopped";
 	}
 }
 
