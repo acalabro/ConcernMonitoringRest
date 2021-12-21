@@ -15,9 +15,6 @@ import it.cnr.isti.labsedc.concern.ConcernApp;
 @Path("monitoring/biecointerface")
 public class Monitoring {
 	
-	//ConcernApp monitorInstance;
-	public static Thread monitoringInstance;
-
     /**
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "text/plain" media type.
@@ -32,31 +29,27 @@ public class Monitoring {
     }
     
     private String homePage() {
+	
     	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Concern - Monitoring Infrastructure</title>"
     			+ "</head><style>\n"
     			+ "body {\n"
     			+ "  background-color: #E6E6FA;\n"
     			+ "}\n"
     			+ "</style><body><h2>Monitoring Infrastructure</h2><h3>Monitoring status: " + MonitoringStatus() + "</h3><br /><br />"
-    			+ postDetails() + "</body></html>";
+    			+ "<textarea id=\"logs\" name=\"debugLog\" rows=\"30\" cols=\"200\">\n"
+				+ getLoggerData() + "</textarea></body></html>";
     }
     
-    private String postDetails() {
-    	return "POST method parameters required:<br />"
-        		+ "@QueryParam(\"jobID\"),<br />"
-        		+ "@QueryParam(\"timestamp\"),<br />"
-        		+ "@QueryParam(\"messageClass\"),<br />"
-        		+ "@QueryParam(\"source-ip\"),<br />"
-        		+ "@QueryParam(\"source-id\"),<br />"
-        		+ "@QueryParam(\"destination-ip\"),<br />"
-        		+ "@QueryParam(\"event\"),<br />"
-        		+ "@QueryParam(\"accessLevel\"),<br />"
-        		+ "@QueryParam(\"priority\"),<br />"
-        		+ "@QueryParam(\"crc\"),<br />"
-        		+ "@QueryParam(\"body-format\"),<br />"
-        		+ "@QueryParam(\"body-compression\"),<br />"
-        		+ "@QueryParam(\"body\")";
-    }
+	/*
+	 * private String postDetails() { return
+	 * "POST method parameters required:<br />" + "@QueryParam(\"jobID\"),<br />" +
+	 * "@QueryParam(\"timestamp\"),<br />" + "@QueryParam(\"messageClass\"),<br />"
+	 * + "@QueryParam(\"source-ip\"),<br />" + "@QueryParam(\"source-id\"),<br />" +
+	 * "@QueryParam(\"destination-ip\"),<br />" + "@QueryParam(\"event\"),<br />" +
+	 * "@QueryParam(\"accessLevel\"),<br />" + "@QueryParam(\"priority\"),<br />" +
+	 * "@QueryParam(\"crc\"),<br />" + "@QueryParam(\"body-format\"),<br />" +
+	 * "@QueryParam(\"body-compression\"),<br />" + "@QueryParam(\"body\")"; }
+	 */
     
     @POST
     @Produces({MediaType.TEXT_PLAIN})
@@ -94,6 +87,10 @@ public class Monitoring {
 		} catch (InterruptedException e) {
 			return "failed to start monitoring";
 		}	
+	}
+	
+	private String getLoggerData() {
+		return ConcernApp.getLoggerData();
 	}
 	
 	private String MonitoringStop() {
