@@ -1,4 +1,4 @@
-package it.cnr.isti.labsedc.concern;
+package it.cnr.isti.labsedc.concern.utils;
 
 import org.drools.core.impl.InternalKnowledgeBase;
 import org.drools.core.impl.KnowledgeBaseFactory;

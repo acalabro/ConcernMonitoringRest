@@ -1,4 +1,4 @@
-package it.cnr.isti.labsedc.concern;
+package it.cnr.isti.labsedc.concern.utils;
 
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;

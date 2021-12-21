@@ -33,7 +33,11 @@ public class Monitoring {
     
     private String homePage() {
     	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Concern - Monitoring Infrastructure</title>"
-    			+ "</head><body><h2>Monitoring Infrastructure</h2><h3>Monitoring status: " + MonitoringStatus() + "</h3><br /><br />"
+    			+ "</head><style>\n"
+    			+ "body {\n"
+    			+ "  background-color: #E6E6FA;\n"
+    			+ "}\n"
+    			+ "</style><body><h2>Monitoring Infrastructure</h2><h3>Monitoring status: " + MonitoringStatus() + "</h3><br /><br />"
     			+ postDetails() + "</body></html>";
     }
     

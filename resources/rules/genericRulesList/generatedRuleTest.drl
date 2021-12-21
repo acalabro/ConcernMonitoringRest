@@ -3,7 +3,7 @@ package it.cnr.isti.labsedc.concern.event;
 import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
 
 dialect "java"
 

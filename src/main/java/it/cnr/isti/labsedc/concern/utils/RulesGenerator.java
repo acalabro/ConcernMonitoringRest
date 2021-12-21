@@ -54,7 +54,7 @@ public class RulesGenerator {
 				+ "import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;\n"
 				+ "import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;\n"
 				+ "import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;\n"
-				+ "import it.cnr.isti.labsedc.concern.KieLauncher;\n"
+				+ "import it.cnr.isti.labsedc.concern.utils.KieLauncher;\n"
 				+ "\n"
 				+ "dialect \"java\"\n"
 				+ "\n"
