@@ -91,9 +91,7 @@ public class Probe {
 	}
 	
 	public static void TestDTValidation(String brokerUrl) throws InterruptedException {
-	
-		testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "930", "NextEventWillBE", "giogio", "asd", "123098", "DigitalTwin", "Monitoring");
-		
+		testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "930", "NextEventWillBE", "giogio", "asd", "123098", "DigitalTwin", "Monitoring");	
 	}
 	
 	
