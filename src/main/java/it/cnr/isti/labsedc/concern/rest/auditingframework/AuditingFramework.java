@@ -1,4 +1,4 @@
-package it.cnr.isti.labsedc.concern.rest.monitoring;
+package it.cnr.isti.labsedc.concern.rest.auditingframework;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,8 +12,8 @@ import it.cnr.isti.labsedc.concern.ConcernApp;
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("monitoring/biecointerface")
-public class Monitoring {
+@Path("auditingframework/biecointerface")
+public class AuditingFramework {
 	
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -30,14 +30,27 @@ public class Monitoring {
     
     private String homePage() {
 	
-    	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Concern - Monitoring Infrastructure</title>"
+    	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Auditing Framework</title>"
+    			+ "</head><style>\n"
+    			+ "body {\n"
+    			+ "  background-color: #ddebef;\n"
+    			+ "}\n"
+    			+ "</style><body><h2>Runtime Monitoring</h2><h3>Status: " + MonitoringStatus() + "</h3>"
+    			+ "</style><body><h2>Predictive Simulation</h2><h3>Status: " + PredictiveSimulationStatus() + "</h3><br />"
+    			+ "<h4>Monitoring logs:</h4><textarea id=\"logs\" name=\"debugLog\" rows=\"30\" cols=\"200\">\n"
+				+ getLoggerData() + "</textarea></body></html>";
+    	
+    	
+    	/*return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Concern - Monitoring Infrastructure</title>"
     			+ "</head><style>\n"
     			+ "body {\n"
     			+ "  background-color: #E6E6FA;\n"
     			+ "}\n"
     			+ "</style><body><h2>Monitoring Infrastructure</h2><h3>Monitoring status: " + MonitoringStatus() + "</h3><br /><br />"
     			+ "<textarea id=\"logs\" name=\"debugLog\" rows=\"30\" cols=\"200\">\n"
-				+ getLoggerData() + "</textarea></body></html>";
+				+ getLoggerData() + "</textarea></body></html>";*/
+    	
+    	
     }
     
 	/*
@@ -51,7 +64,19 @@ public class Monitoring {
 	 * "@QueryParam(\"body-compression\"),<br />" + "@QueryParam(\"body\")"; }
 	 */
     
-    @POST
+    private String PredictiveSimulationStatus() {
+		return "stopped";
+	}
+
+    @GET
+	@Path("/heartbeat")
+    @Produces({MediaType.TEXT_HTML})
+    public String heartbeat() {
+        return "Interface alive" + "<br />Runtime monitoring: " + MonitoringStatus() + "<br /> Predictive Simulation: " + PredictiveSimulationStatus();
+        
+    }
+    
+	@POST
     @Produces({MediaType.TEXT_PLAIN})
 	public String biecointerface(
 			@QueryParam("jobID") String jobID,

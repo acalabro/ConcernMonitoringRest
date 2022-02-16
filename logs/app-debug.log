@@ -255,3 +255,27 @@
 2022-02-04T12:17:57.292+0100 [grizzly-http-server-9] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker stop
 2022-02-04T12:17:57.293+0100 [grizzly-http-server-9] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker stopped
 2022-02-04T12:17:57.295+0100 [grizzly-http-server-9] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connector Stopped
+2022-02-15T17:16:23.361+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-02-15T17:16:23.363+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-02-15T17:16:23.368+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-02-15T17:16:23.385+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-02-15T17:16:23.555+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-02-15T17:16:23.556+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-02-15T17:16:23.556+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-02-15T17:16:23.580+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-02-15T17:16:23.580+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-02-15T17:16:23.581+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-02-15T17:16:23.912+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-02-15T17:16:24.127+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-02-15T17:16:24.153+0100 [Thread-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-02-15T17:16:24.360+0100 [Thread-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-02-15T17:16:29.749+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker stop
+2022-02-15T17:16:29.749+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker stopped
+2022-02-15T17:16:29.749+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connector Stopped
