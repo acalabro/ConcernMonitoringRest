@@ -65,7 +65,7 @@ public class AuditingFramework {
 	 */
     
     private String PredictiveSimulationStatus() {
-		return "stopped";
+		return "Stopped";
 	}
 
     @GET
@@ -80,30 +80,69 @@ public class AuditingFramework {
     @Produces({MediaType.TEXT_PLAIN})
 	public String biecointerface(
 			@QueryParam("jobID") String jobID,
-			@QueryParam("timestamp") double timestamp,
-			@QueryParam("messageClass") String messageClass,
-			@QueryParam("source-ip") String sourceIP,
-			@QueryParam("source-id") String sourceID,
-			@QueryParam("destination-id") String destinationID,
+			@QueryParam("timestamp") String timestamp,
+			@QueryParam("messageType") String messageType,
+			@QueryParam("sourceIP") String sourceIP,
+			@QueryParam("sourceID") String sourceID,
+			@QueryParam("destinationID") String destinationID,
 			@QueryParam("event") String event,
 			@QueryParam("accessLevel") String accessLevel,
 			@QueryParam("priority") int priority,
-			@QueryParam("crc") double crc,
-			@QueryParam("body-format") String bodyFormat,
-			@QueryParam("body-compression") String bodyCompression,
+			@QueryParam("CRC") long CRC,
+			@QueryParam("bodyFormat") String bodyFormat,
+			@QueryParam("bodyCompression") String bodyCompression,
 			@QueryParam("body") String body
 			) {
-    	if (destinationID.compareToIgnoreCase("monitoring") == 0 && event.compareToIgnoreCase("start") == 0 ) {
+	
+    	if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Start") == 0 ) {
     		
     		return MonitoringStart();
-    	} else
-        	if (destinationID.compareToIgnoreCase("monitoring") == 0 && event.compareToIgnoreCase("stop") == 0 ) {
-        		 
+    	}
+    	
+        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Stop") == 0 ) {
+       		 
         		return MonitoringStop();
-        	}
+        }
+    
+    	if (destinationID.compareToIgnoreCase("predictive") == 0 && messageType.compareToIgnoreCase("Start") == 0 ) {
+    		
+    		return PredictiveSimulationStart();
+    	}
+    	
+        if (destinationID.compareToIgnoreCase("predictive") == 0 && messageType.compareToIgnoreCase("Stop") == 0 ) {
+       		 
+        	return PredictiveSimulationStop();
+        }
+        
+        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Heartbeat") == 0 ) {
+      		 
+    		return MonitoringHeartbeat();
+        }
+
+        if (destinationID.compareToIgnoreCase("predictive") == 0 && messageType.compareToIgnoreCase("Heartbeat") == 0 ) {
+		
+		return PredictiveSimulationHeartbeat();
+        }
+        
     	return "unrecognized command";
 		
 		}
+
+	private String PredictiveSimulationHeartbeat() {
+		return PredictiveSimulationStatus();
+	}
+
+	private String MonitoringHeartbeat() {
+		return MonitoringStatus();
+	}
+
+	private String PredictiveSimulationStop() {
+		return null;
+	}
+
+	private String PredictiveSimulationStart() {
+		return null;
+	}
 
 	private String MonitoringStart() {	
 		try {
@@ -125,9 +164,9 @@ public class AuditingFramework {
 	
 	private String MonitoringStatus() {
 		if (ConcernApp.isRunning()) {
-			return " running";
+			return "Running";
 		}
-		return " stopped";
+		return "Online";
 	}
 }
 
