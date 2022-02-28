@@ -158,3 +158,32 @@
 2022-02-15T17:16:24.127+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
 2022-02-15T17:16:24.153+0100 [Thread-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
 2022-02-15T17:16:24.360+0100 [Thread-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-02-18T14:28:20.399+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-02-18T14:28:20.401+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-02-18T14:28:20.405+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-02-18T14:28:20.615+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-02-18T14:28:20.938+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-02-18T14:28:21.116+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-02-18T14:28:21.146+0100 [Thread-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-02-18T14:28:21.356+0100 [Thread-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-02-18T14:33:02.074+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-02-18T14:33:02.074+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-02-18T14:33:02.075+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-02-18T14:33:02.078+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-02-18T14:33:02.080+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-02-18T14:33:02.082+0100 [Thread-9] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-02-18T14:33:02.096+0100 [Thread-9] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]

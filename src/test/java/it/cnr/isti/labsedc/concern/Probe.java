@@ -44,7 +44,7 @@ public class Probe {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		String brokerUrl = "tcp://localhost:61616";
+		String brokerUrl = "tcp://146.48.84.225:61616";
 
 		/*
 		//String brokerUrl = "tcp://sedc-nethd.isti.cnr.it:49195";
@@ -67,7 +67,7 @@ public class Probe {
 	public static void testDTProbe(String brokerUrl) throws InterruptedException {
 
 		try {
-			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vera","griselda", "tcp://localhost:61616");
+			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vera","griselda", brokerUrl);
 			Connection connection = connectionFactory.createConnection();
             Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
             Topic topic = session.createTopic("DROOLS-InstanceOne");
