@@ -1,4 +1,4 @@
-package it.cnr.isti.labsedc.concern.rest.auditingframework;
+package it.cnr.isti.labsedc.concern.rest.monitoring;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -13,6 +13,20 @@ import it.cnr.isti.labsedc.concern.ConcernApp;
  * Root resource (exposed at "myresource" path)
  */
 @Path("monitoring/biecointerface")
+//@Component
+//public class AuthFilter implements Filter {
+//    @Override
+//    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+//        HttpServletRequest req = (HttpServletRequest) request;
+//        if (req.getHeader("Authorization") != null){ //or replace with a further fine grained condition
+//            chain.doFilter(request, response);
+//        } else {
+//            HttpServletResponse res = (HttpServletResponse) response;
+//            res.setStatus(401);
+//        }
+//    }
+//}
+
 public class Monitoring {
 	
     /**
@@ -27,6 +41,7 @@ public class Monitoring {
         return homePage();
         
     }
+    
     
     private String homePage() {
 	
