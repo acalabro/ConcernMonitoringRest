@@ -5,7 +5,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import it.cnr.isti.labsedc.concern.ConcernApp;
 
@@ -13,21 +16,10 @@ import it.cnr.isti.labsedc.concern.ConcernApp;
  * Root resource (exposed at "myresource" path)
  */
 @Path("monitoring/biecointerface")
-//@Component
-//public class AuthFilter implements Filter {
-//    @Override
-//    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//        HttpServletRequest req = (HttpServletRequest) request;
-//        if (req.getHeader("Authorization") != null){ //or replace with a further fine grained condition
-//            chain.doFilter(request, response);
-//        } else {
-//            HttpServletResponse res = (HttpServletResponse) response;
-//            res.setStatus(401);
-//        }
-//    }
-//}
 
 public class Monitoring {
+	
+	private String incomingToken = "YeAm0hdkf5W9s";
 	
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -35,6 +27,7 @@ public class Monitoring {
      *
      * @return String that will be returned as a text/plain response.
      */
+	
     @GET
     @Produces({MediaType.TEXT_HTML})
     public String getIt() {
@@ -58,16 +51,24 @@ public class Monitoring {
  
     @GET
 	@Path("/heartbeat")
-    @Produces({MediaType.TEXT_HTML})
-    public String heartbeat() {
+    public Response heartbeat(@Context HttpHeaders headers) {
     	
-        return "Interface alive" + "<br />Runtime monitoring: " + MonitoringStatus();
+    	if (headers.getRequestHeader("Authorization") != null) {
+			if (headers.getRequestHeader("Authorization").get(0).compareTo(incomingToken) == 0) {
+			
+					return Response.status(200)
+				.entity(MonitoringStatus())
+				.build();
+			}
+		}			
+        return Response.status(401).entity("invalid access token").build();
         
     }
     
 	@POST
     @Produces({MediaType.TEXT_PLAIN})
 	public String biecointerface(
+			@Context HttpHeaders headers,
 			@QueryParam("jobID") String jobID,
 			@QueryParam("timestamp") String timestamp,
 			@QueryParam("messageType") String messageType,
@@ -83,21 +84,24 @@ public class Monitoring {
 			@QueryParam("body") String body
 			) {
 	
-    	if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Start") == 0 ) {
-    		
-    		return MonitoringStart();
-    	}
-    	
-        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Stop") == 0 ) {
-       		 
-        		return MonitoringStop();
-        }
-        
-        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Heartbeat") == 0 ) {
-      		 
-    		return MonitoringHeartbeat();
-        }
-        
+		String authorization = headers.getRequestHeader("Authorization").get(0);
+		if (authorization.compareTo(incomingToken) == 0) {
+		
+	    	if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Start") == 0 ) {
+	    		
+	    		return MonitoringStart();
+	    	}
+	    	
+	        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Stop") == 0 ) {
+	       		 
+	        		return MonitoringStop();
+	        }
+	        
+	        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Heartbeat") == 0 ) {
+	      		 
+	    		return MonitoringHeartbeat();
+	        }
+		}
     	return "unrecognized command";
 		
 		}
