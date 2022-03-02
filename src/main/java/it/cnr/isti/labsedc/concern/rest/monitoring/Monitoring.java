@@ -20,6 +20,7 @@ import it.cnr.isti.labsedc.concern.ConcernApp;
 public class Monitoring {
 	
 	private String incomingToken = "YeAm0hdkf5W9s";
+	private String outcomingToken = "746gfbrenkljhGU";
 	
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -57,7 +58,7 @@ public class Monitoring {
 			if (headers.getRequestHeader("Authorization").get(0).compareTo(incomingToken) == 0) {
 			
 					return Response.status(200)
-				.entity(MonitoringStatus())
+				.entity(MonitoringStatus()).header("Authorization", outcomingToken)
 				.build();
 			}
 		}			
@@ -66,8 +67,7 @@ public class Monitoring {
     }
     
 	@POST
-    @Produces({MediaType.TEXT_PLAIN})
-	public String biecointerface(
+	public Response biecointerface(
 			@Context HttpHeaders headers,
 			@QueryParam("jobID") String jobID,
 			@QueryParam("timestamp") String timestamp,
@@ -89,20 +89,26 @@ public class Monitoring {
 		
 	    	if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Start") == 0 ) {
 	    		
-	    		return MonitoringStart();
+	    		return Response.status(200)
+	    				.entity(MonitoringStart()).header("Authorization", outcomingToken)
+	    				.build();
 	    	}
 	    	
 	        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Stop") == 0 ) {
 	       		 
-	        		return MonitoringStop();
+	    		return Response.status(200)
+	    				.entity(MonitoringStop()).header("Authorization", outcomingToken)
+	    				.build();
 	        }
 	        
 	        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Heartbeat") == 0 ) {
 	      		 
-	    		return MonitoringHeartbeat();
+	    		return Response.status(200)
+	    				.entity(MonitoringHeartbeat()).header("Authorization", outcomingToken)
+	    				.build();
 	        }
 		}
-    	return "unrecognized command";
+    	return Response.status(401).entity("invalid access token").build();
 		
 		}
 
@@ -124,8 +130,12 @@ public class Monitoring {
 	}
 	
 	private String MonitoringStop() {
-		ConcernApp.killInstance();
-		return "Monitoring stopped";
+		if (ConcernApp.isRunning()) {
+			ConcernApp.killInstance();
+			return "Monitoring stopped";
+		} else
+			return "Monitoring was not running"; 
+		
 	}
 	
 	private String MonitoringStatus() {

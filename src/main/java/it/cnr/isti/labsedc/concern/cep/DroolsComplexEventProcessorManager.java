@@ -33,6 +33,7 @@ import org.kie.internal.io.ResourceFactory;
 import it.cnr.isti.labsedc.concern.ConcernApp;
 import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernCmdVelEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernDTEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
@@ -155,10 +156,15 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 							ConcernDTEvent<?> receivedEvent = (ConcernDTEvent<?>) msg.getObject();
 							insertEvent(receivedEvent);					
 						} else {
-						if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
-							ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
-							if (receivedEvent.getCepType() == CepType.DROOLS) {
-								loadRule(receivedEvent);	
+							if (msg.getObject() instanceof ConcernCmdVelEvent<?>) {
+								ConcernCmdVelEvent<?> receivedEvent = (ConcernCmdVelEvent<?>) msg.getObject();
+								insertEvent(receivedEvent);			
+							} else {
+							if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
+								ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
+								if (receivedEvent.getCepType() == CepType.DROOLS) {
+									loadRule(receivedEvent);	
+								}
 							}
 						}
 					}
@@ -201,7 +207,7 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 	private void insertEvent(ConcernAbstractEvent<?> receivedEvent) {
 		if (eventStream != null && receivedEvent != null) {
 			eventStream.insert(receivedEvent);
-			logger.info("...CEP named " + this.getInstanceName() + " insert event "  + receivedEvent.getData() +" in the stream, sent from " + receivedEvent.getSenderID());
+			logger.info("...CEP named " + this.getInstanceName() + " received an event of type: "  + receivedEvent.getClass().getCanonicalName() +" in the stream, sent from " + receivedEvent.getSenderID());
 			}			
 	}
 
