@@ -1,6 +1,7 @@
 package it.cnr.isti.labsedc.concern.utils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -17,7 +18,7 @@ public class Sub {
 		try {
 		Path fileName = Path.of(filePath);
 
-	    text = Files.readString(fileName);
+	    text = Files.readString(fileName, StandardCharsets.ISO_8859_1);
 	    		} catch (IOException e) {
 			e.printStackTrace();
 		}

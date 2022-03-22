@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import it.cnr.isti.labsedc.concern.ConcernApp;
+import it.cnr.isti.labsedc.concern.utils.BiecoMessageTypes;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -49,23 +50,7 @@ public class Monitoring {
 				+ getLoggerData() + "</textarea></body></html>";
     	    	
     }
- 
-    @GET
-	@Path("/heartbeat")
-    public Response heartbeat(@Context HttpHeaders headers) {
-    	
-    	if (headers.getRequestHeader("Authorization") != null) {
-			if (headers.getRequestHeader("Authorization").get(0).compareTo(incomingToken) == 0) {
-			
-					return Response.status(200)
-				.entity(MonitoringStatus()).header("Authorization", outcomingToken)
-				.build();
-			}
-		}			
-        return Response.status(401).entity("invalid access token").build();
-        
-    }
-    
+     
 	@POST
 	public Response biecointerface(
 			@Context HttpHeaders headers,
@@ -85,37 +70,80 @@ public class Monitoring {
 			) {
 	
 		String authorization = headers.getRequestHeader("Authorization").get(0);
-		if (authorization.compareTo(incomingToken) == 0) {
-		
-	    	if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Start") == 0 ) {
-	    		
-	    		return Response.status(200)
-	    				.entity(MonitoringStart()).header("Authorization", outcomingToken)
-	    				.build();
-	    	}
-	    	
-	        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Stop") == 0 ) {
-	       		 
-	    		return Response.status(200)
-	    				.entity(MonitoringStop()).header("Authorization", outcomingToken)
-	    				.build();
-	        }
-	        
-	        if (destinationID.compareToIgnoreCase("monitoring") == 0 && messageType.compareToIgnoreCase("Heartbeat") == 0 ) {
-	      		 
-	    		return Response.status(200)
-	    				.entity(MonitoringHeartbeat()).header("Authorization", outcomingToken)
-	    				.build();
-	        }
+		if (authorization.compareTo(outcomingToken) == 0) {
+			if (destinationID.compareToIgnoreCase("10") == 0) {
+				if (messageType.compareTo(BiecoMessageTypes.HEARTBEAT) == 0 ) {
+					return Response.status(200).build();
+				}
+				return Response.status(401).entity("invalid messageType").build();	
+			}
+			return Response.status(505).entity("invalid destination").build();
 		}
-    	return Response.status(401).entity("invalid access token").build();
-		
-		}
-
-	private String MonitoringHeartbeat() {
-		return MonitoringStatus();
+		return Response.status(401).entity("invalid access token").build();
 	}
 
+	private Response start() {
+		return Response.status(200)
+				.entity(MonitoringStart()).header("Authorization", incomingToken)
+				.build();
+	}
+	
+	private Response stop() {
+		return Response.status(200)
+		.entity(MonitoringStop()).header("Authorization", incomingToken)
+		.build();
+	}
+	
+	private Response heartbeat() {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		return Response.status(200).build();
+	}
+	
+	private Response getStatus() {
+		return Response.status(200).entity(MonitoringStatus()).build();
+	}
+	
+	private Response configure() {
+		return Response.status(404).build();
+	}
+	
+	private Response data() {
+		return Response.status(404).build();
+	}
+	
+	private Response event() {
+		return Response.status(404).build();
+	}
+	
+	 private void parseMessage(String message) {
+	        switch(message) {
+	            case BiecoMessageTypes.GETSTATUS:
+	                this.getStatus();
+	                break;
+	            case BiecoMessageTypes.HEARTBEAT:
+	                this.heartbeat();
+	                break;
+	            case BiecoMessageTypes.CONFIGURE:
+	                this.configure();
+	                break;
+	            case BiecoMessageTypes.DATA:
+	                this.data();
+	                break;
+	            case BiecoMessageTypes.EVENT:
+	                this.event();
+	                break;
+	            case BiecoMessageTypes.START:
+	                this.start();
+	                break;
+	            case BiecoMessageTypes.STOP:
+	                this.stop();
+	                break;
+	            case BiecoMessageTypes.HALT:
+	                this.stop();
+	                break;
+	        }
+	    }
+	
 	private String MonitoringStart() {	
 		try {
 			ConcernApp.getInstance();

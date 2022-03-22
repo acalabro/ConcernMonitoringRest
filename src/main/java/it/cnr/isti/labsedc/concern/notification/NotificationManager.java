@@ -1,8 +1,17 @@
 package it.cnr.isti.labsedc.concern.notification;
 
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.HashMap;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.cnr.isti.labsedc.concern.ConcernApp;
 
@@ -38,6 +47,64 @@ public class NotificationManager extends Thread {
 		writer.closePort();
 	}
 
+	public static void NotifyToTheOrchestrator(String whatToNotify) {
+//		HttpClient httpclient = HttpClients.createDefault();
+//		HttpPost httppost = new HttpPost("http://www.a-domain.com/foo/");
+//
+//		// Request parameters and other properties.
+//		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+//		params.add(new BasicNameValuePair("param-1", "12345"));
+//		params.add(new BasicNameValuePair("param-2", "Hello!"));
+//		httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+//
+//		//Execute and get the response.
+//		HttpResponse response = httpclient.execute(httppost);
+//		HttpEntity entity = response.getEntity();
+//
+//		if (entity != null) {
+//		    try (InputStream instream = entity.getContent()) {
+//		        // do something useful
+//		    }
+//		}
+
+
+		try {
+		
+			var values = new HashMap<String, String>() {
+				private static final long serialVersionUID = 1298759667309051214L;
+				{
+		            put("name", "John Doe");
+		            put ("occupation", "gardener");
+		        }
+			};
+
+	        var objectMapper = new ObjectMapper();
+	        String requestBody = objectMapper
+	                .writeValueAsString(values);
+	        
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://httpbin.org/post"))
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        HttpResponse<String> response;
+
+			response = client.send(request,
+			        HttpResponse.BodyHandlers.ofString());
+
+	    System.out.println(response.body());
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
+	
 	@Override
 	public void run() {
 

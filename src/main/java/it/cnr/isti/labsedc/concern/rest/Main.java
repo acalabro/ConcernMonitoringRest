@@ -6,9 +6,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import java.io.IOException;
 import java.net.URI;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Main class.
@@ -16,21 +13,21 @@ import java.util.Map;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
-	//public static final String BASE_URI = "http://glimpse-dev.isti.cnr.it:8080/";
-	public static final String BASE_URI = "http://localhost:8080/";
+	public static final String BASE_URI = "http://0.0.0.0:8181/";
+//	public static final String BASE_URI = "http://gattoboy.isti.cnr.it:8181/";
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
      * @return Grizzly HTTP server.
      */
-    public static HttpServer startServer() {
+    public static HttpServer startServer(String serverUri) {
         // create a resource config that scans for JAX-RS resources and providers
         // in it.cnr.isti.labsedc.concern.rest package
         final ResourceConfig rc = new ResourceConfig().packages("it.cnr.isti.labsedc.concern.rest");
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(serverUri), rc);
     }
 
     
@@ -41,8 +38,14 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        final HttpServer server = startServer();
-        System.out.println(String.format("Jersey app started with endpoints available at "
+    	final HttpServer server;
+    	if (args.length>0) {
+         server = startServer(args[0]);
+    	}
+    	else {
+    		server = startServer(BASE_URI);
+    	}
+    	System.out.println(String.format("Jersey app started with endpoints available at "
                 + "%s%nHit Ctrl-C to stop it...", BASE_URI));
         System.in.read();
         server.stop();

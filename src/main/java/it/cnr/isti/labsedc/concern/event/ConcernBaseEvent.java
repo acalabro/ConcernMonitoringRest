@@ -14,10 +14,10 @@ public class ConcernBaseEvent<T> extends ConcernAbstractEvent<T> {
 			String sessionID,
 			String checksum,
 			String name,
-			T eventData,
+			T data,
 			CepType type,
 			String property) {
-		super(timestamp, senderID, destinationID, sessionID, checksum, name, eventData, type);
+		super(timestamp, senderID, destinationID, sessionID, checksum, name, data, type);
 		this.property = property;	
 	}
 

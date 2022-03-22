@@ -36,6 +36,7 @@ import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernCmdVelEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernDTEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 import it.cnr.isti.labsedc.concern.utils.ConcernMQTTCallBack;
@@ -160,16 +161,22 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 								ConcernCmdVelEvent<?> receivedEvent = (ConcernCmdVelEvent<?>) msg.getObject();
 								insertEvent(receivedEvent);			
 							} else {
-							if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
-								ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
-								if (receivedEvent.getCepType() == CepType.DROOLS) {
-									loadRule(receivedEvent);	
+								if (msg.getObject() instanceof ConcernNetworkEvent<?>) {
+									ConcernNetworkEvent<?> receivedEvent = (ConcernNetworkEvent<?>) msg.getObject();
+									insertEvent(receivedEvent);			
+								} else {
+									if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
+										ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
+										if (receivedEvent.getCepType() == CepType.DROOLS) {
+											loadRule(receivedEvent);	
+										}
+									}
 								}
 							}
 						}
 					}
-				}
 			}catch(ClassCastException | JMSException asd) {
+					logger.error(asd.getMessage());
 					logger.error("error on casting or getting ObjectMessage");
 				}
 		}

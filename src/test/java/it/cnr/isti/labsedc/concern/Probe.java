@@ -13,6 +13,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernDTEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
 
 public class Probe {
 
@@ -44,7 +45,7 @@ public class Probe {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		String brokerUrl = "tcp://146.48.84.225:61616";
+		String brokerUrl = "tcp://0.0.0.0:61616";
 
 		/*
 		//String brokerUrl = "tcp://sedc-nethd.isti.cnr.it:49195";
@@ -55,13 +56,49 @@ public class Probe {
 		//testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "Robot-ONE", "SLA Alert");
 		*/
 		
-		testDTProbe(brokerUrl);
+		testNetworkCongestion(brokerUrl);
+		
+		/*testDTProbe(brokerUrl);
 		
 		Thread.sleep(10000);
 		
 		TestDTValidation(brokerUrl);
-		
+		*/
 		System.out.println("SENT");
+	}
+
+	private static void testNetworkCongestion(String brokerUrl) {
+
+		try {
+			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vera","griselda", brokerUrl);
+			Connection connection = connectionFactory.createConnection();
+            Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+            Topic topic = session.createTopic("DROOLS-InstanceOne");
+            MessageProducer producer = session.createProducer(topic);     
+			
+            //MapMessage msg = session.createMapMessage();
+			  
+            ObjectMessage msg = session.createObjectMessage();
+            
+//			ConcernNetworkEvent<String> connectionAmount = new ConcernNetworkEvent<String>(
+//					System.currentTimeMillis(), 
+//					"probeROS", "monitoring","sessionOne",
+//					"asd", "connectionAmount", "4", 
+//					CepType.DROOLS,3);  
+			ConcernBaseEvent<Integer> connectionAmount = new ConcernBaseEvent<Integer>(
+					System.currentTimeMillis(), 
+					"probeROS", "monitoring","sessionOne",
+					"asd", "connectionAmount", new Integer(4), 
+					CepType.DROOLS, "empty");  
+            
+            
+			msg.setObject(connectionAmount);
+			
+			producer.send(msg);
+			
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void testDTProbe(String brokerUrl) throws InterruptedException {
@@ -81,7 +118,6 @@ public class Probe {
 					"DigitalTwin", "Monitoring", "123098", 
 					"rfng3o49bfn", "NextEventWillBE", "930",
 					CepType.DROOLS, previous);
-			
  				msg.setObject(event);
 				producer.send(msg);
 		} catch (JMSException e) {
