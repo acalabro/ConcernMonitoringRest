@@ -85,11 +85,11 @@ public class Probe {
 //					"probeROS", "monitoring","sessionOne",
 //					"asd", "connectionAmount", "4", 
 //					CepType.DROOLS,3);  
-			ConcernBaseEvent<Integer> connectionAmount = new ConcernBaseEvent<Integer>(
+			ConcernNetworkEvent<String> connectionAmount = new ConcernNetworkEvent<String>(
 					System.currentTimeMillis(), 
 					"probeROS", "monitoring","sessionOne",
-					"asd", "connectionAmount", new Integer(4), 
-					CepType.DROOLS, "empty");  
+					"asd", "connectionEvent", "7", 
+					CepType.DROOLS);  
             
             
 			msg.setObject(connectionAmount);
@@ -152,11 +152,11 @@ public class Probe {
 
 	}
 
-
-	private static void printHello() {		
-System.out.println("  _     _    __   _  _  _  _  _ \n"
-		+ " /_`| |/_`/|//   /_//_// //_)/_`\n"
-		+ "/_, |//_,/ |/   /  / \\/_//_)/_, \n"
-		+ "                                \n");	
-	}
+//
+//	private static void printHello() {		
+//System.out.println("  _     _    __   _  _  _  _  _ \n"
+//		+ " /_`| |/_`/|//   /_//_// //_)/_`\n"
+//		+ "/_, |//_,/ |/   /  / \\/_//_)/_, \n"
+//		+ "                                \n");	
+//	}
 }

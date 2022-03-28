@@ -1,14 +1,16 @@
 package it.cnr.isti.labsedc.concern.rest.monitoring;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.json.JSONObject;
 
 import it.cnr.isti.labsedc.concern.ConcernApp;
 import it.cnr.isti.labsedc.concern.utils.BiecoMessageTypes;
@@ -51,7 +53,7 @@ public class Monitoring {
     	    	
     }
      
-	@POST
+	/*@POST
 	public Response biecointerface(
 			@Context HttpHeaders headers,
 			@QueryParam("jobID") String jobID,
@@ -79,9 +81,45 @@ public class Monitoring {
 			}
 			return Response.status(505).entity("invalid destination").build();
 		}
-		return Response.status(401).entity("invalid access token").build();
-	}
+	}*/
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+	public Response biecointerface(
+			String jsonMessage,
+			@Context HttpHeaders headers) {
+    	String authorization = headers.getRequestHeader("Authorization").get(0);
+		if (authorization.compareTo(outcomingToken) == 0) {
+	    	JSONObject bodyMessage = new JSONObject(jsonMessage);
+	    	
+	    	if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.HEARTBEAT) == 0 ) {
+				return this.heartbeat();
+			}
+	    	else if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.START) == 0 ) {
+	    			return this.start();
+			}
+    		else if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.STOP) == 0 ) {
+    			return this.stop();
+    		}
+    		else if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.GETSTATUS) == 0 ) {
+    			return this.getStatus();
+    		} 
+    		else if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.CONFIGURE) == 0 ) {
+    			return this.configure();
+    		} 
+    		else if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.DATA) == 0 ) {
+    			return this.data();
+    		} 
+    		else if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.EVENT) == 0 ) {
+    			return this.event();
+    		}
+    		else
+            	return Response.status(400).entity("invalid messageType").build();
+		}
+		return Response.status(401).entity("invalid access token").build();
+    }
+    
+    
 	private Response start() {
 		return Response.status(200)
 				.entity(MonitoringStart()).header("Authorization", incomingToken)
@@ -95,7 +133,6 @@ public class Monitoring {
 	}
 	
 	private Response heartbeat() {
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		return Response.status(200).build();
 	}
 	
@@ -114,35 +151,6 @@ public class Monitoring {
 	private Response event() {
 		return Response.status(404).build();
 	}
-	
-	 private void parseMessage(String message) {
-	        switch(message) {
-	            case BiecoMessageTypes.GETSTATUS:
-	                this.getStatus();
-	                break;
-	            case BiecoMessageTypes.HEARTBEAT:
-	                this.heartbeat();
-	                break;
-	            case BiecoMessageTypes.CONFIGURE:
-	                this.configure();
-	                break;
-	            case BiecoMessageTypes.DATA:
-	                this.data();
-	                break;
-	            case BiecoMessageTypes.EVENT:
-	                this.event();
-	                break;
-	            case BiecoMessageTypes.START:
-	                this.start();
-	                break;
-	            case BiecoMessageTypes.STOP:
-	                this.stop();
-	                break;
-	            case BiecoMessageTypes.HALT:
-	                this.stop();
-	                break;
-	        }
-	    }
 	
 	private String MonitoringStart() {	
 		try {

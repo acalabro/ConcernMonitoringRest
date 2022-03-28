@@ -34,7 +34,7 @@ public abstract class ConcernAbstractEvent<T> implements Event<T>, Serializable 
 		this.setData(data);
 		this.setCepType(type);
 	}
-	
+
 	public long getTimestamp() {
 		return timestamp;
 	}

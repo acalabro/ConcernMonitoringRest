@@ -39,16 +39,23 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
     	final HttpServer server;
-    	if (args.length>0) {
-         server = startServer(args[0]);
-    	}
+    	try {
+        	if (args.length>0) {
+        		server = startServer(args[0]);
+        		Thread.currentThread().join();
+        	}
     	else {
     		server = startServer(BASE_URI);
-    	}
+           	Thread.currentThread().join();
+    		}
+        } catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+        }
     	System.out.println(String.format("Jersey app started with endpoints available at "
                 + "%s%nHit Ctrl-C to stop it...", BASE_URI));
-        System.in.read();
-        server.stop();
+//        System.in.read();
+//        server.stop();
     }
 }
 

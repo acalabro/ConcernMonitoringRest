@@ -5,22 +5,16 @@ import it.cnr.isti.labsedc.concern.cep.CepType;
 public class ConcernNetworkEvent<T> extends ConcernAbstractEvent<T>{
 
 	private static final long serialVersionUID = 1L;
-	private int connectionsAmount;
-	
+
 	public ConcernNetworkEvent(long timestamp, String senderID, 
 			String destinationID, String sessionID, 
 			String checksum, String name, 
-			T data, CepType type, int connectionsAmount) {
+			T data, CepType type) {
 		
 		super(timestamp, senderID, destinationID, sessionID, checksum, name, data, type);
-		this.connectionsAmount = connectionsAmount;
 	}
-	
-	public void setConnectionAmount(int connectionsAmount) {
-		this.connectionsAmount = connectionsAmount;
-	}
-	
-	public int getConnectionAmount() {
-		return this.connectionsAmount;
+		
+	public double getConnectionAmount() {
+		return Double.parseDouble(getData().toString());
 	}
 }
