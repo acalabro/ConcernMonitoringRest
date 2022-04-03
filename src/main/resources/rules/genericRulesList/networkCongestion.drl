@@ -27,5 +27,5 @@ when
    	 		
    	 	)
     then
-        System.out.println("asd");
+        System.out.println("Failure detected");
 end

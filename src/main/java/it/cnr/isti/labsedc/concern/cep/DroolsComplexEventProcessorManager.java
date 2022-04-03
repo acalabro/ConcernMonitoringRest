@@ -34,7 +34,7 @@ import it.cnr.isti.labsedc.concern.ConcernApp;
 import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernCmdVelEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernDTEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
 import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
@@ -153,8 +153,8 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 						ConcernBaseEvent<?> receivedEvent = (ConcernBaseEvent<?>) msg.getObject();
 						insertEvent(receivedEvent);					
 					} else {
-						if (msg.getObject() instanceof ConcernDTEvent<?>) {
-							ConcernDTEvent<?> receivedEvent = (ConcernDTEvent<?>) msg.getObject();
+						if (msg.getObject() instanceof ConcernDTForecast<?>) {
+							ConcernDTForecast<?> receivedEvent = (ConcernDTForecast<?>) msg.getObject();
 							insertEvent(receivedEvent);					
 						} else {
 							if (msg.getObject() instanceof ConcernCmdVelEvent<?>) {

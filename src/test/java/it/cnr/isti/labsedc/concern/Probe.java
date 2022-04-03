@@ -12,7 +12,6 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernDTEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
 
 public class Probe {
@@ -62,8 +61,7 @@ public class Probe {
 		
 		Thread.sleep(10000);
 		
-		TestDTValidation(brokerUrl);
-		*/
+		TestDTValidation(brokerUrl);		*/
 		System.out.println("SENT");
 	}
 
@@ -103,26 +101,29 @@ public class Probe {
 
 	public static void testDTProbe(String brokerUrl) throws InterruptedException {
 
-		try {
-			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vera","griselda", brokerUrl);
-			Connection connection = connectionFactory.createConnection();
-            Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-            Topic topic = session.createTopic("DROOLS-InstanceOne");
-            MessageProducer producer = session.createProducer(topic);     
-			ObjectMessage msg = session.createObjectMessage();
-			
-			ConcernDTEvent<String> previous = null;
-			
-			ConcernDTEvent<String> event = new ConcernDTEvent<String>(
-					System.currentTimeMillis(), 
-					"DigitalTwin", "Monitoring", "123098", 
-					"rfng3o49bfn", "NextEventWillBE", "930",
-					CepType.DROOLS, previous);
- 				msg.setObject(event);
-				producer.send(msg);
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
+		//TODO: update with new DTForecast event
+		
+		
+//		try {
+//			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vera","griselda", brokerUrl);
+//			Connection connection = connectionFactory.createConnection();
+//            Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+//            Topic topic = session.createTopic("DROOLS-InstanceOne");
+//            MessageProducer producer = session.createProducer(topic);     
+//			ObjectMessage msg = session.createObjectMessage();
+//			
+//			ConcernDTEvent<String> previous = null;
+//			
+//			ConcernDTEvent<String> event = new ConcernDTEvent<String>(
+//					System.currentTimeMillis(), 
+//					"DigitalTwin", "Monitoring", "123098", 
+//					"rfng3o49bfn", "NextEventWillBE", "930",
+//					CepType.DROOLS, previous);
+// 				msg.setObject(event);
+//				producer.send(msg);
+//		} catch (JMSException e) {
+//			e.printStackTrace();
+//		}
 		
 	}
 	

@@ -21,6 +21,7 @@ when
 	this.getSenderID == "DigitalTwin",
 	this.getDestinationID == "Monitoring");
 then
-	RulesGenerator.generateRuleFromDTEvent($aEvent);	
+	RulesGenerator.generateRuleFromDTEvent($aEvent);	//passa anche i valori di probe sorgente e destinatario 
+														//in modo da generarli nella regola destinazione	
 	retract($aEvent);	
 end
