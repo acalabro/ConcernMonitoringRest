@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="it.cnr.isti.labsedc.concern.AppTest" time="0.001" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="it.cnr.isti.labsedc.concern.AppTest" time="0.002" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="17+35-2724"/>
@@ -22,7 +22,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/home/acalabro/workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf4986111307881341697.tmp"/>
+    <property name="classworlds.conf" value="/home/acalabro/workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf10782625292651788447.tmp"/>
     <property name="jansi.force" value="true"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
@@ -56,5 +56,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="it.cnr.isti.labsedc.concern.AppTest" name="testApp" time="0.001"/>
+  <testcase classname="it.cnr.isti.labsedc.concern.AppTest" name="testApp" time="0.002"/>
 </testsuite>

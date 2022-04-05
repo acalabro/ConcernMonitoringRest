@@ -78,7 +78,7 @@ public class NotificationManager extends Thread {
 		        }
 			};
 
-	        var objectMapper = new ObjectMapper();
+			ObjectMapper objectMapper = new ObjectMapper();
 	        String requestBody = objectMapper
 	                .writeValueAsString(values);
 	        

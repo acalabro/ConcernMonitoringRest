@@ -38,9 +38,9 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-    	final HttpServer server;
     	try {
-        	if (args.length>0) {
+    		HttpServer server;
+    		if (args.length>0) {
         		server = startServer(args[0]);
         		Thread.currentThread().join();
         	}
@@ -50,7 +50,7 @@ public class Main {
     		}
         } catch (InterruptedException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+        	e.printStackTrace();
         }
     	System.out.println(String.format("Jersey app started with endpoints available at "
                 + "%s%nHit Ctrl-C to stop it...", BASE_URI));
