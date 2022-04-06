@@ -10,4 +10,5 @@ public abstract class BiecoMessageTypes {
     public static final String GETSTATUS = "GetStatus";
     public static final String DATA = "Data";
     public static final String EVENT = "Event";
+    public static final String DEMO = "Demo";
 }

@@ -112,6 +112,9 @@ public class Monitoring {
     		} 
     		else if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.EVENT) == 0 ) {
     			return this.event();
+    		} 
+    		else if (((String)bodyMessage.get("messageType")).compareTo(BiecoMessageTypes.DEMO) == 0 ) {
+    			return this.demo();
     		}
     		else
             	return Response.status(400).entity("invalid messageType").build();
@@ -138,6 +141,9 @@ public class Monitoring {
 	
 	private Response getStatus() {
 		return Response.status(200).entity(MonitoringStatus()).build();
+	}
+	private Response demo() {
+		return Response.status(200).entity(DemoStatus()).build();
 	}
 	
 	private Response configure() {
@@ -179,6 +185,16 @@ public class Monitoring {
 			return "Running";
 		}
 		return "Online";
+	}
+	private String DemoStatus() {
+		try {
+			ConcernApp.getInstance();
+			ConcernApp.DemoStart();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "Starting Demo";
 	}
 }
 

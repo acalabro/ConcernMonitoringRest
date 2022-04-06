@@ -13,6 +13,7 @@ import it.cnr.isti.labsedc.concern.broker.BrokerManager;
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.cep.ComplexEventProcessorManager;
 import it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager;
+import it.cnr.isti.labsedc.concern.consumer.Consumer;
 import it.cnr.isti.labsedc.concern.notification.NotificationManager;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 import it.cnr.isti.labsedc.concern.requestListener.ServiceListenerManager;
@@ -88,6 +89,26 @@ public class ConcernApp extends Thread
     	}
     }
 
+    public static void DemoStart() {
+
+    	System.out.println("------------------------------------------------------");
+    	System.out.println("---------Demo session will starts in 5 seconds--------");
+    	System.out.println("------------------------------------------------------");
+    	long timer = System.currentTimeMillis();
+    	while (System.currentTimeMillis() < (timer+5000)) {
+    		
+    	}
+    	System.out.println("------------------------------------------------------");
+    	System.out.println("-------Starting Auditing Framework Demo session-------");
+    	System.out.println("------------------------------------------------------");
+    	try {
+			Consumer.main(null);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
     public static void StartComponents(MqttClient listenerClient, String mqttBrokerUrl, String topic) {
 		try {
 			channelRegistry = new ChannelsManagementRegistry();

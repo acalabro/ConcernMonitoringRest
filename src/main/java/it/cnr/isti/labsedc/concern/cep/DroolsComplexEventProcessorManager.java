@@ -214,8 +214,19 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 	private void insertEvent(ConcernAbstractEvent<?> receivedEvent) {
 		if (eventStream != null && receivedEvent != null) {
 			eventStream.insert(receivedEvent);
-			logger.info("...CEP named " + this.getInstanceName() + " received an event of type: "  + receivedEvent.getClass().getCanonicalName() +" in the stream, sent from " + receivedEvent.getSenderID());
-			}			
+			logger.info("...CEP named " + this.getInstanceName() + " received an event of type:\n"  + receivedEvent.getClass().getCanonicalName() +" in the stream, sent from " + receivedEvent.getSenderID());
+			if (receivedEvent instanceof ConcernBaseEvent<?>) {
+				logger.info("with data:" +
+						"\nName: "+ receivedEvent.getName() +
+						"\nDestination: " + receivedEvent.getDestinationID() +
+						"\nData: " + receivedEvent.getData() +
+						"\nSenderID: " + receivedEvent.getSenderID() +
+						"\nTimestamp: " + receivedEvent.getTimestamp() +
+						"\nSessionID: " + receivedEvent.getSessionID() +
+						"\nChecksum: " + receivedEvent.getChecksum() +
+						"\nCepType: " + receivedEvent.getCepType().toString());
+			}
+		}			
 	}
 
 	@Override

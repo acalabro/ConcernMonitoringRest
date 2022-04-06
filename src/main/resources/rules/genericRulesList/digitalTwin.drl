@@ -1,0 +1,38 @@
+//created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+//LocalPlanner sends a CoordinatesEvent to the LocomotionController after a time > threshold
+            
+		rule "digitalTwinPredictiveSimulation"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernBaseEvent(
+			this.getName == "CoordinatesEvent",
+			this.getSenderID == "LocalPlanner",
+			this.getDestinationID == "LocomotionController"
+			this.getProperty == "thePropertyThatIsGoingToBePredictedByThisDT");
+			
+			$bEvent : ConcernBaseEvent(
+			this.getName == "CoordinatesEvent",
+			this.getProperty == $aEvent.getProperty,
+			this.getSenderID == "LocomotionController",
+			this.getSessionID == $aEvent.getSessionID,
+			this.after $aEvent);
+			//this not meets [2s] $aEvent);
+		then
+			KieLauncher.printer("Coordinates sending exceed threshold of " + "asdasdasd");	
+			retract($aEvent);
+			retract($bEvent);	
+		end
