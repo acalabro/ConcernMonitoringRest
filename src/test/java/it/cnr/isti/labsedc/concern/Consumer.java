@@ -14,7 +14,7 @@ import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
 public class Consumer {
 
 	public static void main(String[] args) throws InterruptedException {
-		String brokerUrl = "tcp://localhost:61616";
+		String brokerUrl = "tcp://bieco.holisun.com:61616";
 
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {
