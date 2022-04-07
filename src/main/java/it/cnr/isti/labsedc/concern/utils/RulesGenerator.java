@@ -26,8 +26,10 @@ public class RulesGenerator {
 
 		ConcernDTForecast<String> dtForecast = new ConcernDTForecast<String>(
 				System.currentTimeMillis(),
-				"DigitalTwin",
-				"destinationID", "sessionID", "1234", "name", "data", CepType.DROOLS, null);
+				"DTProbe",
+				"Monitoring", "sessionID", "1234", "DTForecasting", 
+				"Velocity,Velocity,Score, Velocity,Score,Score", 
+				CepType.DROOLS, "5","SUA_Probe");
 		
 //		ConcernDTForecast<String> dtEvent = new ConcernDTForecast<String>(
 //				System.currentTimeMillis(),
@@ -35,81 +37,72 @@ public class RulesGenerator {
 //				"destinationID", "sessionID", "1234", "name", "data", CepType.DROOLS, previousDTEvent);
 //		
 //		System.out.println(RulesGenerator.createRule(dtEvent));
-		RulesGenerator.generateRuleFromDTForecast(dtForecast.getData());
+		RulesGenerator.generateRuleFromDTForecast(dtForecast);
 
 		
 	}
 	
 	
-	public static void generateRuleFromDTForecast(String forecast) {
+	public static void generateRuleFromDTForecast(ConcernDTForecast<String> forecast) {
 		
 		System.out.println("called");
-		//RulesGenerator.injectRule(RulesGenerator.createRule(event), event.getSessionID());
+		//RulesGenerator.injectRule(RulesGenerator.createRule(forecast), forecast.getSessionID());
+		System.out.println(RulesGenerator.createRule(forecast));
 		
 	}
-//
-//	private static String createRule(ConcernDTEvent<?> event) {
-//		
-//		String packages = "package it.cnr.isti.labsedc.concern.event;\n\n"
-//				+ "import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;\n"
-//				+ "import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;\n"
-//				+ "import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;\n"
-//				+ "import it.cnr.isti.labsedc.concern.utils.KieLauncher;\n"
-//				+ "\n"
-//				+ "dialect \"java\"\n"
-//				+ "\n"
-//				+ "declare ConcernBaseEvent\n"
-//				+ "    @role( event )\n"
-//				+ "    @timestamp( timestamp )\n"
-//				+ "end\n\n";
-//		
-//		String header = "rule \""+ event.getName() + "-" + event.getSessionID() + "-rule\"\n"
-//				+ "	no-loop\n"
-//				+ "	salience 10\n"
-//				+ "	dialect \"java\"\n";
-//
-//		String when = "";
-//		
-//		if (event.getPrevious() == null) {
-//			
-//			when = "\n\twhen\n\n"
-//					+ "	$aEvent : ConcernBaseEvent(\n"
-//					+ "	this.getName == \"" + event.getName() + "\",\n"
-//					+ "	this.getData == \"" + event.getData() + "\",\n"
-//					+ " \tthis.getSenderID == \"" + event.getSenderID() + "\",\n"
-//					+ "	this.getSessionID == \"" + event.getSessionID() + "\");";
-//		} else {
-//		
-//		when = "\n\twhen\n\n"
-//				+ "	$aEvent : ConcernBaseEvent(\n"
-//				+ "	this.getName == \"" + event.getPrevious().getName() + "\",\n"
-//				+ "	this.getData == \"" + event.getPrevious().getData() + "\",\n"
-//				+ " \tthis.getSenderID == \"" + event.getPrevious().getSenderID() + "\",\n"
-//				+ "	this.getSessionID == \"" + event.getPrevious().getSessionID() + "\");\n"
-//				+ "	\n"
-//				+ "	$bEvent : ConcernBaseEvent(\n"
-//				+ "	this.getName == \"" + event.getName() + "\",\n"
-//				+ "	this.getData == \"" + event.getData() + "\",\n"
-//				+ " \tthis.getSenderID == \"" + event.getSenderID() + "\",\n"
-//				+ "	this.getSessionID == \"" + event.getSessionID() + "\",\n"
-//				+ "	this after $aEvent);";
-//		}
-//
-//		String then = "";
-//
-//		if (event.getPrevious() == null) {
-//			then = "\n\n\tthen\n\n"
-//					+ "\tKieLauncher.printer(\"rule "+ event.getName() + "-" + event.getSessionID() + "-rule matched\");\n"
-//					+ "end";
-//		} else {
-//			then = "\n\n\tthen\n\n"
-//				+ "\tKieLauncher.printer(\"rule "+ event.getName() + "-" + event.getSessionID() + "-rule matched\");\n"
-//				+ "	retract($aEvent);\n"
-//				+ "end";		
-//		}
-//		
-//		return packages + header + when + then;
-//	}
+
+	private static String createRule(ConcernDTForecast<String> forecast) {
+		
+		String packages = "package it.cnr.isti.labsedc.concern.event;\n\n"
+				+ "import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;\n"
+				+ "import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;\n"
+				+ "import it.cnr.isti.labsedc.concern.utils.KieLauncher;\n"
+				+ "\n"
+				+ "dialect \"java\"\n"
+				+ "\n"
+				+ "declare ConcernBaseEvent\n"
+				+ "    @role( event )\n"
+				+ "    @timestamp( timestamp )\n"
+				+ "end\n\n";
+		
+		String header = "rule \"autogen-rule-"+ forecast.getSessionID() + "-"+ forecast.getSenderID() +"-rule\"\n"
+				+ "	no-loop\n"
+				+ "	salience 10\n"
+				+ "	dialect \"java\"\n"
+				+ "\n\twhen\n\n";
+		
+		String[] forecastedEvents = forecast.getData().split(",");
+		
+		//create an event foreach forecasted event
+		String when="";
+		if (forecastedEvents.length>0) {
+		
+			when = when + 	
+					"	$0Event : ConcernBaseEvent(\n"
+					+ "	this.getName == \"" + forecastedEvents[0].toString().trim()+ "\",\n"
+					+ " \tthis.getSenderID == \"" + forecast.getForecastedProbeName()+ "\",\n"
+					+ "	this.getSessionID == \"" + forecast.getSessionID() + "\");\n"
+					+ "	\n";			
+		}
+		
+		if (forecastedEvents.length>1) {
+			for (int i = 1; i<forecastedEvents.length;i++) {
+			when = when + 	
+					"	$"+ i + "Event : ConcernBaseEvent(\n"
+					+ "	this.getName == \"" + forecastedEvents[i].toString().trim()+ "\",\n"
+					+ " \tthis.getSenderID == \"" + forecast.getForecastedProbeName()+ "\",\n"
+					+ "	this.getSessionID == \"" + forecast.getSessionID() + "\",\n"
+					+ " \tthis after $"+ (i-1) + "Event);\n\n";
+			}
+		}
+
+		String then = "";
+
+		then = "\tthen\n\n"
+					+ "\tKieLauncher.printer(\"rule autogen-rule-"+ forecast.getSessionID() + "-"+ forecast.getSenderID() +"-rule matched\");\n"
+					+ "end";		
+		return packages + header + when + then;
+	}
 
 	static void injectRule(String rulesToLoad, String sessionID) {
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
@@ -117,8 +110,8 @@ public class RulesGenerator {
 			cons.init(RulesGenerator.brokerUrl,"vera", "griselda");
 			ConcernEvaluationRequestEvent<String> ruleToEvaluate = 
 					new ConcernEvaluationRequestEvent<String>(
-							System.currentTimeMillis(),"Rules-Generator", "monitoring", 
-							sessionID, RulesGenerator.calculateCheckSum(rulesToLoad), "EvaluationRequest", 
+							System.currentTimeMillis(),"Rules-Generator", "Monitoring", 
+							sessionID, "checksum", "EvaluationRequest", 
 							rulesToLoad,
 							CepType.DROOLS, "Auto-generated Rule", ChannelProperties.GENERICREQUESTS);
 									
@@ -129,10 +122,10 @@ public class RulesGenerator {
 		System.out.println("Rule to be monitored Sent");
 	}
 
-	private static String calculateCheckSum(String rulesToLoad) {
-		Checksum crc32 = new CRC32();
-	    crc32.update(rulesToLoad.getBytes(), 0, rulesToLoad.getBytes().length);
-	    return String.valueOf(crc32.getValue());
-	}
+//	private static String calculateCheckSum(String rulesToLoad) {
+//		Checksum crc32 = new CRC32();
+//	    crc32.update(rulesToLoad.getBytes(), 0, rulesToLoad.getBytes().length);
+//	    return String.valueOf(crc32.getValue());
+//	}
 	
 }

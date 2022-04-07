@@ -10,8 +10,32 @@ import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
 
-public class Consumer {
+public class Consumer extends Thread{
 
+	public void run() {
+		String brokerUrl = "tcp://localhost:61616";
+
+		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
+		try {
+			cons.init(brokerUrl,"vera", "griselda");
+			
+			//String ruleToPut = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/moreThanOneConn.drl");
+			//String ruleToPut = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/coordinates.drl");
+			//String ruleToPut = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/localGlobalAvgDelayCheck.drl");
+			String onlyOneConn = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/onlyOneConn.drl");
+			//String netwCongestion = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/networkCongestion.drl");
+			String digitalTwin = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/digitalTwin.drl");
+
+			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(onlyOneConn,"onlyOneConnectionInLocalPlanner"));
+			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(digitalTwin, "DTMetaRule"));
+			
+			
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Rule to be monitored Sent");
+	}
+	
 	public static void main(String[] args) throws InterruptedException {
 		String brokerUrl = "tcp://localhost:61616";
 

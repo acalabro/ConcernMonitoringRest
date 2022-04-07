@@ -6,6 +6,7 @@ public class ConcernDTForecast<T> extends ConcernAbstractEvent<T> {
 
 	private static final long serialVersionUID = 1L;
 	private String trustedIntervalInSeconds;
+	private String forecastedProbeName;
 	
 	public ConcernDTForecast(
 			long timestamp,
@@ -16,9 +17,11 @@ public class ConcernDTForecast<T> extends ConcernAbstractEvent<T> {
 			String name,
 			T forecast,
 			CepType type,
-			String trustedIntervalInSeconds) {
+			String trustedIntervalInSeconds,
+			String forecastedProbeName) {
 		super(timestamp, senderID, destinationID, sessionID, checksum, name, forecast, type);
-		this.trustedIntervalInSeconds = trustedIntervalInSeconds;		
+		this.trustedIntervalInSeconds = trustedIntervalInSeconds;	
+		this.forecastedProbeName = forecastedProbeName;
 	}
 
 	public void setTrustedInterval(String trustedIntervalInSeconds) {
@@ -29,4 +32,11 @@ public class ConcernDTForecast<T> extends ConcernAbstractEvent<T> {
 		return this.trustedIntervalInSeconds;
 	}
 
+	public void setForecastedProbeName(String forecastedProbeName) {
+		this.forecastedProbeName = forecastedProbeName;
+	}
+	
+	public String getForecastedProbeName() {
+		return this.forecastedProbeName;
+	}
 }
