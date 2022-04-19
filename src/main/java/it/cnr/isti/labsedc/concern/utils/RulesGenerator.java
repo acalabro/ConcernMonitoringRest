@@ -1,10 +1,6 @@
 package it.cnr.isti.labsedc.concern.utils;
 
-import java.util.zip.CRC32;
-import java.util.zip.Checksum;
-
 import javax.jms.JMSException;
-
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.consumer.ConcernAbstractConsumer;
 import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
@@ -29,7 +25,7 @@ public class RulesGenerator {
 				"DTProbe",
 				"Monitoring", "sessionID", "1234", "DTForecasting", 
 				"Velocity,Velocity,Score, Velocity,Score,Score", 
-				CepType.DROOLS, "5","SUA_Probe");
+				CepType.DROOLS, false, "5","SUA_Probe");
 		
 //		ConcernDTForecast<String> dtEvent = new ConcernDTForecast<String>(
 //				System.currentTimeMillis(),
@@ -45,7 +41,9 @@ public class RulesGenerator {
 	
 	public static void generateRuleFromDTForecast(ConcernDTForecast<String> forecast) {
 		
-		System.out.println("called");
+    	System.out.println("------------------------------------------------------");
+    	System.out.println("-------------Received forecasting from DT-------------");
+    	System.out.println("------------------------------------------------------");
 		//RulesGenerator.injectRule(RulesGenerator.createRule(forecast), forecast.getSessionID());
 		System.out.println(RulesGenerator.createRule(forecast));
 		
@@ -113,13 +111,17 @@ public class RulesGenerator {
 							System.currentTimeMillis(),"Rules-Generator", "Monitoring", 
 							sessionID, "checksum", "EvaluationRequest", 
 							rulesToLoad,
-							CepType.DROOLS, "Auto-generated Rule", ChannelProperties.GENERICREQUESTS);
+							CepType.DROOLS, false, "Auto-generated Rule", ChannelProperties.GENERICREQUESTS);
 									
 			cons.sendEvaluationRequest("DROOLS-InstanceOne", ruleToEvaluate);
+
+	    	System.out.println("------------------------------------------------------");
+	    	System.out.println("-------------Auto-generated rule injected-------------");
+	    	System.out.println("------------------------------------------------------");
+	    	
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Rule to be monitored Sent");
 	}
 
 //	private static String calculateCheckSum(String rulesToLoad) {

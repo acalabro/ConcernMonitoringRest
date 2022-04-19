@@ -58,7 +58,7 @@ public class Mediator extends Thread {
 		
 		ConcernBaseEvent<String> genericEvent = new ConcernBaseEvent<String>(
 				System.currentTimeMillis(),
-				"TesterProbe", "monitoring", "theSessionID", "achecksumField", "EventA", "started", CepType.DROOLS, "extensionForSecurity");
+				"TesterProbe", "monitoring", "theSessionID", "achecksumField", "EventA", "started", CepType.DROOLS,  false, "extensionForSecurity");
 
 		MqttMessage genericEventInMQTT = new MqttMessage();
 		

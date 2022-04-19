@@ -21,7 +21,7 @@ public class KieLauncher {
 				System.currentTimeMillis(), 
 				"senderA", "destinationA", "sessionA", 
 				"checksum",
-				"SLA Alert", "brumbrum", CepType.DROOLS,"open");
+				"SLA Alert", "brumbrum", CepType.DROOLS, false,"open");
 		DroolsKieTest.insertEvent(evt);
 		Thread.sleep(1000);
 		System.out.println("ora mando altro");
@@ -29,7 +29,7 @@ public class KieLauncher {
 				System.currentTimeMillis(), 
 				"senderA", "destinationA", "sessionA", 
 				"checksum",
-				"load_one", "brumbrum", CepType.DROOLS,"open");
+				"load_one", "brumbrum", CepType.DROOLS, false,"open");
 		DroolsKieTest.insertEvent(evt2);
 		Thread.sleep(2000);
 	}

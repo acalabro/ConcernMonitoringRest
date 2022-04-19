@@ -16,8 +16,9 @@ public class ConcernProbeEvent<T> extends ConcernAbstractEvent<T> {
 			String name,
 			T data,
 			CepType cepType,
+			boolean consumed,
 			String relayStatus) {
-		super(timestamp, senderID, destinationID, sessionID, checksum, name, data, cepType);
+		super(timestamp, senderID, destinationID, sessionID, checksum, name, data, cepType, consumed);
 		this.relayStatus = relayStatus;	
 	}
 

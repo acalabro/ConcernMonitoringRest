@@ -8,39 +8,73 @@ import it.cnr.isti.labsedc.concern.notification.NotificationManager;
 
 dialect "java"
 
-declare ConcernAbstractEvent
+declare ConcernBaseEvent
     @role( event )
     @timestamp( timestamp )
 end
 
-
-rule "check that only one connection is active"
+rule "manage1"
 no-loop
 salience 10
 dialect "java" 
 	when
 		$aEvent : ConcernBaseEvent(
 		this.getName == "Connection",
-		this.getSenderID == "SUA_probe",
+		this.getSenderID == "SUA_Probe",
 		this.getDestinationID == "Monitoring",
-		this.getData == "established");
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
 		
 		$bEvent : ConcernBaseEvent(
 		this.getName == "Connection",
-		this.getSenderID == "SUA_probe",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
 		this.getDestinationID == "Monitoring",
 		this.getData == "established",
-		this after $aEvent)				
-		not(ConcernBaseEvent(
-			this.getName == "Connection",		
-			this.getSenderID == "SUA_probe",
-			this.getDestinationID == "Monitoring",
-			this.getData == "closed",
-			this after $aEvent));
+		this.getConsumed == true);
 		
-		//this not meets [2s] $aEvent);
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
 	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established. Shut down systems");	
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
 		retract($aEvent);
 		retract($bEvent);	
 end

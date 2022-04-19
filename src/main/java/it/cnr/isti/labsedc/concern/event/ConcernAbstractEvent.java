@@ -15,6 +15,7 @@ public abstract class ConcernAbstractEvent<T> implements Event<T>, Serializable 
 	private String name;
 	private T data;
 	private CepType cepType;
+	private boolean consumed;
 
 	public ConcernAbstractEvent(
 			long timestamp,
@@ -24,7 +25,8 @@ public abstract class ConcernAbstractEvent<T> implements Event<T>, Serializable 
 			String checksum,
 			String name,
 			T data,
-			CepType type) {
+			CepType type,
+			boolean consumed) {
 		this.setTimestamp(timestamp);
 		this.setSenderID(senderID);
 		this.setDestinationID(destinationID);
@@ -33,6 +35,7 @@ public abstract class ConcernAbstractEvent<T> implements Event<T>, Serializable 
 		this.setName(name);
 		this.setData(data);
 		this.setCepType(type);
+		this.setConsumed(consumed);
 	}
 
 	public long getTimestamp() {
@@ -82,5 +85,11 @@ public abstract class ConcernAbstractEvent<T> implements Event<T>, Serializable 
 	}
 	public void setCepType(CepType cepType) {
 		this.cepType = cepType;
+	}
+	public boolean getConsumed() {
+		return consumed;
+	}
+	public void setConsumed(boolean consumed) {
+		this.consumed = consumed;
 	}
 }

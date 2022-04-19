@@ -17,9 +17,10 @@ public class ConcernDTForecast<T> extends ConcernAbstractEvent<T> {
 			String name,
 			T forecast,
 			CepType type,
+			boolean consumed,
 			String trustedIntervalInSeconds,
 			String forecastedProbeName) {
-		super(timestamp, senderID, destinationID, sessionID, checksum, name, forecast, type);
+		super(timestamp, senderID, destinationID, sessionID, checksum, name, forecast, type, consumed);
 		this.trustedIntervalInSeconds = trustedIntervalInSeconds;	
 		this.forecastedProbeName = forecastedProbeName;
 	}

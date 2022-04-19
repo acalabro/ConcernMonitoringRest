@@ -4,7 +4,6 @@ import java.net.UnknownHostException;
 import java.util.HashMap;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.util.ConsumerThread;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -18,6 +17,7 @@ import it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager;
 import it.cnr.isti.labsedc.concern.consumer.Consumer;
 import it.cnr.isti.labsedc.concern.notification.NotificationManager;
 import it.cnr.isti.labsedc.concern.probe.DTProbe;
+import it.cnr.isti.labsedc.concern.probe.SUAProbe;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 import it.cnr.isti.labsedc.concern.requestListener.ServiceListenerManager;
 import it.cnr.isti.labsedc.concern.storage.MySQLStorageController;
@@ -95,35 +95,40 @@ public class ConcernApp extends Thread
     public static void DemoStart() {
 
     	System.out.println("------------------------------------------------------");
-    	System.out.println("---------Demo session will starts in 3 seconds--------");
-    	System.out.println("------------------------------------------------------");
-    	long timer = System.currentTimeMillis();
-    	while (System.currentTimeMillis() < (timer+3000)) {
-    		
-    	}
-    	System.out.println("------------------------------------------------------");
-    	System.out.println("-------Starting Auditing Framework Demo session-------");
+    	System.out.println("-------Starting Auditing Framework session-------");
     	System.out.println("------------------------------------------------------");
     	Thread ruleSender = new Consumer();
 		ruleSender.start();
-    	timer = System.currentTimeMillis();
-    	while (System.currentTimeMillis() < (timer+3000)) {
-    		
-    	}    	
+  	
     	System.out.println("------------------------------------------------------");
     	System.out.println("-------------Rules and metarules injected-------------");
     	System.out.println("------------------------------------------------------");
-    	System.out.println("-------------------Starting DTProbe-------------------");
-    	try {
-			DTProbe.main(null);
-		} catch (InterruptedException | UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	System.out.println("------------------------------------------------------");
-    	System.out.println("-------------------DT Probe started-------------------");
-    	System.out.println("------------------------------------------------------");
     	
+//    	
+//    	System.out.println("-------------------Starting DTProbe-------------------");
+//    	try {
+//			DTProbe.main(null);
+//		} catch (InterruptedException | UnknownHostException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    	System.out.println("------------------------------------------------------");
+//    	System.out.println("-------------------DT Probe started-------------------");
+//    	System.out.println("------------------------------------------------------");
+//    	
+//    	
+//    	System.out.println("-------------------Starting SUAProbe-------------------");
+//    	try {
+//			SUAProbe.main(null);
+//		} catch (InterruptedException | UnknownHostException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    	System.out.println("------------------------------------------------------");
+//    	System.out.println("-------------------SUA Probe started-------------------");
+//    	System.out.println("------------------------------------------------------");
+//    	
+//    	
     }
     
     public static void StartComponents(MqttClient listenerClient, String mqttBrokerUrl, String topic) {

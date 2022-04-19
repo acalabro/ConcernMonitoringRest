@@ -38,7 +38,7 @@ public class ProbeGlobalPlanEvent {
 					System.currentTimeMillis(), 
 					"RobotSensor", "Monitoring", "theSessionID", 
 					"neverMindNow", "GlobalPlanEvent", "anInformationRelatedToThisEventCategory",
-					CepType.DROOLS, "theFrameID", 0f,0.1f,0f,0.1f,0f,0.2f,0.3f);
+					CepType.DROOLS, false, "theFrameID", 0f,0.1f,0f,0.1f,0f,0.2f,0.3f);
 			
  				msg.setObject(event);
 				producer.send(msg);

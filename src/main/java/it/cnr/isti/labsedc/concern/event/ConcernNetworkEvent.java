@@ -9,9 +9,10 @@ public class ConcernNetworkEvent<T> extends ConcernAbstractEvent<T>{
 	public ConcernNetworkEvent(long timestamp, String senderID, 
 			String destinationID, String sessionID, 
 			String checksum, String name, 
-			T data, CepType type) {
+			T data, CepType type,
+			boolean consumed) {
 		
-		super(timestamp, senderID, destinationID, sessionID, checksum, name, data, type);
+		super(timestamp, senderID, destinationID, sessionID, checksum, name, data, type, consumed);
 	}
 		
 	public double getConnectionAmount() {

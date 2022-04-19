@@ -12,5 +12,6 @@ public interface Event <T>{
 	public void setName(String name);
 	public T getData();
 	public void setData(T t);
-	
+	public boolean getConsumed();
+	public void setConsumed(boolean consumed);
 }

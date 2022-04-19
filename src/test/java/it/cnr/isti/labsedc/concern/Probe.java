@@ -34,7 +34,7 @@ public class Probe {
 					System.currentTimeMillis(), 
 					sender, destination, sessionID, 
 					checksum, eventName, eventData,
-					CepType.DROOLS, extension);
+					CepType.DROOLS,  false,extension);
 			
  				msg.setObject(event);
 				producer.send(msg);
@@ -87,7 +87,7 @@ public class Probe {
 					System.currentTimeMillis(), 
 					"probeROS", "monitoring","sessionOne",
 					"asd", "connectionEvent", "7", 
-					CepType.DROOLS);  
+					CepType.DROOLS, false);  
             
             
 			msg.setObject(connectionAmount);

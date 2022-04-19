@@ -39,7 +39,7 @@ public class ProbeCmdVel {
 					System.currentTimeMillis(), 
 					"RobotSensor", "Monitoring", "theSessionID", 
 					"neverMindNow", "VelocityEvent", "anInformationRelatedToThisEventCategory",
-					CepType.DROOLS, 0f,0.1f,0f,0.1f,0f,0.2f);
+					CepType.DROOLS, false, 0f,0.1f,0f,0.1f,0f,0.2f);
 			
  				msg.setObject(event);
 				producer.send(msg);

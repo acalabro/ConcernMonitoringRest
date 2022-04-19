@@ -80,7 +80,7 @@ public class GPSProbe {
 					new Exception().getStackTrace()[1].getClassName(),
 					"AuditingSystem-Monitoring", "sessionA", 
 					"checksum",
-					eventName, eventData, CepType.DROOLS,"extension");
+					eventName, eventData, CepType.DROOLS, false,"extension");
  				msg.setObject(event);
 				producer.send(msg);
 		} catch (JMSException e) {

@@ -5,6 +5,7 @@ import it.cnr.isti.labsedc.concern.cep.CepType;
 public class ConcernBaseEvent<T> extends ConcernAbstractEvent<T> {
 
 	private static final long serialVersionUID = 1L;
+	
 	private String property;
 	
 	public ConcernBaseEvent(
@@ -16,8 +17,11 @@ public class ConcernBaseEvent<T> extends ConcernAbstractEvent<T> {
 			String name,
 			T data,
 			CepType type,
+			boolean consumed,
 			String property) {
-		super(timestamp, senderID, destinationID, sessionID, checksum, name, data, type);
+		
+		super(timestamp, senderID, destinationID, sessionID, checksum, name, data, type, consumed);
+		
 		this.property = property;	
 	}
 

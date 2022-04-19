@@ -23,8 +23,9 @@ public class ConcernCmdVelEvent<T> extends ConcernAbstractEvent<T> {
 			String name,
 			T msgData,
 			CepType type,
+			boolean consumed,
 			float angularx, float angulary, float angularz, float linearx, float lineary, float linearz) {
-		super(timestamp, senderID, destinationID, sessionID, checksum, name, msgData, type);
+		super(timestamp, senderID, destinationID, sessionID, checksum, name, msgData, type, consumed);
 		
 		this.angularx = angularx;
 		this.angulary = angulary;

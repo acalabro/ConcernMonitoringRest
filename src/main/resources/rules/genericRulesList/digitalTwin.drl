@@ -1,9 +1,11 @@
 //created on: Nov 11, 2021
 package it.cnr.isti.labsedc.concern.event;
+
 import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
 import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
 
 dialect "java"
 
@@ -12,7 +14,7 @@ declare ConcernDTForecast
     @timestamp( timestamp )
 end
             
-		rule "digitalTwinPredictiveSimulation"
+		rule "digitalTwin-META-rule"
 		no-loop
 		salience 10
 		dialect "java"
@@ -23,6 +25,6 @@ end
 			this.getDestinationID == "Monitoring");
 			
 		then
-			RulesGenerator.generateRuleFromDTEvent($aEvent);
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
 			retract($aEvent);
 		end

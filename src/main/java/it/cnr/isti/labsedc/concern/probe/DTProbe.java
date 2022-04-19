@@ -20,6 +20,7 @@ public class DTProbe extends ConcernAbstractProbe {
 	}
 	
 	public static void main(String[] args) throws UnknownHostException, InterruptedException {
+		Thread.sleep(1000);
 		//creating a probe
 		DTProbe aGenericProbe = new DTProbe(
 				ConnectionManager.createProbeSettingsPropertiesObject(
@@ -31,7 +32,7 @@ public class DTProbe extends ConcernAbstractProbe {
 		//sending events
 		try {
 			DebugMessages.line();
-			DebugMessages.println(System.currentTimeMillis(), DTProbe.class.getSimpleName(),"Sending SUA messages");
+			DebugMessages.println(System.currentTimeMillis(), DTProbe.class.getSimpleName(),"Sending DT forecast");
 
 			sendDTForecastEvents(aGenericProbe, "Velocity,Velocity,Score,Velocity", "5");
 
@@ -48,7 +49,7 @@ public class DTProbe extends ConcernAbstractProbe {
 		{
 			ConcernDTForecast<String> forecast = new ConcernDTForecast<String>(System.currentTimeMillis(),
 					"DT_probe","Monitoring","noSession","noChecksum","DTForecasting", forecastedEvents,	
-					CepType.DROOLS, confidenceIntervalInSeconds, "SUA_Probe");
+					CepType.DROOLS, false, confidenceIntervalInSeconds, "DT_probe");
 			ObjectMessage messageToSend = publishSession.createObjectMessage();
 			messageToSend.setJMSMessageID(String.valueOf(MESSAGEID++));
 			messageToSend.setObject(forecast);
@@ -57,6 +58,7 @@ public class DTProbe extends ConcernAbstractProbe {
 			mProducer.send(messageToSend);
 			DebugMessages.ok();
 			DebugMessages.line();
+			DebugMessages.println(System.currentTimeMillis(), DTProbe.class.getSimpleName(),"Forecasted sequence: " + forecastedEvents + " in " + confidenceIntervalInSeconds + " seconds.");
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
@@ -66,5 +68,5 @@ public class DTProbe extends ConcernAbstractProbe {
 	public void sendMessage(ConcernBaseEvent<?> event, boolean debug) {
 		// TODO Auto-generated method stub
 		
-	}
+	}	
 }

@@ -16,8 +16,9 @@ public class ConcernCANbusEvent<T> extends ConcernAbstractEvent<T> {
 			String name,
 			T canData,
 			CepType type,
+			boolean consumed,
 			String canAddress) {
-		super(timestamp, senderID, destinationID, sessionID, checksum, name, canData, type);
+		super(timestamp, senderID, destinationID, sessionID, checksum, name, canData, type, consumed);
 		this.canAddress = canAddress;		
 	}
 

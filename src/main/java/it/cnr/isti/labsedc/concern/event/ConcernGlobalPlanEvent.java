@@ -26,10 +26,11 @@ public class ConcernGlobalPlanEvent<T> extends ConcernAbstractEvent<T> {
 			String name,
 			T msgData,
 			CepType type,
+			boolean consumed,
 			String frame_id,
 			float posesPoseOrientationW, float posesPoseOrientationX, float posesPoseOrientationY, float posesPoseOrientationZ,
 			float posesPositionX, float posesPositionY,float posesPositionZ) {
-		super(timestamp, senderID, destinationID, sessionID, checksum, name, msgData, type);
+		super(timestamp, senderID, destinationID, sessionID, checksum, name, msgData, type, consumed);
 		
 		this.frame_id = frame_id;
 		
