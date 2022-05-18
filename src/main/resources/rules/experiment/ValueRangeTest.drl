@@ -1,0 +1,31 @@
+//created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernAbstractEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+
+rule "observe mean connection value for avoiding network congestion"
+no-loop
+salience 10
+dialect "java"
+when 
+   	Number(doubleValue > 5) from accumulate(
+		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
+   	 		average($amount)  
+   	 		
+   	 	)
+    then
+        System.out.println("Failure detected");
+end

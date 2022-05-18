@@ -28,60 +28,14 @@ public class SUAProbe extends ConcernAbstractProbe {
 		try {
 			DebugMessages.line();
 			DebugMessages.println(System.currentTimeMillis(), SUAProbe.class.getSimpleName(),"Sending SUA messages");
-
+		
 			sendConnectionEventMessage(aGenericProbe);
-			
-			
-//			Thread.sleep(5000);
-//			sendDisconnectionEventMessage(aGenericProbe);
-//			Thread.sleep(1000);
-//			sendConnectionEventMessage(aGenericProbe);
-//			Thread.sleep(5000);
-//			sendDisconnectionEventMessage(aGenericProbe);
-//			Thread.sleep(1000);
-//			sendConnectionEventMessage(aGenericProbe);
-//			Thread.sleep(1000);
-//			sendConnectionEventMessage(aGenericProbe);
-//		  Thread.sleep(100);
-//			sendConnectionEventMessage(aGenericProbe);
-//			
-			
+			Thread.sleep(1000);
+			sendScoreMessage(aGenericProbe, "0.1");
 			sendVelocityMessage(aGenericProbe, "0.1");
-			Thread.sleep(100);
-			sendVelocityMessage(aGenericProbe, "0.1");
-			Thread.sleep(100);
-			sendScoreMessage(aGenericProbe, "0.1f");
-			Thread.sleep(100);
-			sendVelocityMessage(aGenericProbe, "0.1");
-
-//			
-//			  Thread.sleep(100);
-//				sendConnectionEventMessage(aGenericProbe);
-//				
-//				
-				sendVelocityMessage(aGenericProbe, "0.1");
-				Thread.sleep(300);
-				sendVelocityMessage(aGenericProbe, "0.1");
-				Thread.sleep(300);
-				sendScoreMessage(aGenericProbe, "0.1f");
-				Thread.sleep(300);
-				sendVelocityMessage(aGenericProbe, "0.1");
-				
-//				  Thread.sleep(300);
-//					sendConnectionEventMessage(aGenericProbe);
-//					
-					
-					sendVelocityMessage(aGenericProbe, "0.1");
-					Thread.sleep(1000);
-					sendVelocityMessage(aGenericProbe, "0.1");
-					Thread.sleep(300);
-					sendScoreMessage(aGenericProbe, "0.1f");
-					Thread.sleep(500);
-					sendVelocityMessage(aGenericProbe, "0.1");
 			
-		} catch (IndexOutOfBoundsException | NamingException e) {} catch (JMSException e) {
-			e.printStackTrace();
-		} 
+			
+		} catch (IndexOutOfBoundsException | JMSException | NamingException e) {} 
 	}
 
 	

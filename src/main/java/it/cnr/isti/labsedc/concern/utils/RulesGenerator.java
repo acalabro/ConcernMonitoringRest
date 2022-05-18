@@ -25,7 +25,7 @@ public class RulesGenerator {
 				"DTProbe",
 				"Monitoring", "sessionID", "1234", "DTForecasting", 
 				"Velocity,Velocity,Score, Velocity,Score,Score", 
-				CepType.DROOLS, false, "5","SUA_Probe");
+				CepType.DROOLS, false, "5","SUA_Probe",DTForecastedProperty.PATTERN,"0");
 		
 //		ConcernDTForecast<String> dtEvent = new ConcernDTForecast<String>(
 //				System.currentTimeMillis(),
@@ -33,6 +33,7 @@ public class RulesGenerator {
 //				"destinationID", "sessionID", "1234", "name", "data", CepType.DROOLS, previousDTEvent);
 //		
 //		System.out.println(RulesGenerator.createRule(dtEvent));
+		
 		RulesGenerator.generateRuleFromDTForecast(dtForecast);
 
 		
@@ -44,7 +45,7 @@ public class RulesGenerator {
     	System.out.println("------------------------------------------------------");
     	System.out.println("-------------Received forecasting from DT-------------");
     	System.out.println("------------------------------------------------------");
-		//RulesGenerator.injectRule(RulesGenerator.createRule(forecast), forecast.getSessionID());
+		RulesGenerator.injectRule(RulesGenerator.createRule(forecast), forecast.getSessionID());
 		System.out.println(RulesGenerator.createRule(forecast));
 		
 	}

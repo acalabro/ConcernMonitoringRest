@@ -1,0 +1,213 @@
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-1"
+
+	no-loop
+	salience 3
+	dialect "java"
+
+	when
+			$0Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID");
+			
+			$1Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this after $0Event);
+			
+			$2Event: ConcernBaseEvent(
+			this.getName == "Score",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this after $0Event, this after $1Event);
+			
+			$3Event: ConcernBaseEvent(
+			this.getName != "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this after $0Event, this after $1Event, this after $2Event);
+				
+	then
+		
+		KieLauncher.printer("-------------------------------------------------------------------------rule autogen-rule-1 matched");
+
+end
+
+rule "autogen-rule-2"
+
+	no-loop
+	salience 6
+	dialect "java"
+
+	when
+	
+			$0Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID");
+			
+			$1Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this after $0Event);
+
+			$2Event: ConcernBaseEvent(
+			this.getName != "Score",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this after $0Event, this after $1Event);
+			
+		then
+		
+		KieLauncher.printer("-------------------------------------------------------------------------rule autogen-rule-2 matched");
+
+end
+
+
+rule "autogen-rule-3"
+
+no-loop
+	salience 10
+	dialect "java"
+
+	when
+	
+			$0Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID");
+		
+			$1Event: ConcernBaseEvent(
+			this.getName != "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this after $0Event);
+
+		then
+		
+		KieLauncher.printer("-------------------------------------------------------------------------rule autogen-rule-3 matched");
+
+end
+
+rule "autogen-rule-test1"
+
+no-loop
+	salience 10
+	dialect "java"
+
+	when
+			$0Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this.getConsumed == false);
+
+		then
+		
+			$0Event.setConsumed(true);
+			update($0Event);
+end
+
+rule "autogen-rule-test2"
+
+no-loop
+	salience 10
+	dialect "java"
+
+	when
+	
+			$0Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this.getConsumed == true);
+			
+			$1Event: ConcernBaseEvent(
+			this.getName != "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID", 
+			this after $0Event);
+
+		then
+		
+		retract($0Event);
+		retract($1Event);
+		
+		KieLauncher.printer("-------------------------------------------------------------------------rule autogen-rule-5 matched");
+
+end
+
+rule "autogen-rule-6"
+
+no-loop
+	salience 10
+	dialect "java"
+
+	when
+	
+			$0Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this.getConsumed == true);
+			
+			$1Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this.getConsumed == false,
+			this after $0Event);
+
+		then
+		
+		retract($0Event);
+		retract($1Event);
+		
+		KieLauncher.printer("-------------------------------------------------------------------------rule autogen-rule-6 matched");
+
+end
+
+rule "autogen-rule-7"
+
+no-loop
+	salience 10
+	dialect "java"
+
+	when
+	
+			$0Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this.getConsumed == true);
+			
+			$1Event: ConcernBaseEvent(
+			this.getName == "Velocity",
+		 	this.getSenderID == "SUA_Probe",
+			this.getSessionID == "sessionID",
+			this.getConsumed == false,
+			this after $0Event);
+
+		then
+		
+		retract($0Event);
+		retract($1Event);
+		
+		KieLauncher.printer("-------------------------------------------------------------------------rule autogen-rule-6 matched");
+
+end

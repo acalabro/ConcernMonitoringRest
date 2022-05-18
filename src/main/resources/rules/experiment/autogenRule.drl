@@ -1,0 +1,27 @@
+//created on: Nov 30, 2021
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTEvent;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogenRule"
+	no-loop
+	salience 10
+	dialect "java"
+when
+	$aEvent : ConcernDTEvent(
+	this.getSenderID == "DigitalTwin",
+	this.getDestinationID == "Monitoring");
+then
+	RulesGenerator.generateRuleFromDTForecast($aEvent);	//passa anche i valori di probe sorgente e destinatario 
+														//in modo da generarli nella regola destinazione	
+	retract($aEvent);	
+end
