@@ -16,7 +16,6 @@ rule "autogen-rule-1"
 	no-loop
 	salience 3
 	dialect "java"
-
 	when
 			$0Event: ConcernBaseEvent(
 			this.getName == "Velocity",
@@ -41,10 +40,8 @@ rule "autogen-rule-1"
 			this.getSessionID == "sessionID",
 			this after $0Event, this after $1Event, this after $2Event);
 				
-	then
-		
-		KieLauncher.printer("-------------------------------------------------------------------------rule autogen-rule-1 matched");
-
+	then	
+		KieLauncher.printer("-rule autogen-rule-1 matched");
 end
 
 rule "autogen-rule-2"
