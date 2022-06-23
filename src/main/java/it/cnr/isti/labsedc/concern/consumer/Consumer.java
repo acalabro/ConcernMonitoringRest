@@ -6,11 +6,16 @@ import java.nio.file.Path;
 
 import javax.jms.JMSException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
 
 public class Consumer extends Thread{
+
+	private static Logger logger;
 
 	public void run() {
 		sendRule();
@@ -22,20 +27,24 @@ public class Consumer extends Thread{
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {
 			cons.init(brokerUrl,"vera", "griselda");
-			
 			String digitalTwin = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/digitalTwin.drl");
+			logger.info("sending rule");
 			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(digitalTwin, "DTMetaRule"));
+			logger.info("rule sent");
 			Thread.sleep(1000);
+			logger.info("sending rule");
 			String onlyOneConn = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/onlyOneConn.drl");
 			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(onlyOneConn,"onlyOneConnectionInLocalPlanner"));
+			logger.info("rule sent");
 			
 		} catch (JMSException | InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Rule to be monitored Sent");		
+		logger.info("Rule to be monitored Sent");		
 	}
 
 	public static void main(String[] args) throws InterruptedException {
+		logger = LogManager.getLogger(Consumer.class);
 		sendRule();
 	}
 	

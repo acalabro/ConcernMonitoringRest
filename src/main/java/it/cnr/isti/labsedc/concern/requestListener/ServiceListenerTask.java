@@ -18,7 +18,7 @@ import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 import it.cnr.isti.labsedc.concern.register.TopicAndProperties;
-import it.cnr.isti.labsedc.concern.utils.RoutingUtilities;
+import it.cnr.isti.labsedc.concern.rules.RoutingUtilities;
 
 public class ServiceListenerTask implements Runnable, MessageListener {
 

@@ -18,8 +18,8 @@ import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 import it.cnr.isti.labsedc.concern.register.TopicAndProperties;
+import it.cnr.isti.labsedc.concern.rules.RoutingUtilities;
 import it.cnr.isti.labsedc.concern.storage.StorageController;
-import it.cnr.isti.labsedc.concern.utils.RoutingUtilities;
 
 public class EventListenerTask implements Runnable, MessageListener {
 

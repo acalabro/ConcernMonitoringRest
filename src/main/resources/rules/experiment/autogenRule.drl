@@ -3,7 +3,7 @@ package it.cnr.isti.labsedc.concern.event;
 import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernDTEvent;
-import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+import it.cnr.isti.labsedc.concern.rules.RulesGenerator;
 
 dialect "java"
 

@@ -1,6 +1,5 @@
 package it.cnr.isti.labsedc.concern;
 
-import java.net.UnknownHostException;
 import java.util.HashMap;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -16,8 +15,6 @@ import it.cnr.isti.labsedc.concern.cep.ComplexEventProcessorManager;
 import it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager;
 import it.cnr.isti.labsedc.concern.consumer.Consumer;
 import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-import it.cnr.isti.labsedc.concern.probe.DTProbe;
-import it.cnr.isti.labsedc.concern.probe.SUAProbe;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 import it.cnr.isti.labsedc.concern.requestListener.ServiceListenerManager;
 import it.cnr.isti.labsedc.concern.storage.MySQLStorageController;
@@ -61,7 +58,6 @@ public class ConcernApp extends Thread
     	return true;
     }
     	
-    @SuppressWarnings("deprecation")
 	public static void killInstance() {
     	ConcernApp.broker.stopActiveMQBroker();
     	INSTANCE.interrupt();

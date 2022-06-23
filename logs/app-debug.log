@@ -663,3 +663,2359 @@ CepType: DROOLS
 2022-04-19T12:12:44.361+0200 [grizzly-http-server-0] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
 2022-04-19T12:12:44.384+0200 [Thread-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
 2022-04-19T12:12:44.610+0200 [Thread-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-08T11:40:32.254+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-08T11:40:32.257+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-08T11:40:32.259+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-08T11:40:32.267+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-08T11:40:32.428+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-08T11:40:32.428+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-08T11:40:32.428+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-08T11:40:32.459+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-08T11:40:32.459+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-08T11:40:32.462+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-08T11:40:32.777+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-08T11:40:32.917+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-08T11:40:32.937+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-08T11:40:33.144+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-08T11:41:01.380+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-08T11:41:01.382+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-08T11:41:01.384+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-08T11:41:01.392+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-08T11:41:01.566+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-08T11:41:01.567+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-08T11:41:01.567+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-08T11:41:01.588+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-08T11:41:01.588+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-08T11:41:01.589+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-08T11:41:01.808+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-08T11:41:01.946+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-08T11:41:01.963+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-08T11:41:02.194+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-08T12:02:58.700+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-08T12:03:10.771+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T12:03:11.791+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T12:03:11.799+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-08T12:04:50.742+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T12:04:50.808+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-08T12:04:51.821+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T12:04:51.829+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-08T12:04:51.831+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-08T12:11:48.621+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T12:11:48.638+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-08T12:11:49.639+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T12:11:49.647+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-08T12:11:49.649+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-08T12:14:56.215+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T12:14:56.261+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-08T12:14:57.262+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T12:14:57.270+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-08T12:14:57.272+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-08T13:47:01.109+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T13:47:01.147+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-08T13:47:02.148+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-08T13:47:02.156+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-08T13:47:02.158+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-13T09:40:19.829+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-13T09:40:19.834+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-13T09:40:19.840+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-13T09:40:19.861+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-13T09:40:20.088+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-13T09:40:20.088+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-13T09:40:20.089+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-13T09:40:20.135+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-13T09:40:20.136+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-13T09:40:20.139+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-13T09:40:20.732+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-13T09:40:21.114+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-13T09:40:21.153+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-13T09:40:21.598+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-13T09:40:29.940+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T09:40:29.979+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T09:40:29.991+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "digitalTwin-META-rule"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernDTForecast(
+			this.getName == "DTForecasting",
+			this.getSenderID == "DT_probe",
+			this.getDestinationID == "Monitoring");
+			
+		then
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
+			retract($aEvent);
+		end
+
+2022-06-13T09:40:30.515+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T09:40:30.516+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2022-06-13T09:40:30.980+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T09:40:30.989+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T09:40:30.991+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-13T09:40:30.994+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2022-06-13T09:40:31.135+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T09:40:31.135+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2022-06-13T09:40:43.637+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T09:40:43.639+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T09:40:43.640+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T09:40:43.663+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Connection",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T09:40:43.705+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T09:40:43.705+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T09:40:43.706+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	$1Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $0Event);
+
+	$2Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $1Event);
+
+	$3Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $2Event);
+
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T09:40:43.778+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T09:40:43.778+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T09:40:43.779+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T09:40:43.818+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T09:40:43.819+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T09:48:18.655+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-13T09:48:18.657+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-13T09:48:18.661+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-13T09:48:18.676+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-13T09:48:18.852+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-13T09:48:18.853+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-13T09:48:18.853+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-13T09:48:18.882+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-13T09:48:18.883+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-13T09:48:18.885+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-13T09:48:19.245+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-13T09:48:19.430+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-13T09:48:19.452+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-13T09:48:19.691+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-13T09:48:27.889+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T09:48:27.922+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T09:48:27.937+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "digitalTwin-META-rule"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernDTForecast(
+			this.getName == "DTForecasting",
+			this.getSenderID == "DT_probe",
+			this.getDestinationID == "Monitoring");
+			
+		then
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
+			retract($aEvent);
+		end
+
+2022-06-13T09:48:28.462+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T09:48:28.463+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2022-06-13T09:48:28.924+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T09:48:28.926+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T09:48:28.926+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-13T09:48:28.927+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2022-06-13T09:48:29.070+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T09:48:29.070+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2022-06-13T11:43:29.906+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T11:43:29.915+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T11:43:29.916+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Connection in 4 seconds.
+2022-06-13T11:43:29.916+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T11:43:29.917+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T11:43:29.917+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Velocity,Velocity,Score,Velocity in 5 seconds.
+2022-06-13T11:43:29.918+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T11:43:29.918+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T11:43:29.919+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Score in 0 seconds.
+2022-06-13T11:43:29.919+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T11:43:29.920+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T11:43:29.921+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T11:43:29.939+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Connection",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T11:43:29.977+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T11:43:29.978+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T11:43:29.979+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	$1Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $0Event);
+
+	$2Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $1Event);
+
+	$3Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $2Event);
+
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T11:43:30.067+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T11:43:30.068+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T11:43:30.069+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T11:43:30.109+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T11:43:30.109+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T11:43:41.628+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-13T11:43:41.630+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-13T11:43:41.634+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-13T11:43:41.644+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-13T11:43:41.844+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-13T11:43:41.845+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-13T11:43:41.845+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-13T11:43:41.877+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-13T11:43:41.877+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-13T11:43:41.879+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-13T11:43:42.161+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-13T11:43:42.337+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-13T11:43:42.363+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-13T11:43:42.612+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-13T11:53:45.401+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-13T11:53:45.405+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-13T11:53:45.411+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-13T11:53:45.433+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-13T11:53:45.668+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-13T11:53:45.668+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-13T11:53:45.669+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-13T11:53:45.722+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-13T11:53:45.723+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-13T11:53:45.726+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-13T11:53:46.358+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-13T11:53:46.734+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-13T11:53:46.782+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-13T11:53:47.305+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-13T11:53:53.302+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T11:53:53.343+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T11:53:53.364+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "digitalTwin-META-rule"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernDTForecast(
+			this.getName == "DTForecasting",
+			this.getSenderID == "DT_probe",
+			this.getDestinationID == "Monitoring");
+			
+		then
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
+			retract($aEvent);
+		end
+
+2022-06-13T11:53:54.319+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T11:53:54.320+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2022-06-13T11:53:54.344+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T11:53:54.349+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T11:53:54.351+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-13T11:53:54.351+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2022-06-13T11:53:54.635+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T11:53:54.636+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2022-06-13T11:54:10.027+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T11:54:10.043+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T11:54:10.046+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Connection in 4 seconds.
+2022-06-13T11:54:10.046+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T11:54:10.047+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T11:54:10.052+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Velocity,Velocity,Score,Velocity in 5 seconds.
+2022-06-13T11:54:10.052+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T11:54:10.053+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T11:54:10.055+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Score in 0 seconds.
+2022-06-13T11:54:10.055+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T11:54:10.058+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T11:54:10.061+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T11:54:10.106+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Connection",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T11:54:10.210+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T11:54:10.211+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T11:54:10.212+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	$1Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $0Event);
+
+	$2Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $1Event);
+
+	$3Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $2Event);
+
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T11:54:10.325+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T11:54:10.326+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T11:54:10.328+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T11:54:10.406+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T11:54:10.406+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T12:01:20.494+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-13T12:01:20.498+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-13T12:01:20.506+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-13T12:01:20.526+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-13T12:01:20.778+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-13T12:01:20.779+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-13T12:01:20.779+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-13T12:01:20.846+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-13T12:01:20.847+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-13T12:01:20.850+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-13T12:01:21.532+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-13T12:01:21.949+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-13T12:01:21.995+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-13T12:01:22.473+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-13T12:01:30.856+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T12:01:30.901+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T12:01:30.927+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "digitalTwin-META-rule"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernDTForecast(
+			this.getName == "DTForecasting",
+			this.getSenderID == "DT_probe",
+			this.getDestinationID == "Monitoring");
+			
+		then
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
+			retract($aEvent);
+		end
+
+2022-06-13T12:01:31.864+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:01:31.865+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2022-06-13T12:01:31.903+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T12:01:31.909+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T12:01:31.912+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-13T12:01:31.915+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2022-06-13T12:01:32.205+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:01:32.206+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2022-06-13T12:01:39.207+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T12:01:39.224+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T12:01:39.229+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Connection in 4 seconds.
+2022-06-13T12:01:39.230+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T12:01:39.231+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T12:01:39.233+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Velocity,Velocity,Score,Velocity in 5 seconds.
+2022-06-13T12:01:39.234+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T12:01:39.235+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T12:01:39.235+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T12:01:39.237+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T12:01:39.237+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Score in 0 seconds.
+2022-06-13T12:01:39.239+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T12:01:39.267+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T12:01:39.278+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T12:01:39.279+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Connection",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T12:01:39.283+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T12:01:39.298+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T12:01:39.299+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T12:01:39.305+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T12:01:39.367+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:01:39.368+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T12:01:39.369+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	$1Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $0Event);
+
+	$2Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $1Event);
+
+	$3Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $2Event);
+
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T12:01:39.486+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:01:39.486+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T12:01:39.488+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T12:01:39.568+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:01:39.568+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T12:15:35.228+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-13T12:15:35.259+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from DigitalTwin
+2022-06-13T12:15:35.260+0200 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: NextEventWillBE
+Destination: Monitoring
+Data: 930
+SenderID: DigitalTwin
+Timestamp: 1655115335213
+SessionID: 123098
+Checksum: asd
+CepType: DROOLS
+2022-06-13T12:16:24.458+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-13T12:16:24.466+0200 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SUA_Probe
+2022-06-13T12:16:24.467+0200 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: Connection
+Destination: Monitoring
+Data: established
+SenderID: SUA_Probe
+Timestamp: 1655115384445
+SessionID: sessionA
+Checksum: checksum
+CepType: DROOLS
+2022-06-13T12:16:25.479+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-13T12:16:25.488+0200 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SUA_Probe
+2022-06-13T12:16:25.490+0200 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: Connection
+Destination: Monitoring
+Data: established
+SenderID: SUA_Probe
+Timestamp: 1655115385478
+SessionID: sessionA
+Checksum: checksum
+CepType: DROOLS
+2022-06-13T12:17:53.079+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-13T12:17:53.086+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-13T12:17:53.093+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-13T12:17:53.115+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-13T12:17:53.353+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-13T12:17:53.353+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-13T12:17:53.354+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-13T12:17:53.408+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-13T12:17:53.409+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-13T12:17:53.412+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-13T12:17:54.035+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-13T12:17:54.406+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-13T12:17:54.455+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-13T12:17:55.006+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-13T12:18:00.847+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T12:18:00.882+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T12:18:00.902+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "digitalTwin-META-rule"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernDTForecast(
+			this.getName == "DTForecasting",
+			this.getSenderID == "DT_probe",
+			this.getDestinationID == "Monitoring");
+			
+		then
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
+			retract($aEvent);
+		end
+
+2022-06-13T12:18:01.884+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T12:18:01.892+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T12:18:01.893+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-13T12:18:01.937+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:18:01.939+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2022-06-13T12:18:01.943+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2022-06-13T12:18:02.323+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:18:02.324+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2022-06-13T12:18:09.111+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T12:18:09.130+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T12:18:09.134+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Connection in 4 seconds.
+2022-06-13T12:18:09.134+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T12:18:09.135+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T12:18:09.137+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Velocity,Velocity,Score,Velocity in 5 seconds.
+2022-06-13T12:18:09.137+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T12:18:09.138+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T12:18:09.138+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T12:18:09.140+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Score in 0 seconds.
+2022-06-13T12:18:09.140+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T12:18:09.142+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T12:18:09.168+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T12:18:09.182+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T12:18:09.183+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Connection",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T12:18:09.186+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T12:18:09.192+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T12:18:09.193+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T12:18:09.205+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T12:18:09.268+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:18:09.269+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T12:18:09.270+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	$1Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $0Event);
+
+	$2Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $1Event);
+
+	$3Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $2Event);
+
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T12:18:09.397+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:18:09.398+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T12:18:09.399+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T12:18:09.474+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T12:18:09.475+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T12:18:14.622+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-13T12:18:14.630+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SUA_Probe
+2022-06-13T12:18:14.631+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: Connection
+Destination: Monitoring
+Data: established
+SenderID: SUA_Probe
+Timestamp: 1655115494607
+SessionID: sessionA
+Checksum: checksum
+CepType: DROOLS
+2022-06-13T12:18:15.636+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-13T12:18:15.638+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SUA_Probe
+2022-06-13T12:18:15.639+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: Connection
+Destination: Monitoring
+Data: established
+SenderID: SUA_Probe
+Timestamp: 1655115495636
+SessionID: sessionA
+Checksum: checksum
+CepType: DROOLS
+2022-06-13T17:21:35.360+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-13T17:21:35.363+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-13T17:21:35.368+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-13T17:21:35.380+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-13T17:21:35.552+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-13T17:21:35.553+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-13T17:21:35.553+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-13T17:21:35.599+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-13T17:21:35.600+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-13T17:21:35.602+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-13T17:21:35.974+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-13T17:21:36.177+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-13T17:21:36.197+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-13T17:21:36.460+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-13T17:21:47.548+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T17:21:47.564+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T17:21:47.571+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "digitalTwin-META-rule"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernDTForecast(
+			this.getName == "DTForecasting",
+			this.getSenderID == "DT_probe",
+			this.getDestinationID == "Monitoring");
+			
+		then
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
+			retract($aEvent);
+		end
+
+2022-06-13T17:21:47.981+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T17:21:47.982+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2022-06-13T17:21:48.564+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-13T17:21:48.572+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-13T17:21:48.574+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-13T17:21:48.575+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2022-06-13T17:21:48.796+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T17:21:48.796+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2022-06-13T17:21:57.132+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T17:21:57.142+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T17:21:57.143+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Connection in 4 seconds.
+2022-06-13T17:21:57.144+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T17:21:57.144+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T17:21:57.145+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Velocity,Velocity,Score,Velocity in 5 seconds.
+2022-06-13T17:21:57.145+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-13T17:21:57.146+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-13T17:21:57.147+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Score in 0 seconds.
+2022-06-13T17:21:57.147+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T17:21:57.148+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T17:21:57.149+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-13T17:21:57.162+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T17:21:57.168+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T17:21:57.169+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Connection",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T17:21:57.171+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T17:21:57.177+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T17:21:57.178+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-13T17:21:57.181+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-13T17:21:57.218+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T17:21:57.218+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T17:21:57.219+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	$1Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $0Event);
+
+	$2Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $1Event);
+
+	$3Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $2Event);
+
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T17:21:57.295+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T17:21:57.295+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-13T17:21:57.296+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-13T17:21:57.336+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-13T17:21:57.336+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-14T10:31:36.873+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-14T10:31:36.876+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-14T10:31:36.881+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-14T10:31:36.896+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-14T10:31:37.081+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-14T10:31:37.081+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-14T10:31:37.081+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-14T10:31:37.114+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-14T10:31:37.115+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-14T10:31:37.117+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-14T10:31:37.475+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-14T10:31:37.700+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-14T10:31:37.724+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-14T10:31:38.080+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-14T10:31:43.554+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-14T10:31:43.625+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-14T10:31:43.647+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "digitalTwin-META-rule"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernDTForecast(
+			this.getName == "DTForecasting",
+			this.getSenderID == "DT_probe",
+			this.getDestinationID == "Monitoring");
+			
+		then
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
+			retract($aEvent);
+		end
+
+2022-06-14T10:31:44.212+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:31:44.213+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2022-06-14T10:31:44.626+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-14T10:31:44.639+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-14T10:31:44.642+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-14T10:31:44.645+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2022-06-14T10:31:44.918+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:31:44.919+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2022-06-14T10:31:51.796+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-14T10:31:51.824+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-14T10:31:51.826+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Connection in 4 seconds.
+2022-06-14T10:31:51.827+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-14T10:31:51.828+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-14T10:31:51.830+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Velocity,Velocity,Score,Velocity in 5 seconds.
+2022-06-14T10:31:51.831+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-14T10:31:51.833+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-14T10:31:51.833+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-14T10:31:51.834+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Score in 0 seconds.
+2022-06-14T10:31:51.834+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-14T10:31:51.838+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-14T10:31:51.867+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-14T10:31:51.877+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-14T10:31:51.878+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Connection",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-14T10:31:51.880+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-14T10:31:51.886+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-14T10:31:51.888+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-14T10:31:51.904+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-14T10:31:51.945+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:31:51.945+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-14T10:31:51.946+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	$1Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $0Event);
+
+	$2Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $1Event);
+
+	$3Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $2Event);
+
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-14T10:31:52.060+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:31:52.061+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-14T10:31:52.062+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-14T10:31:52.126+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:31:52.127+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-14T10:31:59.230+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-14T10:31:59.238+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SUA_Probe
+2022-06-14T10:31:59.239+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: Connection
+Destination: Monitoring
+Data: established
+SenderID: SUA_Probe
+Timestamp: 1655195519211
+SessionID: sessionA
+Checksum: checksum
+CepType: DROOLS
+2022-06-14T10:32:00.257+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-14T10:32:00.263+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SUA_Probe
+2022-06-14T10:32:00.265+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: Connection
+Destination: Monitoring
+Data: established
+SenderID: SUA_Probe
+Timestamp: 1655195520256
+SessionID: sessionA
+Checksum: checksum
+CepType: DROOLS
+2022-06-14T10:34:58.843+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2022-06-14T10:34:58.846+0200 [main] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2022-06-14T10:34:58.849+0200 [main] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2022-06-14T10:34:58.860+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2022-06-14T10:34:59.033+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2022-06-14T10:34:59.033+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2022-06-14T10:34:59.034+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2022-06-14T10:34:59.077+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2022-06-14T10:34:59.077+0200 [main] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2022-06-14T10:34:59.079+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2022-06-14T10:34:59.390+0200 [main] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2022-06-14T10:34:59.590+0200 [main] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2022-06-14T10:34:59.611+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2022-06-14T10:34:59.914+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2022-06-14T10:35:07.969+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-14T10:35:08.002+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-14T10:35:08.017+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Nov 11, 2021
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+            
+		rule "digitalTwin-META-rule"
+		no-loop
+		salience 10
+		dialect "java"
+		when
+			$aEvent : ConcernDTForecast(
+			this.getName == "DTForecasting",
+			this.getSenderID == "DT_probe",
+			this.getDestinationID == "Monitoring");
+			
+		then
+			RulesGenerator.generateRuleFromDTForecast($aEvent);
+			retract($aEvent);
+		end
+
+2022-06-14T10:35:08.638+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:35:08.638+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2022-06-14T10:35:09.003+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - sending rule
+2022-06-14T10:35:09.012+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - rule sent
+2022-06-14T10:35:09.014+0200 [main] INFO  it.cnr.isti.labsedc.concern.consumer.Consumer - Rule to be monitored Sent
+2022-06-14T10:35:09.015+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2022-06-14T10:35:09.278+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:35:09.279+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2022-06-14T10:35:14.214+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-14T10:35:14.228+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-14T10:35:14.229+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Connection in 4 seconds.
+2022-06-14T10:35:14.230+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-14T10:35:14.230+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-14T10:35:14.231+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Velocity,Velocity,Score,Velocity in 5 seconds.
+2022-06-14T10:35:14.232+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Creating Message 
+2022-06-14T10:35:14.233+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Publishing message  
+2022-06-14T10:35:14.234+0200 [main] INFO  it.cnr.isti.labsedc.concern.probe.DTProbe - Forecasted sequence: Score in 0 seconds.
+2022-06-14T10:35:14.235+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-14T10:35:14.236+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-14T10:35:14.239+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernDTForecast in the stream, sent from DT_probe
+2022-06-14T10:35:14.258+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-14T10:35:14.264+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-14T10:35:14.265+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Connection",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-14T10:35:14.267+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-14T10:35:14.276+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-14T10:35:14.279+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Received forecasting from DT-------------
+2022-06-14T10:35:14.284+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.RulesGenerator - -------------Auto-generated rule sent for injection-------------
+2022-06-14T10:35:14.326+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:35:14.327+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-14T10:35:14.329+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	$1Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $0Event);
+
+	$2Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $1Event);
+
+	$3Event : ConcernBaseEvent(
+	this.getName == "Velocity",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession",
+ 	this after $2Event);
+
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-14T10:35:14.418+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:35:14.420+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-14T10:35:14.424+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogen-rule-noSession-DT_probe-rule"
+	no-loop
+	salience 10
+	dialect "java"
+
+	when
+
+	$0Event : ConcernBaseEvent(
+	this.getName == "Score",
+ 	this.getSenderID == "DT_probe",
+	this.getSessionID == "noSession");
+	
+	then
+
+	KieLauncher.printer("rule autogen-rule-noSession-DT_probe-rule matched");
+end
+2022-06-14T10:35:14.485+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2022-06-14T10:35:14.485+0200 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2022-06-14T10:35:18.947+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-14T10:35:18.953+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SUA_Probe
+2022-06-14T10:35:18.954+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: Connection
+Destination: Monitoring
+Data: established
+SenderID: SUA_Probe
+Timestamp: 1655195718939
+SessionID: sessionA
+Checksum: checksum
+CepType: DROOLS
+2022-06-14T10:35:19.968+0200 [main] INFO  it.cnr.isti.labsedc.concern.Probe - .......sending probe message
+2022-06-14T10:35:19.974+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SUA_Probe
+2022-06-14T10:35:19.975+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: Connection
+Destination: Monitoring
+Data: established
+SenderID: SUA_Probe
+Timestamp: 1655195719967
+SessionID: sessionA
+Checksum: checksum
+CepType: DROOLS
+2022-06-14T10:35:19.978+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.KieLauncher - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2022-06-14T10:35:19.979+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.KieLauncher - More than one connection between LocalPlanner and Global Planner established.
+Shut down systems
+2022-06-14T10:35:19.980+0200 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.KieLauncher - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

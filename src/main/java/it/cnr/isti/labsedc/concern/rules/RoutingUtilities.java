@@ -1,4 +1,4 @@
-package it.cnr.isti.labsedc.concern.utils;
+package it.cnr.isti.labsedc.concern.rules;
 
 import java.util.Random;
 

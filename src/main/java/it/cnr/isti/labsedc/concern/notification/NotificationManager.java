@@ -1,17 +1,7 @@
 package it.cnr.isti.labsedc.concern.notification;
 
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.HashMap;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.cnr.isti.labsedc.concern.ConcernApp;
 
@@ -67,8 +57,7 @@ public class NotificationManager extends Thread {
 //		    }
 //		}
 
-
-		try {
+	/*	try {
 		
 			var values = new HashMap<String, String>() {
 				private static final long serialVersionUID = 1298759667309051214L;
@@ -101,7 +90,7 @@ public class NotificationManager extends Thread {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}		*/
 	}
 	
 	

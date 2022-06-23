@@ -1,4 +1,4 @@
-package it.cnr.isti.labsedc.concern.utils;
+package it.cnr.isti.labsedc.concern.rules;
 
 import javax.jms.JMSException;
 import it.cnr.isti.labsedc.concern.cep.CepType;
@@ -7,7 +7,12 @@ import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
 import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class RulesGenerator {
+	
+	private static Logger logger = LogManager.getLogger(RulesGenerator.class);
 
 	public static String brokerUrl = "tcp://0.0.0.0:61616";
 	public static RulesGenerator ruleGen;
@@ -25,7 +30,7 @@ public class RulesGenerator {
 				"DTProbe",
 				"Monitoring", "sessionID", "1234", "DTForecasting", 
 				"Velocity,Velocity,Score, Velocity,Score,Score", 
-				CepType.DROOLS, false, "5","SUA_Probe",DTForecastedProperty.PATTERN,"0");
+				CepType.DROOLS, false, "5","SUA_Probe","PATTERN","0");
 		
 //		ConcernDTForecast<String> dtEvent = new ConcernDTForecast<String>(
 //				System.currentTimeMillis(),
@@ -43,7 +48,7 @@ public class RulesGenerator {
 	public static void generateRuleFromDTForecast(ConcernDTForecast<String> forecast) {
 		
     	System.out.println("------------------------------------------------------");
-    	System.out.println("-------------Received forecasting from DT-------------");
+    	logger.info("-------------Received forecasting from DT-------------");
     	System.out.println("------------------------------------------------------");
 		RulesGenerator.injectRule(RulesGenerator.createRule(forecast), forecast.getSessionID());
 		System.out.println(RulesGenerator.createRule(forecast));
@@ -117,7 +122,7 @@ public class RulesGenerator {
 			cons.sendEvaluationRequest("DROOLS-InstanceOne", ruleToEvaluate);
 
 	    	System.out.println("------------------------------------------------------");
-	    	System.out.println("-------------Auto-generated rule injected-------------");
+	    	logger.info("-------------Auto-generated rule sent for injection-------------");
 	    	System.out.println("------------------------------------------------------");
 	    	
 		} catch (JMSException e) {

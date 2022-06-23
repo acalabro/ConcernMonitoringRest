@@ -1,14 +1,13 @@
 package it.cnr.isti.labsedc.concern.event;
 
 import it.cnr.isti.labsedc.concern.cep.CepType;
-import it.cnr.isti.labsedc.concern.utils.DTForecastedProperty;
 
 public class ConcernDTForecast<T> extends ConcernAbstractEvent<T> {
 
 	private static final long serialVersionUID = 1L;
 	private String trustedIntervalInSeconds;
 	private String forecastedProbeName;
-	private DTForecastedProperty forecastedProperty;
+	private String forecastedProperty;
 	private String thresholdValue;
 	
 	public ConcernDTForecast(
@@ -23,7 +22,7 @@ public class ConcernDTForecast<T> extends ConcernAbstractEvent<T> {
 			boolean consumed,
 			String trustedIntervalInSeconds,
 			String forecastedProbeName,
-			DTForecastedProperty forecastedProperty,
+			String forecastedProperty,
 			String thresholdValue) {
 		super(timestamp, senderID, destinationID, sessionID, checksum, name, forecast, type, consumed);
 		this.trustedIntervalInSeconds = trustedIntervalInSeconds;	
@@ -48,11 +47,11 @@ public class ConcernDTForecast<T> extends ConcernAbstractEvent<T> {
 		return this.forecastedProbeName;
 	}
 	
-	public void setForecastedProperty(DTForecastedProperty forecastedProperty) {
+	public void setForecastedProperty(String forecastedProperty) {
 		this.forecastedProperty = forecastedProperty;
 	}
 	
-	public DTForecastedProperty getForecastedProperty() {
+	public String getForecastedProperty() {
 		return this.forecastedProperty;
 	}
 

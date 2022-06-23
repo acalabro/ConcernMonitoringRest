@@ -168,6 +168,7 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 									if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
 										ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
 										if (receivedEvent.getCepType() == CepType.DROOLS) {
+											logger.info("...CEP named " + this.getInstanceName() + " receives rules "  + receivedEvent.getData() );
 											loadRule(receivedEvent);	
 										}
 									}
@@ -204,10 +205,10 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
             System.out.println(kbuilder.getErrors().toString());
             throw new RuntimeException("unable to compile dlr");
         }
-        logger.info("...CEP named " + this.getInstanceName() + " receives rules "  + receivedEvent.getData() + " and load it into the knowledgeBase");
+        logger.info("...CEP named " + this.getInstanceName() + " load rules received into the knowledgeBase");
         Object[] packages2 = kbase.getKiePackages().toArray();
 		for (int m = 0; m< packages2.length; m++) {
-		System.out.println("How many rules within package: " + ((KiePackage)packages2[m]).getName() + " " + ((KiePackage)packages2[m]).getRules().size());
+		logger.info("How many rules within package: " + ((KiePackage)packages2[m]).getName() + " " + ((KiePackage)packages2[m]).getRules().size());
 		}
 	}
 
@@ -240,66 +241,3 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 		return false;
 	}
 }
-
-
-
-
-//
-//String xmlMessagePayload = receivedEvent.getEvaluationRule();
-//String sender = receivedEvent.getSenderID();
-//ComplexEventRuleActionListDocument ruleDoc;
-//
-//ComplexEventRuleActionType rules = ruleDoc.getComplexEventRuleActionList();
-//
-///*
-//// the topic where the listener will give analysis results
-//answerTopic = "answerTopic" + "#" + this.getName() + "#" + System.nanoTime();
-//
-//DebugMessages.print(System.currentTimeMillis(), this.getClass().getSimpleName(), "Create answerTopic");
-//connectionTopic = publishSession.createTopic(answerTopic);
-//// tPub = publishSession.createPublisher(connectionTopic);
-//DebugMessages.ok();
-//
-//DebugMessages.print(System.currentTimeMillis(), this.getClass().getSimpleName(),
-//	"Setting up ComplexEventProcessor with new rule.");
-//	*/
-//
-//try {
-//Object[] loadedKnowledgePackage = rulesManagerOne.loadRules(rules);
-//
-//// inserisco la coppia chiave valore dove la chiave è il KnowledgePackage
-//// caricato, generato da DroolsRulesManager con la loadRules
-//// e il valore è l'enabler che l'ha inviata
-//// (il KnowledgePackage array dovrebbe avere sempre dimensione 1
-//// essendo creato ad ogni loadrules)
-//for (int i = 0; i < loadedKnowledgePackage.length; i++) {
-//	KnowledgePackageImp singleKnowlPack = (KnowledgePackageImp) loadedKnowledgePackage[i];
-//	Rule[] singleRuleContainer = new Rule[singleKnowlPack.getRules().size()];
-//	singleRuleContainer = singleKnowlPack.getRules().toArray(singleRuleContainer);
-//
-//	for (int j = 0; j < singleRuleContainer.length; j++) {
-//		requestMap.put(singleRuleContainer[j].getName(), new ConsumerProfile(sender, answerTopic));
-//	}
-//}
-//
-//sendMessage(createMessage("AnswerTopic == " + answerTopic, sender,0));
-//} catch (IncorrectRuleFormatException e) {
-//sendMessage(createMessage("PROVIDED RULE CONTAINS ERRORS", sender,0));
-//}
-//	
-//} catch (NullPointerException asd) {
-//try {
-//sendMessage(createMessage("PROVIDED RULE IS NULL, PLEASE PROVIDE A VALID RULE",
-//		msg.getStringProperty("SENDER"),0));
-//} catch (JMSException e) {
-//e.printStackTrace();
-//}
-//} catch (XmlException e) {
-//try {
-//sendMessage(createMessage("PROVIDED XML CONTAINS ERRORS", msg.getStringProperty("SENDER"),0));
-//} catch (JMSException e1) {
-//e1.printStackTrace();
-//}
-//
-//
-//

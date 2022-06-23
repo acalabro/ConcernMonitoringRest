@@ -9,12 +9,17 @@ import javax.jms.Session;
 import javax.jms.Topic;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
+import it.cnr.isti.labsedc.concern.probe.DTProbe;
 
 public class Probe {
+
+	private static Logger logger = LogManager.getLogger(Probe.class);
 
 	public static void testProbe(String brokerUrl, String topicName, 
 									String username, String password, 
@@ -37,6 +42,7 @@ public class Probe {
 					CepType.DROOLS,  false,extension);
 			
  				msg.setObject(event);
+				logger.info(".......sending probe message");
 				producer.send(msg);
 		} catch (JMSException e) {
 			e.printStackTrace();
@@ -48,20 +54,22 @@ public class Probe {
 
 		/*
 		//String brokerUrl = "tcp://sedc-nethd.isti.cnr.it:49195";
-		printHello();
+		printHello();*/
+		
 		TestmoreThanOneConn(brokerUrl);
-		Thread.sleep(3000);
+		
+		/*Thread.sleep(3000);
 		TestlocalGlobalAvgDelayCheck(brokerUrl);
 		//testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "Robot-ONE", "SLA Alert");
 		*/
 		
-		testNetworkCongestion(brokerUrl);
+		/*testNetworkCongestion(brokerUrl);
 		
-		/*testDTProbe(brokerUrl);
+		testDTProbe(brokerUrl);
 		
-		Thread.sleep(10000);
+		Thread.sleep(10000);*/
 		
-		TestDTValidation(brokerUrl);		*/
+		//TestDTValidation(brokerUrl);	
 		System.out.println("SENT");
 	}
 
@@ -133,9 +141,9 @@ public class Probe {
 	
 	
 	public static void TestmoreThanOneConn(String brokerUrl) throws InterruptedException {
-		testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "LocalPlanner", "Connect to:", "port:1234", "checksum", "sessionA", "sender", "destination");
+		testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "established", "Connection", "port:1234", "checksum", "sessionA", "SUA_Probe", "Monitoring");
 		Thread.sleep(1000);
-		testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "LocalPlanner", "Connect to:", "port:1234", "checksum", "sessionA", "sender", "destination");
+		testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "established", "Connection", "port:1234", "checksum", "sessionA", "SUA_Probe", "Monitoring");
 	}
 	
 	public static void TestlocalGlobalAvgDelayCheck(String brokerUrl) throws InterruptedException {

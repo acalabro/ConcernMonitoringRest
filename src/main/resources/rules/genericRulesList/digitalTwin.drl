@@ -5,7 +5,7 @@ import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
 import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.RulesGenerator;
+import it.cnr.isti.labsedc.concern.rules.RulesGenerator;
 
 dialect "java"
 
