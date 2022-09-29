@@ -20,9 +20,9 @@ public class ConcernDTForecast<T> extends ConcernAbstractEvent<T> {
 			T forecast,
 			CepType type,
 			boolean consumed,
-			String trustedIntervalInSeconds,
-			String forecastedProbeName,
-			String forecastedProperty,
+			String trustedIntervalInSeconds, //7
+			String forecastedProbeName, //SUA Probe STUB
+			String forecastedProperty, //{LATENCY, AVERAGE, SEQUENCE}
 			String thresholdValue) {
 		super(timestamp, senderID, destinationID, sessionID, checksum, name, forecast, type, consumed);
 		this.trustedIntervalInSeconds = trustedIntervalInSeconds;	

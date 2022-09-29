@@ -36,6 +36,7 @@ public class ChannelsManagementRegistry {
 		logger = LogManager.getLogger(ChannelsManagementRegistry.class);
 
     	logger.debug("into " + this.getClass().getSimpleName());
+    	
 		ActiveTopics = new HashMap<String, TopicAndProperties>();
 		//creator and topic name
 

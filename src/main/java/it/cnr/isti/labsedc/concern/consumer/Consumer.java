@@ -33,8 +33,12 @@ public class Consumer extends Thread{
 			logger.info("rule sent");
 			Thread.sleep(1000);
 			logger.info("sending rule");
-			String onlyOneConn = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/onlyOneConn.drl");
-			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(onlyOneConn,"onlyOneConnectionInLocalPlanner"));
+			
+//			String onlyOneConn = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/onlyOneConn.drl");
+//			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(onlyOneConn,"onlyOneConnectionInLocalPlanner"));
+			
+			String multipleRuleSet = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/ruleSet.drl");
+			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(multipleRuleSet,"onlyOneConnectionInLocalPlanner"));
 			logger.info("rule sent");
 			
 		} catch (JMSException | InterruptedException e) {

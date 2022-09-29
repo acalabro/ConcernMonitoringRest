@@ -42,7 +42,7 @@ public class Monitoring {
     
     private String homePage() {
 	
-    	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Monitoring Framework</title>"
+    	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Runtime Monitoring</title>"
     			+ "</head><style>\n"
     			+ "body {\n"
     			+ "  background-color: #ddebef;\n"
