@@ -36,6 +36,7 @@ import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernCmdVelEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
 import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernICTGatewayEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
@@ -163,23 +164,28 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 							} else {
 								if (msg.getObject() instanceof ConcernNetworkEvent<?>) {
 									ConcernNetworkEvent<?> receivedEvent = (ConcernNetworkEvent<?>) msg.getObject();
-									insertEvent(receivedEvent);			
+									insertEvent(receivedEvent);
 								} else {
-									if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
-										ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
-										if (receivedEvent.getCepType() == CepType.DROOLS) {
-											logger.info("...CEP named " + this.getInstanceName() + " receives rules "  + receivedEvent.getData() );
-											loadRule(receivedEvent);	
+									if (msg.getObject() instanceof ConcernICTGatewayEvent<?>) {
+										ConcernICTGatewayEvent<?> receivedEvent = (ConcernICTGatewayEvent<?>) msg.getObject();
+										insertEvent(receivedEvent);		
+									} else {
+										if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
+											ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
+											if (receivedEvent.getCepType() == CepType.DROOLS) {
+												logger.info("...CEP named " + this.getInstanceName() + " receives rules "  + receivedEvent.getData() );
+												loadRule(receivedEvent);	
+											}
 										}
 									}
 								}
 							}
 						}
 					}
-			}catch(ClassCastException | JMSException asd) {
+				}	catch(ClassCastException | JMSException asd) {
 					logger.error(asd.getMessage());
 					logger.error("error on casting or getting ObjectMessage");
-				}
+			}
 		}
 		if (message instanceof TextMessage) {
 			TextMessage msg = (TextMessage) message;

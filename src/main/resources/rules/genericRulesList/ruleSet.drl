@@ -1,0 +1,122 @@
+//created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "manage3"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "manage4"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage5"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
