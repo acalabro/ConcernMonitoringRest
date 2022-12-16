@@ -23,6 +23,7 @@ public class MqttNetworkProbe {
 		
 		//iw dev wlp0s20f3 station dump
 		
+		@SuppressWarnings("deprecation")
 		final Process p = Runtime.getRuntime().exec("iw dev wlp0s20f3 station dump");
 
 		new Thread(new Runnable() {

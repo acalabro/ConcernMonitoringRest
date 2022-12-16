@@ -6,7 +6,6 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
-import java.security.Signature;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -16,8 +15,8 @@ import javax.crypto.NoSuchPaddingException;
 public class Encrypt {
      
     public static void main(String[] args) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-    	 //Creating a Signature object
-        Signature sign = Signature.getInstance("SHA256withRSA");
+//    	  Creating a Signature object
+//        Signature sign = Signature.getInstance("SHA256withRSA");
         
         //Creating KeyPair generator object
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");

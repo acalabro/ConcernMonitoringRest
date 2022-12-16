@@ -20,7 +20,6 @@ public class DroolsKieTest extends Thread {
 
 	private static KnowledgeBuilder kbuilder;
 	private static InternalKnowledgeBase kbase;
-	private static KiePackage pack;
 	private static KieSession ksess;
 
 	public DroolsKieTest() {

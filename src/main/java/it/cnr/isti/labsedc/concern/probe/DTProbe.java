@@ -40,8 +40,8 @@ public class DTProbe extends ConcernAbstractProbe {
 			DebugMessages.println(System.currentTimeMillis(), DTProbe.class.getSimpleName(),"Sending DT forecast");
 
 			send(createDTForecastEvents(aGenericProbe, "Connection", "4", "TIMEFRAME", "0"));
-			send(createDTForecastEvents(aGenericProbe, "Velocity,Velocity,Score,Velocity", "5", "PATTERN", "0"));
-			send(createDTForecastEvents(aGenericProbe, "Score", "0", "VALUE_RANGE", "5.0"));
+			//send(createDTForecastEvents(aGenericProbe, "Velocity,Velocity,Score,Velocity", "5", "PATTERN", "0"));
+			//send(createDTForecastEvents(aGenericProbe, "Score", "0", "VALUE_RANGE", "5.0"));
 
 		} catch (IndexOutOfBoundsException | NamingException e) {} catch (JMSException e) {
 			e.printStackTrace();

@@ -14,8 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
-import it.cnr.isti.labsedc.concern.probe.DTProbe;
 
 public class Probe {
 
@@ -51,29 +49,13 @@ public class Probe {
 
 	public static void main(String[] args) throws InterruptedException {
 		String brokerUrl = "tcp://0.0.0.0:61616";
-
-		/*
-		//String brokerUrl = "tcp://sedc-nethd.isti.cnr.it:49195";
-		printHello();*/
 		
 		TestmoreThanOneConn(brokerUrl);
-		
-		/*Thread.sleep(3000);
-		TestlocalGlobalAvgDelayCheck(brokerUrl);
-		//testProbe(brokerUrl, "DROOLS-InstanceOne", "vera", "griselda", "Robot-ONE", "SLA Alert");
-		*/
-		
-		/*testNetworkCongestion(brokerUrl);
-		
-		testDTProbe(brokerUrl);
-		
-		Thread.sleep(10000);*/
-		
-		//TestDTValidation(brokerUrl);	
+
 		System.out.println("SENT");
 	}
 
-	private static void testNetworkCongestion(String brokerUrl) {
+/*	private static void testNetworkCongestion(String brokerUrl) {
 
 		try {
 			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vera","griselda", brokerUrl);
@@ -81,16 +63,9 @@ public class Probe {
             Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
             Topic topic = session.createTopic("DROOLS-InstanceOne");
             MessageProducer producer = session.createProducer(topic);     
-			
-            //MapMessage msg = session.createMapMessage();
 			  
             ObjectMessage msg = session.createObjectMessage();
             
-//			ConcernNetworkEvent<String> connectionAmount = new ConcernNetworkEvent<String>(
-//					System.currentTimeMillis(), 
-//					"probeROS", "monitoring","sessionOne",
-//					"asd", "connectionAmount", "4", 
-//					CepType.DROOLS,3);  
 			ConcernNetworkEvent<String> connectionAmount = new ConcernNetworkEvent<String>(
 					System.currentTimeMillis(), 
 					"probeROS", "monitoring","sessionOne",
@@ -105,7 +80,7 @@ public class Probe {
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public static void testDTProbe(String brokerUrl) throws InterruptedException {
 

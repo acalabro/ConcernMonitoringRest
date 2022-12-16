@@ -20,7 +20,7 @@ import it.cnr.isti.labsedc.concern.utils.BiecoMessageTypes;
 
 public class EventEntryPoint {
 
-	private String incomingToken = "YeAm0hdkf5W9s";
+	static String incomingToken = "YeAm0hdkf5W9s";
 	private String outcomingToken = "746gfbrenkljhGU";
 
 	@POST

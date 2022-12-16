@@ -17,7 +17,7 @@ public class ProbeCmdVel {
 
 	public static void main(String[] args) throws InterruptedException {
 		//String brokerUrl = "tcp://146.48.84.225:61616";
-		String brokerUrl = "tcp://localhost:61616";
+		String brokerUrl = "tcp://146.48.:61616";
 
 		testCmdVelProbe(brokerUrl);
 		

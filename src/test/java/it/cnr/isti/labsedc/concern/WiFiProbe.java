@@ -23,6 +23,7 @@ public class WiFiProbe {
 		
 		//iw dev wlp0s20f3 station dump
 		
+		@SuppressWarnings("deprecation")
 		final Process p = Runtime.getRuntime().exec("tcpdump -i wlx984827c6f74a -e type mgt");
 
 		new Thread(new Runnable() {

@@ -12,6 +12,7 @@ it/cnr/isti/labsedc/concern/probe/ConcernAbstractProbe.class
 it/cnr/isti/labsedc/concern/mediator/Mediator.class
 it/cnr/isti/labsedc/concern/gui/Main$1.class
 it/cnr/isti/labsedc/concern/utils/BiecoMessageTypes.class
+it/cnr/isti/labsedc/concern/event/ConcernICTGatewayEvent.class
 it/cnr/isti/labsedc/concern/rest/monitoring/MessageClass.class
 it/cnr/isti/labsedc/concern/rest/Main.class
 it/cnr/isti/labsedc/concern/storage/InfluxDBStorageController.class

@@ -36,6 +36,7 @@ public class GPSProbe {
 
 	private static void loopThreadGPS() {
 		try {	
+			@SuppressWarnings("deprecation")
 			Process p = Runtime.getRuntime().exec("cat /dev/" + deviceGPS);
 		new Thread(new Runnable() {
 		    public void run() {

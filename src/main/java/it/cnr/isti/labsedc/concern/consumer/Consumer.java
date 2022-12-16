@@ -31,6 +31,8 @@ public class Consumer extends Thread{
 			logger.info("sending rule");
 			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(digitalTwin, "DTMetaRule"));
 			logger.info("rule sent");
+
+			/*
 			Thread.sleep(1000);
 			logger.info("sending rule");
 			
@@ -40,8 +42,8 @@ public class Consumer extends Thread{
 			String multipleRuleSet = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/ruleSet.drl");
 			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(multipleRuleSet,"onlyOneConnectionInLocalPlanner"));
 			logger.info("rule sent");
-			
-		} catch (JMSException | InterruptedException e) {
+			*/
+		} catch (JMSException e) {
 			e.printStackTrace();
 		}
 		logger.info("Rule to be monitored Sent");		

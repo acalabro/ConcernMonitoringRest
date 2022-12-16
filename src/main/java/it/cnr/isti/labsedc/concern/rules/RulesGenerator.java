@@ -27,7 +27,7 @@ public class RulesGenerator {
 
 		ConcernDTForecast<String> dtForecast = new ConcernDTForecast<String>(
 				System.currentTimeMillis(),
-				"DTProbe",
+				"DigitaTwin",
 				"Monitoring", "sessionID", "1234", "DTForecasting", 
 				"Velocity,Velocity,Score, Velocity,Score,Score", 
 				CepType.DROOLS, false, "5","SUA_Probe","PATTERN","0");
