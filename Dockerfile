@@ -1,6 +1,6 @@
-FROM maven:amazoncorretto
+FROM amazoncorretto:19.0.1-al2
 LABEL MAINTAINER="antonello.calabro@isti.cnr.it"
+COPY src/main/resources/startupRule.drl src/main/resources/
 COPY /* /
-EXPOSE 61616:61616
-EXPOSE 8161 5672 61613 1883 61614 8181
-ENTRYPOINT ["mvn","package","test","install"]
+EXPOSE 61616 8181
+ENTRYPOINT ["java","-cp", "RestBiecoMonitoring-1.0-SNAPSHOT-jar-with-dependencies.jar", "it.cnr.isti.labsedc.concern.rest.Main"]

@@ -72,7 +72,7 @@ public class ConcernApp extends Thread
     	
     	//brokerUrl = "tcp://sedc-nethd.isti.cnr.it:49195";
     	if(runningInJMS) {
-    	brokerUrlJMS = "tcp://localhost:61616";
+    	brokerUrlJMS = "tcp://0.0.0.0:61616";
     	maxMemoryUsage = 128000l;
     	maxCacheUsage = 128000l;
     	factory = new ActiveMQConnectionFactory(brokerUrlJMS);

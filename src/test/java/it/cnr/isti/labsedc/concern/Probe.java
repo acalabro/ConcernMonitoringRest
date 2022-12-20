@@ -48,7 +48,7 @@ public class Probe {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		String brokerUrl = "tcp://0.0.0.0:61616";
+		String brokerUrl = "tcp://172.17.0.2:61616";
 		
 		TestmoreThanOneConn(brokerUrl);
 
