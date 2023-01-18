@@ -63,10 +63,11 @@ public class LoadRules {
     			+"function executePost() {\n"
     			+ "    var xhttp = new XMLHttpRequest();\n"
     			+ "    xhttp.onreadystatechange = function() {\n"
-    			+ "         if (this.readyState == 4 && this.status == 200) {\n"
-    			+ "             alert(this.responseText);\n"
+    			+ "         if (this.readystate == XMLHttpRequest.DONE && this.status == 200) {\n"
+    			+ "        alert(xhttp.statusText);"
     			+ "         }\n"
     			+ "    };\n"
+    			+ "    var textarea = document.getElementById('ruletextarea').value;\n"
     			+ "    xhttp.open(\"POST\", \"http://127.0.0.1:8181/monitoring/biecointerface/loadrules\", true);\n"
     			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
     			+ "    xhttp.send(JSON.stringify({"
@@ -74,7 +75,7 @@ public class LoadRules {
     			+ "    \"timestamp\": \"2023-01-18 08:29:30\",\n"
     			+ "    \"messageType\": \"loadRules\",\n"
     			+ "    \"sourceID\": \"4\",\n"
-    			+ "    \"event\": document.getElementById('ruletextarea').value;,\n" 
+    			+ "    \"event\": textarea,\n" 
     			+ "    \"crc\": 1234565\n"
     			+ "    }));\n"
     			+ "}"    			
@@ -87,7 +88,7 @@ public class LoadRules {
     			+ "        <div>\n"
     			+ "            <input type=\"file\">\n"
     			+ "            <textarea cols=\"30\" rows=\"20\"\n"
-    			+ "                      placeholder=\"rules loaded will appear here\">\n"
+    			+ "                      placeholder=\"rules loaded will appear here\" id=\"ruletextarea\">\n"
     			+ "            </textarea>\n"
     			+ "            <br />\n"
     			+ "            <button onclick=\"executePost()\">Sent loaded rules to the Monitor</button>\n"
@@ -114,36 +115,6 @@ public class LoadRules {
     			+ "    \n"
     			+ "</body>\n"
     			+ "</html>\n";
-    	
-    	/*
-    	 * function executePost() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-         if (this.readyState == 4 && this.status == 200) {
-             alert(this.responseText);
-         }
-    };
-    xhttp.open("POST", "http://127.0.0.1/monitoring/biecointerface/loadrules", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(
-    "{"jobID": "1234",
-    "timestamp": "2023-01-18 08:29:30",
-    "messageType": "loadRules",
-    "sourceID": "4",
-    "event": " package it.cnr.isti.labsedc.concern.event; import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent; dialect "java" declare ConcernAbstractEvent    @role( event )    @timestamp( timestamp ) end",
-    "crc": 1234565
-    }");
-}
-    	 */    
-    	
-    	/*
-    	 *     			+ "        function executePost() {\n"
-    			+ "            $.post( \"http://127.0.0.1/monitoring/biecointerface/loadrules\", function( data ) {\n"
-    			+ "                 //As soon as the browser finished downloading, this function is called.\n"
-    			+ "                 $('#demo').html(data);\n"
-    			+ "            });\n"
-    			+ "        }\n"
-    	 */
     }
     
 
@@ -156,36 +127,21 @@ public class LoadRules {
     	JSONObject bodyMessage = new JSONObject(message);
     	if (((String)bodyMessage.get("messageType")).compareTo("loadRules") == 0 ) {
 			if (this.MonitoringStartIfNotStarted()) {
-	    		loadRule(
+	    		if (loadRule(
 	    				((JSONObject) bodyMessage)
 	    					.get("event").toString()
-    					);
-	 			return Response.status(200).entity("ruleSent").build();	
+    					))
+	 			return Response.status(200).entity("Rule/s sent correctly").build();	
 			}	    	
     	}
 	return Response.status(401).entity("error").build();
 	}
     
-    private void loadRule(String rule) {
+    private boolean loadRule(String rule) {
         	Consumer internalConsumer = new Consumer();
-        	internalConsumer.run(rule);
+        	return internalConsumer.run(rule);
         }    
-    
-//    @POST
-//    @Consumes(MediaType.TEXT_PLAIN)
-//	public Response biecointerface(
-//			String message,
-//			@Context HttpHeaders headers) {
-//    	if (message.compareTo("Start") == 0 ) {
-//    		if (this.MonitoringStartIfNotStarted()) {
-//    			Consumer asd = new Consumer();
-//    			asd.run("asd");
-//    			return Response.status(200).entity("running").build();	
-//    		}
-//    	}
-//    	return Response.status(401).entity("error").build();
-//    }
-    
+       
     private boolean MonitoringStartIfNotStarted() {	
 		try {
 			if (ConcernApp.isRunning()) {
