@@ -15,6 +15,7 @@ public class Main {
     // Base URI the Grizzly HTTP server will listen on
 	public static final String BASE_URI = "http://0.0.0.0:8181/";
 	//public static final String BASE_URI = "http://127.0.0.1:8181/";
+	private static HttpServer server;
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -29,8 +30,6 @@ public class Main {
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(serverUri), rc);
     }
-
-    
     
     /**
      * Main method.
@@ -39,23 +38,27 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
     	try {
-    		HttpServer server;
     		if (args.length>0) {
-        		server = startServer(args[0]);
+        		setServer(startServer(args[0]));
         		Thread.currentThread().join();
         	}
     	else {
-    		server = startServer(BASE_URI);
+    		setServer(startServer(BASE_URI));
            	Thread.currentThread().join();
     		}
         } catch (InterruptedException e) {
-		// TODO Auto-generated catch block
         	e.printStackTrace();
         }
     	System.out.println(String.format("Jersey app started with endpoints available at "
                 + "%s%nHit Ctrl-C to stop it...", BASE_URI));
-//        System.in.read();
-//        server.stop();
     }
+
+	public static HttpServer getServer() {
+		return server;
+	}
+
+	public static void setServer(HttpServer server) {
+		Main.server = server;
+	}
 }
 

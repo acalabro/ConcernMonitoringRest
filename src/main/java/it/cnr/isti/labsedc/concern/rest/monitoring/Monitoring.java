@@ -39,18 +39,24 @@ public class Monitoring {
         
     }
     
-    
     private String homePage() {
 	
     	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Runtime Monitoring</title>"
-    			+ "</head><style>\n"
-    			+ "body {\n"
-    			+ "  background-color: #ddebef;\n"
+    			+ "</head>"
+    			+"<style type=\"text/css\">\n"
+    			+ "div {\n"
+    			+ "	display: flex;\n"
+    			+ "	flex-direction: column;\n"
+    			+ "	align-items: center;\n"
     			+ "}\n"
-    			+ "</style><body><h2>Runtime Monitoring</h2><h3>Status: " + MonitoringStatus() + "</h3>"
+    			+ "textarea {\n"
+    			+ "	margin-top: 15px;\n"
+    			+ "	width: 70%;\n"
+    			+ "}\n"
+    			+ "</style>"
+    			+"<body><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3>Status: " + MonitoringStatus() + "</h3>"
     			+ "<h4>Monitoring logs:</h4><textarea id=\"logs\" name=\"debugLog\" rows=\"30\" cols=\"200\">\n"
-				+ getLoggerData() + "</textarea></body></html>";
-    	    	
+				+ getLoggerData() + "</textarea><h2>Click <a href:=\"./biecointerface/loadrules\">here</a> to load rules manually</h2></center></body></html>";  	
     }
      
 	/*@POST
@@ -191,7 +197,6 @@ public class Monitoring {
 			ConcernApp.getInstance();
 			ConcernApp.DemoStart();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "Starting Demo";

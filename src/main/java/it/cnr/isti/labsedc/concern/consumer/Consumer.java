@@ -17,8 +17,23 @@ public class Consumer extends Thread{
 
 	private static Logger logger;
 
-	public void run() {
-		sendRule();
+	public void run(String rule) {
+		//sendRule();
+		sendRule(rule);
+	}
+	
+	private static void sendRule(String rule) {
+		String brokerUrl = "tcp://localhost:61616";
+
+		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
+		try {
+			cons.init(brokerUrl,"vera", "griselda");
+			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(rule, "Manually loaded rule"));
+			logger.info("rule sent");
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+		logger.info("Rule to be monitored Sent");		
 	}
 	
 	private static void sendRule() {
