@@ -23,6 +23,7 @@
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/register/ChannelsManagementRegistry.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/utils/KieLauncher.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/utils/ConcernMQTTCallBack.java
+/home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/rest/monitoring/DeleteRules.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/gui/Main.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/notification/LoRaOnSerialWriter.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/utils/ComplexSimplaRulesScriptCreator.java

@@ -1,5 +1,6 @@
 package it.cnr.isti.labsedc.concern;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -228,5 +229,16 @@ public class ConcernApp extends Thread
 	}
 	public static String getLastRuleLoadedName() {
 		return cepMan.getLastRuleLoadedName();
+	}
+
+	public static String getRulesList() {
+		ArrayList<String> localArray = cepMan.getRulesList();
+		String compositeStart = "<select name=\"Rules\" size=\""+ localArray.size() + "\">";
+		String compositeEnd = "</select>";
+		String content ="";
+		for (int i = 0; i<localArray.size(); i++) {
+			content = content + "<option value=\""+ localArray.get(i).toString() + "\">" + localArray.get(i).toString() + "</option>  \n";
+		}
+		return compositeStart + content + compositeEnd;
 	}
 }

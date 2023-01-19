@@ -1,6 +1,8 @@
 package it.cnr.isti.labsedc.concern.cep;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -22,6 +24,7 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 import org.kie.api.definition.KiePackage;
+import org.kie.api.definition.rule.Rule;
 import org.kie.api.io.Resource;
 import org.kie.api.io.ResourceType;
 import org.kie.api.runtime.KieSession;
@@ -61,6 +64,7 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
     private static KieSession ksession;
 	private EntryPoint eventStream;
 	private boolean isUsingJMS = true;
+	public static ArrayList<String> rulesNames;
 	public static int totalRulesLoaded = 0;
 	public static String lastRuleLoadedName;
 
@@ -216,8 +220,13 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
         }
         logger.info("...CEP named " + this.getInstanceName() + " load rules received into the knowledgeBase");
         Object[] packages2 = kbase.getKiePackages().toArray();
+        DroolsComplexEventProcessorManager.rulesNames = new ArrayList<String>();
 		for (int m = 0; m< packages2.length; m++) {
 			int RulesForPackage = ((KiePackage)packages2[m]).getRules().size();
+			Iterator<Rule> coll = ((KiePackage)packages2[m]).getRules().iterator();
+			while (coll.hasNext()) {
+				DroolsComplexEventProcessorManager.rulesNames.add(coll.next().getName());
+			}			
 			DroolsComplexEventProcessorManager.totalRulesLoaded  = DroolsComplexEventProcessorManager.totalRulesLoaded + RulesForPackage;
 		logger.info("How many rules within package: " + ((KiePackage)packages2[m]).getName() + " " + RulesForPackage);
 		}
@@ -261,5 +270,10 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 	@Override
 	public String getLastRuleLoadedName() {
 		return lastRuleLoadedName;
+	}
+
+	@Override
+	public ArrayList<String> getRulesList() {
+		return DroolsComplexEventProcessorManager.rulesNames;
 	}
 }

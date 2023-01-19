@@ -54,18 +54,24 @@ public class Monitoring {
     			+ "	width: 70%;\n"
     			+ "}\n"
     			+ "</style>"
-    			+"<body><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3>Status: " + MonitoringStatus() + ",<br /><br />Rules loaded: " + getAmountOfLoadedRules() + "<br />Last rule loaded: " + getLastLoadedRuleName() + "</h3>"
+    			+"<body><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3>Status: " + MonitoringStatus() + "<br /><br />Rules loaded: " 
+    			+ getAmountOfLoadedRules() + "</h3><h4>Loaded rules list:</h4>" + getRulesList()
     			+ "<div id=\"logs\"><h4>Monitoring logs:</h4><textarea name=\"debugLog\" rows=\"30\" cols=\"200\">\n"
 				+ getLoggerData() + "</textarea></div>"
     			+ " <button onclick=\"show()\">Show/Hide log window</button>\n"
 				+"<br /><br />     	<button onclick=\"myFunction()\">Load rules</button>\n"
+				+"<br /><br />     	<button onclick=\"myFunction2()\">Delete rules</button>\n<br />"
 				+ "\n"
 				+ "    	<script>\n"
 				+ "    	function myFunction() {\n"
 				+ "    	    window.open(\"./biecointerface/loadrules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=600\");\n"
 				+ "    	}\n"
 				+ "    	</script>"
-    			+ "    </script>\n"
+				+ "    	<script>\n"
+				+ "    	function myFunction2() {\n"
+				+ "    	    window.open(\"./biecointerface/deleterules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=600\");\n"
+				+ "    	}\n"
+				+ "    	</script>"
     			+ "<script>function show() {\n"
     			+"  var x = document.getElementById(\"logs\");\n"
     			+ "  if (x.style.display === \"none\") {\n"
@@ -73,7 +79,7 @@ public class Monitoring {
     			+ "  } else {\n"
     			+ "    x.style.display = \"none\";\n"
     			+ "  }}</script>"
-				+ "</center></body></html>";  	
+				+ "<br /></center></body></html>";  	
     
     
 
@@ -81,6 +87,13 @@ public class Monitoring {
     
     }
      
+	private String getRulesList() {
+		if (ConcernApp.isRunning()) {
+			return ConcernApp.getRulesList();
+		}
+		return "";
+	}
+	
 	private String getAmountOfLoadedRules() {
 		if (ConcernApp.isRunning()) {
 			return Integer.toString(ConcernApp.getAmountOfLoadedRules());

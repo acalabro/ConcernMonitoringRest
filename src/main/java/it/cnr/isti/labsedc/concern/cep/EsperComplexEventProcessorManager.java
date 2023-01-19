@@ -1,5 +1,6 @@
 package it.cnr.isti.labsedc.concern.cep;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.jms.JMSException;
@@ -238,6 +239,12 @@ public class EsperComplexEventProcessorManager extends ComplexEventProcessorMana
 
 	@Override
 	public String getLastRuleLoadedName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> getRulesList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
