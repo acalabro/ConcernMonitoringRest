@@ -54,6 +54,11 @@ public class Monitoring {
     			+ "	width: 70%;\n"
     			+ "}\n"
     			+ "</style>"
+    			+"<script>\n"
+    			+ "\n"
+    			+ "setTimeout(\"location.reload(true);\", 3000);\n"
+    			+ "\n"
+    			+ "</script>"
     			+"<body><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3>Status: " + MonitoringStatus() + "<br /><br />Rules loaded: " 
     			+ getAmountOfLoadedRules() + "</h3><h4>Loaded rules list:</h4>" + getRulesList()
     			+ "<div id=\"logs\"><h4>Monitoring logs:</h4><textarea name=\"debugLog\" rows=\"30\" cols=\"200\">\n"
@@ -101,14 +106,6 @@ public class Monitoring {
 		return "0";
 	}
 	
-	private String getLastLoadedRuleName() {
-		if (ConcernApp.isRunning()) {
-			return ConcernApp.getLastRuleLoadedName();
-		}
-		return "N/A";
-	}
-	
-
 	/*@POST
 	public Response biecointerface(
 			@Context HttpHeaders headers,

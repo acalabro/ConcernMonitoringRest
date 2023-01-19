@@ -120,7 +120,6 @@ public class EsperComplexEventProcessorManager extends ComplexEventProcessorMana
 
 	@Override
 	public void onMessage(Message message) {
-
 		if (message instanceof ObjectMessage) {
 			try {
 					ObjectMessage msg = (ObjectMessage) message;
@@ -146,7 +145,8 @@ public class EsperComplexEventProcessorManager extends ComplexEventProcessorMana
 		}
 	}
 
-	private void loadRule(ConcernEvaluationRequestEvent<?> receivedEvent) {
+	@Override
+	public void loadRule(ConcernEvaluationRequestEvent<?> receivedEvent) {
 //			
 //		String xmlMessagePayload = receivedEvent.getEvaluationRule();
 //		String sender = receivedEvent.getSenderID();
@@ -248,4 +248,11 @@ public class EsperComplexEventProcessorManager extends ComplexEventProcessorMana
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean deleteRule(String ruleName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

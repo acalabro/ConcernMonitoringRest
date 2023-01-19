@@ -58,7 +58,18 @@ public class DeleteRules {
     			+ "        width: 70%;\n"
     			+ "    }\n"
     			+ "</style>\n"
+    			+"<script>\n"
+    			+ "\n"
+    			+ "setTimeout(\"location.reload(true);\", 3000);\n"
+    			+ "\n"
+    			+ "</script>"
     			+ "     <script type = \"text/javascript\">\n"
+    			+" function getselected() {\n"
+    			+ " var sel = document.getElementById(\"ruleslist\");\n"
+    			+ " var listLength = sel.options.length;\n"
+    			+ " for(var i=0;i<listLength;i++){\n"
+    			+ "    if(sel.options[i].selected)\n"
+    			+ "    return sel.options[i].value;}}\n"
     			+"function executePost() {\n"
     			+ "    var xhttp = new XMLHttpRequest();\n"
     			+ "    xhttp.onreadystatechange = function() {\n"
@@ -66,20 +77,18 @@ public class DeleteRules {
     			+ "        alert(xhttp.statusText);"
     			+ "         }\n"
     			+ "    };\n"
-    			+ "    var textarea = document.getElementById('ruletextarea').value;\n"
     			+ "    xhttp.open(\"POST\", \"http://127.0.0.1:8181/monitoring/biecointerface/deleterules\", true);\n"
     			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
     			+ "    xhttp.send(JSON.stringify({"
     			+ "    \"jobID\": \"1234\",\n"
     			+ "    \"timestamp\": \"2023-01-18 08:29:30\",\n"
-    			+ "    \"messageType\": \"loadRules\",\n"
+    			+ "    \"messageType\": \"deleteRule\",\n"
     			+ "    \"sourceID\": \"4\",\n"
-    			+ "    \"event\": textarea,\n" 
+    			+ "    \"event\": getselected(),\n" 
     			+ "    \"crc\": 1234565\n"
     			+ "    }));\n"
     			+ "}"    			
     			+ "    </script>\n"
-    			+ " \n"
     			+ "<body>    <center>\n"
     			+ "<h1 style=\"color: green;\">Loaded rules list</h1>" + getRulesList() 
     			+ "            <br /><br /><button onclick=\"executePost()\">Delete selected rule</button>\n"
@@ -122,7 +131,7 @@ public class DeleteRules {
 			@Context HttpHeaders headers) {
 
     	JSONObject bodyMessage = new JSONObject(message);
-    	if (((String)bodyMessage.get("messageType")).compareTo("deleterules") == 0 ) {
+    	if (((String)bodyMessage.get("messageType")).compareTo("deleteRule") == 0 ) {
 			if (this.MonitoringStartIfNotStarted()) {
 	    		if (deleterule(
 	    				((JSONObject) bodyMessage)
@@ -135,8 +144,10 @@ public class DeleteRules {
 	}
     
     private boolean deleterule(String ruleName) {
-    	//deleterule Logic
-        	return true;
+    	if (ConcernApp.isRunning()) {
+			return ConcernApp.deleteRule(ruleName);
+		}
+    	return false;
         }    
        
     private boolean MonitoringStartIfNotStarted() {	

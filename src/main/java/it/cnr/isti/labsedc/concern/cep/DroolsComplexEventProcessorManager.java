@@ -203,7 +203,8 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 		}
 	}
 
-	private void loadRule(ConcernEvaluationRequestEvent<?> receivedEvent) {
+	@Override
+	public void loadRule(ConcernEvaluationRequestEvent<?> receivedEvent) {
 		Object[] packages = kbase.getKiePackages().toArray();
 		for (int m = 0; m< packages.length; m++) {
 		System.out.println("How many rules within package: " + ((KiePackage)packages[m]).getName() + " " + ((KiePackage)packages[m]).getRules().size());
@@ -219,8 +220,13 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
             throw new RuntimeException("unable to compile dlr");
         }
         logger.info("...CEP named " + this.getInstanceName() + " load rules received into the knowledgeBase");
-        Object[] packages2 = kbase.getKiePackages().toArray();
+        rulesCounter();
+	}
+	
+	private void rulesCounter() {
+		Object[] packages2 = kbase.getKiePackages().toArray();
         DroolsComplexEventProcessorManager.rulesNames = new ArrayList<String>();
+        DroolsComplexEventProcessorManager.totalRulesLoaded = 0;
 		for (int m = 0; m< packages2.length; m++) {
 			int RulesForPackage = ((KiePackage)packages2[m]).getRules().size();
 			Iterator<Rule> coll = ((KiePackage)packages2[m]).getRules().iterator();
@@ -229,7 +235,32 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 			}			
 			DroolsComplexEventProcessorManager.totalRulesLoaded  = DroolsComplexEventProcessorManager.totalRulesLoaded + RulesForPackage;
 		logger.info("How many rules within package: " + ((KiePackage)packages2[m]).getName() + " " + RulesForPackage);
+		}		
+	}
+
+	@Override
+	public boolean deleteRule(String ruleName) {
+		Object[] packages = kbase.getKiePackages().toArray();
+		for (int m = 0; m< packages.length; m++) {
+			Collection<Rule> rls = ((KiePackage)packages[m]).getRules();
+			Object[] rulesArray = rls.toArray();
+			if (rulesArray.length > 0) {
+				for (int j = 0; j<rulesArray.length;j++) {
+					Rule gg = (Rule) rulesArray[j];
+					if (gg.getName().compareTo(ruleName) == 0)
+					{
+						kbase.removeRule(
+								((KiePackage)packages[m]).getName(), ruleName);
+						rulesCounter();
+						logger.info("Rule " + ruleName + " removed");
+						logger.info("Rule active: " + kbase.getKiePackage(((KiePackage)packages[m]).getName()).getRules().size());
+						return true;
+					}
+				}
+			}
 		}
+		logger.info("Rule " + ruleName + " not found");
+		return false;
 	}
 
 	private void insertEvent(ConcernAbstractEvent<?> receivedEvent) {

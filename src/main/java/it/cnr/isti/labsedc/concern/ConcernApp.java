@@ -227,13 +227,14 @@ public class ConcernApp extends Thread
 	public static int getAmountOfLoadedRules() {
 		return cepMan.getAmountOfLoadedRules();
 	}
-	public static String getLastRuleLoadedName() {
-		return cepMan.getLastRuleLoadedName();
-	}
 
+	public static boolean deleteRule(String ruleName) {
+		return cepMan.deleteRule(ruleName);
+	}
+	
 	public static String getRulesList() {
 		ArrayList<String> localArray = cepMan.getRulesList();
-		String compositeStart = "<select name=\"Rules\" size=\""+ localArray.size() + "\">";
+		String compositeStart = "<select name=\"Rules\" id=\"ruleslist\" size=\""+ localArray.size() + "\">";
 		String compositeEnd = "</select>";
 		String content ="";
 		for (int i = 0; i<localArray.size(); i++) {
