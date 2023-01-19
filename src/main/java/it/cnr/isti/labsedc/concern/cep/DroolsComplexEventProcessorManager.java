@@ -61,6 +61,8 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
     private static KieSession ksession;
 	private EntryPoint eventStream;
 	private boolean isUsingJMS = true;
+	public static int totalRulesLoaded = 0;
+	public static String lastRuleLoadedName;
 
 	public DroolsComplexEventProcessorManager(String instanceName, String staticRuleToLoadAtStartup, String connectionUsername, String connectionPassword, CepType type, boolean runningInJMS) {
 		super();
@@ -203,6 +205,7 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 		System.out.println("How many rules within package: " + ((KiePackage)packages[m]).getName() + " " + ((KiePackage)packages[m]).getRules().size());
 		}
 		Resource drlToLoad = ResourceFactory.newByteArrayResource(receivedEvent.getData().toString().getBytes());
+		DroolsComplexEventProcessorManager.lastRuleLoadedName = receivedEvent.getEvaluationRuleName();
         kbuilder.add(drlToLoad, ResourceType.DRL);
         pkgs = kbuilder.getKnowledgePackages();
         kbase.addPackages(pkgs);
@@ -214,7 +217,9 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
         logger.info("...CEP named " + this.getInstanceName() + " load rules received into the knowledgeBase");
         Object[] packages2 = kbase.getKiePackages().toArray();
 		for (int m = 0; m< packages2.length; m++) {
-		logger.info("How many rules within package: " + ((KiePackage)packages2[m]).getName() + " " + ((KiePackage)packages2[m]).getRules().size());
+			int RulesForPackage = ((KiePackage)packages2[m]).getRules().size();
+			DroolsComplexEventProcessorManager.totalRulesLoaded  = DroolsComplexEventProcessorManager.totalRulesLoaded + RulesForPackage;
+		logger.info("How many rules within package: " + ((KiePackage)packages2[m]).getName() + " " + RulesForPackage);
 		}
 	}
 
@@ -245,5 +250,16 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 	public boolean isAllowedToConsume(ConnectionContext context, org.apache.activemq.command.Message message) {
 		System.out.println("asd");
 		return false;
+	}
+	
+	@Override
+	public int getAmountOfLoadedRules() {
+		// TODO Auto-generated method stub
+		return totalRulesLoaded;
+	}
+	
+	@Override
+	public String getLastRuleLoadedName() {
+		return lastRuleLoadedName;
 	}
 }

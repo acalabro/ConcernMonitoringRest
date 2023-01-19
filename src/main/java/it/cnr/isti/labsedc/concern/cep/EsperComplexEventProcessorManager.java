@@ -229,4 +229,16 @@ public class EsperComplexEventProcessorManager extends ComplexEventProcessorMana
 		System.out.println("asd");
 		return false;
 	}
+
+	@Override
+	public int getAmountOfLoadedRules() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getLastRuleLoadedName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

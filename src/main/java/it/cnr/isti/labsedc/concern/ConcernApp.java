@@ -222,4 +222,11 @@ public class ConcernApp extends Thread
 	public static String getLoggerData() {
 		return Sub.readFile(System.getProperty("user.dir")+ "/logs/app-debug.log");
 	}
+	
+	public static int getAmountOfLoadedRules() {
+		return cepMan.getAmountOfLoadedRules();
+	}
+	public static String getLastRuleLoadedName() {
+		return cepMan.getLastRuleLoadedName();
+	}
 }

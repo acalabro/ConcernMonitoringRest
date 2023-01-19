@@ -1,4 +1,4 @@
-2023-01-18T23:17:02.032+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+2023-01-19T09:09:11.500+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
 
 -----------------------------------------------------
 - NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
@@ -6,28 +6,137 @@
 
 
 
-2023-01-18T23:17:02.035+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
-2023-01-18T23:17:02.038+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
-2023-01-18T23:17:02.047+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
-2023-01-18T23:17:02.226+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
-2023-01-18T23:17:02.227+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
-2023-01-18T23:17:02.227+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
-2023-01-18T23:17:02.269+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
-2023-01-18T23:17:02.270+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
-2023-01-18T23:17:02.271+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
-2023-01-18T23:17:02.508+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
-2023-01-18T23:17:02.534+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
-2023-01-18T23:17:02.768+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
-2023-01-18T23:17:02.829+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules  package it.cnr.isti.labsedc.concern.event; import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent; declare ConcernAbstractEvent    @role( event )    @timestamp( timestamp ) end
-2023-01-18T23:17:02.878+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-18T23:17:02.879+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 0
-2023-01-18T23:17:27.567+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules  package it.cnr.isti.labsedc.concern.event; import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent; declare ConcernAbstractEvent    @role( event )    @timestamp( timestamp ) end
-2023-01-18T23:17:27.589+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-18T23:17:27.589+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 0
-2023-01-18T23:29:12.394+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules  package it.cnr.isti.labsedc.concern.event; import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent; declare ConcernAbstractEvent    @role( event )    @timestamp( timestamp ) end
-2023-01-18T23:29:12.401+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-18T23:29:12.402+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 0
-2023-01-18T23:53:45.786+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+2023-01-19T09:09:11.502+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-19T09:09:11.506+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-19T09:09:11.517+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-19T09:09:11.668+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-19T09:09:11.668+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-19T09:09:11.668+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-19T09:09:11.690+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-19T09:09:11.690+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-19T09:09:11.692+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-19T09:09:11.910+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-19T09:09:11.930+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-19T09:09:12.139+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-19T09:09:12.230+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernAbstractEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+
+rule "observe mean connection value for avoiding network congestion"
+no-loop
+salience 10
+dialect "java"
+when 
+   	Number(doubleValue > 5) from accumulate(
+		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
+   	 		average($amount)  
+   	 		
+   	 	)
+    then
+        System.out.println("Failure detected");
+end
+2023-01-19T09:09:12.699+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T09:09:12.700+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
+2023-01-19T09:09:12.700+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2023-01-19T09:10:11.238+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2023-01-19T09:10:11.340+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T09:10:11.340+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
+2023-01-19T09:10:11.341+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2023-01-19T09:10:44.425+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules Ciao cane cuai
+2023-01-19T11:34:44.438+0100 [grizzly-http-server-10] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
 
 -----------------------------------------------------
 - NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
@@ -35,53 +144,19 @@
 
 
 
-2023-01-18T23:53:45.789+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
-2023-01-18T23:53:45.792+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
-2023-01-18T23:53:45.800+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
-2023-01-18T23:53:46.010+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
-2023-01-18T23:53:46.010+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
-2023-01-18T23:53:46.010+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
-2023-01-18T23:53:46.039+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
-2023-01-18T23:53:46.040+0100 [grizzly-http-server-5] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
-2023-01-18T23:53:46.042+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
-2023-01-18T23:53:46.287+0100 [grizzly-http-server-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
-2023-01-18T23:53:46.307+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
-2023-01-18T23:53:46.531+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
-2023-01-18T23:54:00.098+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernAbstractEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-
-rule "observe mean connection value for avoiding network congestion"
-no-loop
-salience 10
-dialect "java"
-when 
-   	Number(doubleValue > 5) from accumulate(
-		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
-   	 		average($amount)  
-   	 		
-   	 	)
-    then
-        System.out.println("Failure detected");
-end
-2023-01-18T23:54:00.660+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-18T23:54:00.661+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-01-18T23:54:00.661+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
-2023-01-18T23:54:29.197+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+2023-01-19T11:34:44.440+0100 [grizzly-http-server-10] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-19T11:34:44.444+0100 [grizzly-http-server-10] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-19T11:34:44.453+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-19T11:34:44.630+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-19T11:34:44.630+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-19T11:34:44.631+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-19T11:34:44.666+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-19T11:34:44.667+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-19T11:34:44.669+0100 [grizzly-http-server-10] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-19T11:34:44.935+0100 [grizzly-http-server-10] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-19T11:34:44.959+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-19T11:34:45.185+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-19T11:34:45.260+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
 package it.cnr.isti.labsedc.concern.event;
 
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
@@ -161,70 +236,9 @@ dialect "java"
 		retract($aEvent);
 		retract($bEvent);	
 end
-2023-01-18T23:54:29.343+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-18T23:54:29.343+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-01-18T23:54:29.344+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
-2023-01-19T00:01:24.903+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-
-dialect "java"
-
-declare ConcernAbstractEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-2023-01-19T00:01:24.927+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:01:24.928+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-01-19T00:01:24.928+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
-2023-01-19T00:02:29.057+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-
-dialect "java"
-
-declare ConcernAbstractEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-2023-01-19T00:02:29.077+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:02:29.077+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-01-19T00:02:29.077+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
-2023-01-19T00:03:39.078+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernAbstractEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-
-rule "observe mean connection value for avoiding network congestion"
-no-loop
-salience 10
-dialect "java"
-when 
-   	Number(doubleValue > 5) from accumulate(
-		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
-   	 		average($amount)  
-   	 		
-   	 	)
-    then
-        System.out.println("Failure detected");
-end
-2023-01-19T00:03:39.141+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:03:39.142+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-01-19T00:03:39.142+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
-2023-01-19T00:05:01.374+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+2023-01-19T11:34:45.807+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T11:34:45.808+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
+2023-01-19T12:04:41.733+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
 
 -----------------------------------------------------
 - NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
@@ -232,19 +246,23 @@ end
 
 
 
-2023-01-19T00:05:01.377+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
-2023-01-19T00:05:01.380+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
-2023-01-19T00:05:01.390+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
-2023-01-19T00:05:01.545+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
-2023-01-19T00:05:01.545+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
-2023-01-19T00:05:01.545+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
-2023-01-19T00:05:01.570+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
-2023-01-19T00:05:01.571+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
-2023-01-19T00:05:01.573+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
-2023-01-19T00:05:01.808+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
-2023-01-19T00:05:01.827+0100 [Thread-26] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
-2023-01-19T00:05:02.047+0100 [Thread-26] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
-2023-01-19T00:05:07.448+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+2023-01-19T12:04:41.736+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-19T12:04:41.741+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-19T12:04:41.753+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-19T12:04:41.931+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-19T12:04:41.931+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-19T12:04:41.932+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-19T12:04:41.960+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-19T12:04:41.960+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-19T12:04:41.962+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-19T12:04:42.223+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-19T12:04:42.246+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-19T12:04:42.501+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-19T12:04:42.543+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules             
+2023-01-19T12:04:42.591+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T12:04:42.591+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: defaultpkg 0
+2023-01-19T12:04:42.591+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 0
+2023-01-19T12:07:45.010+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
 package it.cnr.isti.labsedc.concern.event;
 
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
@@ -324,9 +342,80 @@ dialect "java"
 		retract($aEvent);
 		retract($bEvent);	
 end
-2023-01-19T00:05:08.021+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:05:08.021+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:08:49.415+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+2023-01-19T12:07:45.490+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T12:07:45.491+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: defaultpkg 0
+2023-01-19T12:07:45.491+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
+2023-01-19T12:08:06.415+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernAbstractEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+
+rule "observe mean connection value for avoiding network congestion"
+no-loop
+salience 10
+dialect "java"
+when 
+   	Number(doubleValue > 5) from accumulate(
+		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
+   	 		average($amount)  
+   	 		
+   	 	)
+    then
+        System.out.println("Failure detected");
+end
+2023-01-19T12:08:06.591+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T12:08:06.592+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
+2023-01-19T12:08:06.592+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: defaultpkg 0
+2023-01-19T12:08:06.592+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2023-01-19T12:09:20.160+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernAbstractEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+
+rule "observe mean connection value for avoiding network congestion"
+no-loop
+salience 10
+dialect "java"
+when 
+   	Number(doubleValue > 5) from accumulate(
+		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
+   	 		average($amount)  
+   	 		
+   	 	)
+    then
+        System.out.println("Failure detected");
+end
+2023-01-19T12:09:20.233+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T12:09:20.234+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
+2023-01-19T12:09:20.234+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: defaultpkg 0
+2023-01-19T12:09:20.234+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2023-01-19T12:09:38.693+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
 package it.cnr.isti.labsedc.concern.event;
 
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
@@ -406,9 +495,11 @@ dialect "java"
 		retract($aEvent);
 		retract($bEvent);	
 end
-2023-01-19T00:08:49.511+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:08:49.511+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:12:02.126+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+2023-01-19T12:09:38.757+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T12:09:59.968+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
+2023-01-19T12:10:01.287+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: defaultpkg 0
+2023-01-19T12:10:01.912+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2023-01-19T12:20:56.829+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
 
 -----------------------------------------------------
 - NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
@@ -416,19 +507,19 @@ end
 
 
 
-2023-01-19T00:12:02.128+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
-2023-01-19T00:12:02.132+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
-2023-01-19T00:12:02.141+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
-2023-01-19T00:12:02.308+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
-2023-01-19T00:12:02.308+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
-2023-01-19T00:12:02.308+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
-2023-01-19T00:12:02.341+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
-2023-01-19T00:12:02.341+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
-2023-01-19T00:12:02.343+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
-2023-01-19T00:12:02.595+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
-2023-01-19T00:12:02.616+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
-2023-01-19T00:12:02.860+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
-2023-01-19T00:12:08.612+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+2023-01-19T12:20:56.831+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-19T12:20:56.834+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-19T12:20:56.843+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-19T12:20:57.034+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-19T12:20:57.034+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-19T12:20:57.034+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-19T12:20:57.062+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-19T12:20:57.062+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-19T12:20:57.064+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-19T12:20:57.340+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-19T12:20:57.363+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-19T12:20:57.621+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-19T12:20:57.664+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
 package it.cnr.isti.labsedc.concern.event;
 
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
@@ -508,9 +599,9 @@ dialect "java"
 		retract($aEvent);
 		retract($bEvent);	
 end
-2023-01-19T00:12:09.135+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:12:09.135+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:13:48.440+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+2023-01-19T12:20:58.193+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T12:21:01.575+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
+2023-01-19T12:22:47.094+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
 package it.cnr.isti.labsedc.concern.event;
 
 import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
@@ -590,1135 +681,5 @@ dialect "java"
 		retract($aEvent);
 		retract($bEvent);	
 end
-2023-01-19T00:13:48.527+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:13:48.528+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:14:17.255+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:14:17.318+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:14:17.318+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:14:55.426+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:14:55.483+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:14:55.484+0100 [ActiveMQ Session Task-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:16:16.436+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:16:16.501+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:16:16.501+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:16:19.915+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:16:19.968+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:16:19.969+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:16:22.457+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:16:22.509+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:16:22.510+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:16:24.041+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:16:24.077+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:16:24.078+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:16:29.894+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:16:29.939+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:16:29.939+0100 [ActiveMQ Session Task-4] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:17:38.475+0100 [ActiveMQ Session Task-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:17:38.515+0100 [ActiveMQ Session Task-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:17:38.516+0100 [ActiveMQ Session Task-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:18:08.479+0100 [ActiveMQ Session Task-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:18:08.527+0100 [ActiveMQ Session Task-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:18:08.527+0100 [ActiveMQ Session Task-5] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:19:57.916+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:19:57.956+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:19:57.957+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:20:17.379+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:20:17.413+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:20:17.413+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:20:36.896+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-2023-01-19T00:20:36.915+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:20:36.915+0100 [ActiveMQ Session Task-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:23:22.504+0100 [ActiveMQ Session Task-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-rule "manage1"
-no-loop
-salience 10
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false);
-	then
-		$aEvent.setConsumed(true);
-		update($aEvent);
-end
-
-
-rule "manage2"
-no-loop
-salience 100
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "closed",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		retract($aEvent);
-		retract($bEvent);	
-end
-
-rule "check that only one connection is active"
-no-loop
-salience 200
-dialect "java" 
-	when
-		$aEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == true);
-		
-		$bEvent : ConcernBaseEvent(
-		this.getName == "Connection",
-		this.getSenderID == "SUA_Probe",
-		this.getDestinationID == "Monitoring",
-		this.getData == "established",
-		this.getConsumed == false,
-		this after $aEvent);				
-	then
-		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
-		retract($aEvent);
-		retract($bEvent);	
-end
-2023-01-19T00:23:22.551+0100 [ActiveMQ Session Task-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:23:22.551+0100 [ActiveMQ Session Task-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:23:33.741+0100 [ActiveMQ Session Task-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-
-dialect "java"
-
-declare ConcernAbstractEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-2023-01-19T00:23:33.755+0100 [ActiveMQ Session Task-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:23:33.756+0100 [ActiveMQ Session Task-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-01-19T00:25:37.725+0100 [ActiveMQ Session Task-8] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernAbstractEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-
-rule "observe mean connection value for avoiding network congestion"
-no-loop
-salience 10
-dialect "java"
-when 
-   	Number(doubleValue > 5) from accumulate(
-		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
-   	 		average($amount)  
-   	 		
-   	 	)
-    then
-        System.out.println("Failure detected");
-end
-2023-01-19T00:25:37.852+0100 [ActiveMQ Session Task-8] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:25:37.852+0100 [ActiveMQ Session Task-8] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-01-19T00:25:37.852+0100 [ActiveMQ Session Task-8] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
-2023-01-19T00:28:46.278+0100 [ActiveMQ Session Task-9] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernAbstractEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-
-rule "observe mean connection value for avoiding network congestion"
-no-loop
-salience 10
-dialect "java"
-when 
-   	Number(doubleValue > 5) from accumulate(
-		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
-   	 		average($amount)  
-   	 		
-   	 	)
-    then
-        System.out.println("Failure detected");
-end
-2023-01-19T00:28:46.316+0100 [ActiveMQ Session Task-9] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:28:46.316+0100 [ActiveMQ Session Task-9] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-01-19T00:28:46.316+0100 [ActiveMQ Session Task-9] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
-2023-01-19T00:30:43.752+0100 [ActiveMQ Session Task-10] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
-package it.cnr.isti.labsedc.concern.event;
-
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernNetworkEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-dialect "java"
-
-declare ConcernAbstractEvent
-    @role( event )
-    @timestamp( timestamp )
-end
-
-
-rule "observe mean connection value for avoiding network congestion"
-no-loop
-salience 10
-dialect "java"
-when 
-   	Number(doubleValue > 5) from accumulate(
-		ConcernNetworkEvent($amount : getConnectionAmount(), name == "connectionEvent", senderID == "probeROS" ) over window:time(30s),
-   	 		average($amount)  
-   	 		
-   	 	)
-    then
-        System.out.println("Failure detected");
-end
-2023-01-19T00:30:43.781+0100 [ActiveMQ Session Task-10] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-01-19T00:30:43.782+0100 [ActiveMQ Session Task-10] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-01-19T00:30:43.782+0100 [ActiveMQ Session Task-10] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2023-01-19T12:22:47.181+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-19T12:22:47.181+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
