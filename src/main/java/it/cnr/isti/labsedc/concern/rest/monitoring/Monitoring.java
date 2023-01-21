@@ -43,10 +43,8 @@ public class Monitoring {
 	
     	return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Runtime Monitoring</title>"
     			+ "</head>"
-    			+"<style type =\"text/css\">\n"
-    			
+    			+"<style type =\"text/css\">\n"		
     +"	button{\n"
-    + "                display: inline-block;\n"
     + "            outline: 0;\n"
     + "            border: 0;\n"
     + "            cursor: pointer;\n"
@@ -68,6 +66,12 @@ public class Monitoring {
     + "                box-shadow: inset 0px 3px 7px #3c4fe0;\n"
     + "                transform: translateY(2px);\n"
     + "            }"
+    +"button:disabled,\n"
+    + "button[disabled]{\n"
+    + "  border: 1px solid #999999;\n"
+    + "  background-color: #cccccc;\n"
+    + "  color: #666666;\n"
+    + "}"
     + "</style>\n"
     + "  <style>      "			
     + ".textarea {\n"
@@ -90,6 +94,11 @@ public class Monitoring {
     +"	 color: #ffffff;"
     + "}\n"
     + "\n"
+    +".tab2 {\n"
+    + "            tab-size: 4;\n"
+    + " margin-left:25px;"
+    + " margin-right:25px;"    
+    + "        }"
     + ".textarea:focus {\n"
     + "  cursor: text;\n"
     + "  color: #333333;\n"
@@ -111,12 +120,14 @@ public class Monitoring {
     			+"<body bgcolor=”#800000\"><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3 style=\"color: white;\">Status: " + MonitoringStatus() 
     			+ "<div id=\"logs\"><textarea class=\"textarea\" name=\"debugLog\" rows=\"30\" cols=\"200\">\n"
 				+ getLoggerData() + "</textarea></div><br />"
-    			+ " <button onclick=\"show()\">Show/Hide log window</button>\n<br /><br />"
+//    			+ " <button onclick=\"show()\">Show/Hide log window</button>\n<br /><br />"
     			+ "<h3 style=\"color: white;\">Rules loaded: " 
     			+ getAmountOfLoadedRules() + "</h3>"
     			+ "<h4 style=\"color: white;\">Loaded rules list:</h4>" + getRulesList()
-				+"<br />   <br />  	<button onclick=\"myFunction()\">Load rules</button>\n"
-				+"<br /><br />     	<button onclick=\"myFunction2()\">Delete rules</button>\n<br />"
+				+"<br />   <br />  	<button class=\"tab2\"onclick=\"startMonitoring()\" id=\"startMonitoring\" "+ getStartStatus() + ">Start monitoring</button>\n\t\t\t\t"
+				+ "<button class=\"tab2\"onclick=\"stopMonitoring()\" id=\"stopMonitoring\" "+ getStopStatus() + ">Stop monitoring</button>\n\t\t\t\t"
+				+"<br />   <br />  	<button class=\"tab2\"onclick=\"myFunction()\" id=\"loadButton\" " + getHiddenStatus() +" >Load rules</button>\n\t\t\t\t"
+				+"					<button id=\"deleteButton\" onclick=\"myFunction2()\" " + getHiddenStatus() +">Delete rules</button>\n<br />"
 				+ "\n"
 				+ "    	<script>\n"
 				+ "    	function myFunction() {\n"
@@ -128,66 +139,53 @@ public class Monitoring {
 				+ "    	    window.open(\"./biecointerface/deleterules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=600\");\n"
 				+ "    	}\n"
 				+ "    	</script>"
-    			+ "<script>function show() {\n"
-    			+"  var x = document.getElementById(\"logs\");\n"
-    			+ "  if (x.style.display === \"none\") {\n"
-    			+ "    x.style.display = \"block\";\n"
-    			+ "  } else {\n"
-    			+ "    x.style.display = \"none\";\n"
-    			+ "  }}</script>"
-				+ "<br /></center></body></html>";  	
-    
-    
-
-    
+				+ "    	<script>\n"
+				+ "    	function stopMonitoring() {\n"
+				+" var xhttp = new XMLHttpRequest();\n"
+		    			+ "    xhttp.onreadystatechange = function() {\n"
+		    			+ "         if (this.readystate == XMLHttpRequest.DONE && this.status == 200) {\n"
+		    			+ "         }\n"
+		    			+ "    };\n"
+		    			+ "    xhttp.open(\"POST\", \"http://127.0.0.1:8181/monitoring/biecointerface\", true);\n"
+		    			+ "	   xhttp.setRequestHeader('Authorization','746gfbrenkljhGU');"
+		    			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
+		    			+ "    xhttp.send(JSON.stringify({"
+		    			+ "    \"jobID\": \"1234\",\n"
+		    			+ "    \"timestamp\": \"2023-01-18 08:29:30\",\n"
+		    			+ "    \"messageType\": \"Stop\",\n"
+		    			+ "    \"sourceID\": \"4\",\n"
+		    			+ "    \"event\": \"stop Message\",\n" 
+		    			+ "    \"crc\": 1234565\n"
+		    			+ "    }));\n"
+		    			+"window.alert(\"Monitoring stop\")\n"
+		    			+ "}"    			
+				+ "    	</script>"
+				+ "    	<script>\n"
+				+ "    	function startMonitoring() {\n"
+				+" var xhttp = new XMLHttpRequest();\n"
+		    			+ "    xhttp.onreadystatechange = function() {\n"
+		    			+ "         if (this.readystate == XMLHttpRequest.DONE && this.status == 200) {\n"
+		    			+ "         }\n"
+		    			+ "    };\n"
+		    			+ "    xhttp.open(\"POST\", \"http://127.0.0.1:8181/monitoring/biecointerface\", true);\n"
+		    			+ "	   xhttp.setRequestHeader('Authorization','746gfbrenkljhGU');"
+		    			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
+		    			+ "    xhttp.send(JSON.stringify({"
+		    			+ "    \"jobID\": \"1234\",\n"
+		    			+ "    \"timestamp\": \"2023-01-18 08:29:30\",\n"
+		    			+ "    \"messageType\": \"Start\",\n"
+		    			+ "    \"sourceID\": \"4\",\n"
+		    			+ "    \"event\": \"start Message\",\n" 
+		    			+ "    \"crc\": 1234565\n"
+		    			+ "    }));\n"
+		    			+"window.alert(\"Monitoring starts\")\n"
+		    			+ "}"    			
+				+ "    	</script>"
+				+ "<br /></center></body></html>";  	  
     
     }
      
-	private String getRulesList() {
-		if (ConcernApp.isRunning()) {
-			return ConcernApp.getRulesList();
-		}
-		return "";
-	}
-	
-	private String getAmountOfLoadedRules() {
-		if (ConcernApp.isRunning()) {
-			return Integer.toString(ConcernApp.getAmountOfLoadedRules());
-		}
-		return "0";
-	}
-	
-	/*@POST
-	public Response biecointerface(
-			@Context HttpHeaders headers,
-			@QueryParam("jobID") String jobID,
-			@QueryParam("timestamp") String timestamp,
-			@QueryParam("messageType") String messageType,
-			@QueryParam("sourceIP") String sourceIP,
-			@QueryParam("sourceID") String sourceID,
-			@QueryParam("destinationID") String destinationID,
-			@QueryParam("event") String event,
-			@QueryParam("accessLevel") String accessLevel,
-			@QueryParam("priority") int priority,
-			@QueryParam("CRC") long CRC,
-			@QueryParam("bodyFormat") String bodyFormat,
-			@QueryParam("bodyCompression") String bodyCompression,
-			@QueryParam("body") String body
-			) {
-	
-		String authorization = headers.getRequestHeader("Authorization").get(0);
-		if (authorization.compareTo(outcomingToken) == 0) {
-			if (destinationID.compareToIgnoreCase("10") == 0) {
-				if (messageType.compareTo(BiecoMessageTypes.HEARTBEAT) == 0 ) {
-					return Response.status(200).build();
-				}
-				return Response.status(401).entity("invalid messageType").build();	
-			}
-			return Response.status(505).entity("invalid destination").build();
-		}
-	}*/
-
-    @POST
+	@POST
     @Consumes(MediaType.APPLICATION_JSON)
 	public Response biecointerface(
 			String jsonMessage,
@@ -298,6 +296,35 @@ public class Monitoring {
 			e.printStackTrace();
 		}
 		return "Starting Demo";
+	}
+	
+	private String getRulesList() {
+		return ConcernApp.getRulesList();
+	}
+	
+	private String getAmountOfLoadedRules() {
+			return Integer.toString(ConcernApp.getAmountOfLoadedRules());
+	}
+	
+	private String getHiddenStatus() {
+		if (!ConcernApp.isRunning()) {
+			return "hidden"; 
+			}
+		return "";
+	}
+	
+	private String getStartStatus() {
+		if (ConcernApp.isRunning()) {
+			return "hidden"; 
+			}
+		return "";
+	}
+	
+    private String getStopStatus() {
+		if (!ConcernApp.isRunning()) {
+			return "hidden"; 
+			}
+		return "";
 	}
 }
 

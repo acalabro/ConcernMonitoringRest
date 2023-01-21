@@ -58,7 +58,7 @@ public class ConcernApp extends Thread
     		return false;
     	return true;
     }
-    	
+
 	public static void killInstance() {
     	ConcernApp.broker.stopActiveMQBroker();
     	INSTANCE.interrupt();
@@ -71,7 +71,7 @@ public class ConcernApp extends Thread
     	username = "vera";
     	password = "griselda";
     	
-    	//brokerUrl = "tcp://sedc-nethd.isti.cnr.it:49195";
+    	//brokerUrl = "tcp://activemq:61616";
     	if(runningInJMS) {
     	brokerUrlJMS = "tcp://0.0.0.0:61616";
     	maxMemoryUsage = 128000l;
@@ -225,7 +225,10 @@ public class ConcernApp extends Thread
 	}
 	
 	public static int getAmountOfLoadedRules() {
-		return cepMan.getAmountOfLoadedRules();
+		if (cepMan != null) {
+			return cepMan.getAmountOfLoadedRules();
+		}
+		return 0;
 	}
 
 	public static boolean deleteRule(String ruleName) {
@@ -233,13 +236,18 @@ public class ConcernApp extends Thread
 	}
 	
 	public static String getRulesList() {
-		ArrayList<String> localArray = cepMan.getRulesList();
-		String compositeStart = "<select name=\"Rules\" id=\"ruleslist\" size=\""+ localArray.size() + "\">";
-		String compositeEnd = "</select>";
-		String content ="";
-		for (int i = 0; i<localArray.size(); i++) {
-			content = content + "<option value=\""+ localArray.get(i).toString() + "\">" + localArray.get(i).toString() + "</option>  \n";
+		if (cepMan != null) {
+			if (cepMan.getRulesList() != null) {
+			ArrayList<String> localArray = cepMan.getRulesList();
+			String compositeStart = "<select name=\"Rules\" id=\"ruleslist\" size=\""+ localArray.size() + "\">";
+			String compositeEnd = "</select>";
+			String content ="";
+			for (int i = 0; i<localArray.size(); i++) {
+				content = content + "<option value=\""+ localArray.get(i).toString() + "\">" + localArray.get(i).toString() + "</option>  \n";
+			}
+			return compositeStart + content + compositeEnd;
+			}
 		}
-		return compositeStart + content + compositeEnd;
+		return "";
 	}
 }

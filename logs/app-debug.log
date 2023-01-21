@@ -1,0 +1,231 @@
+2023-01-21T10:00:08.501+0100 [grizzly-http-server-14] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-21T10:00:08.503+0100 [grizzly-http-server-14] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-21T10:00:08.506+0100 [grizzly-http-server-14] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-21T10:00:08.515+0100 [grizzly-http-server-14] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-21T10:00:08.694+0100 [grizzly-http-server-14] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-21T10:00:08.694+0100 [grizzly-http-server-14] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-21T10:00:08.694+0100 [grizzly-http-server-14] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-21T10:00:08.742+0100 [grizzly-http-server-14] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-21T10:00:08.742+0100 [grizzly-http-server-14] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-21T10:00:08.745+0100 [grizzly-http-server-14] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-21T10:00:09.037+0100 [grizzly-http-server-14] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-21T10:00:09.064+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-21T10:00:09.326+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-21T10:09:51.496+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created on: Mar 18, 2022
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "manage1"
+no-loop
+salience 10
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false);
+	then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+end
+
+
+rule "manage2"
+no-loop
+salience 100
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "closed",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		retract($aEvent);
+		retract($bEvent);	
+end
+
+rule "check that only one connection is active"
+no-loop
+salience 200
+dialect "java" 
+	when
+		$aEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == true);
+		
+		$bEvent : ConcernBaseEvent(
+		this.getName == "Connection",
+		this.getSenderID == "SUA_Probe",
+		this.getDestinationID == "Monitoring",
+		this.getData == "established",
+		this.getConsumed == false,
+		this after $aEvent);				
+	then
+		KieLauncher.printWarning("More than one connection between LocalPlanner and Global Planner established.\nShut down systems");	
+		retract($aEvent);
+		retract($bEvent);	
+end
+2023-01-21T10:09:52.072+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-21T10:09:52.072+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
+2023-01-21T10:10:04.654+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 2
+2023-01-21T10:10:04.654+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule check that only one connection is active removed
+2023-01-21T10:10:04.654+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 2
+2023-01-21T10:28:18.123+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-21T10:28:18.126+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-21T10:28:18.129+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-21T10:28:18.139+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-21T10:28:18.309+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-21T10:28:18.310+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-21T10:28:18.310+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-21T10:28:18.339+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-21T10:28:18.339+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-21T10:28:18.341+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-21T10:28:18.585+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-21T10:28:18.606+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-21T10:28:18.839+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-21T10:31:28.176+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-21T10:31:28.178+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-21T10:31:28.181+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-21T10:31:28.189+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-21T10:31:28.356+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-21T10:31:28.356+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-21T10:31:28.356+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-21T10:31:28.377+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-21T10:31:28.377+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-21T10:31:28.379+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-21T10:31:28.630+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-21T10:31:28.652+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-21T10:31:28.860+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-21T10:35:31.767+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-21T10:35:31.769+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-21T10:35:31.772+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-21T10:35:31.779+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-21T10:35:32.042+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-21T10:35:32.042+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-21T10:35:32.042+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-21T10:35:32.076+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-21T10:35:32.077+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-21T10:35:32.079+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-21T10:35:32.310+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-21T10:35:32.329+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-21T10:35:32.514+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-21T10:36:16.241+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-21T10:36:16.243+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-21T10:36:16.246+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-21T10:36:16.254+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-21T10:36:16.403+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-21T10:36:16.403+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-21T10:36:16.404+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-21T10:36:16.425+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-21T10:36:16.426+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-21T10:36:16.427+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-21T10:36:16.670+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-21T10:36:16.688+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-21T10:36:16.908+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-21T10:41:07.265+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-21T10:41:07.268+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-21T10:41:07.271+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-21T10:41:07.282+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-21T10:41:07.451+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-21T10:41:07.451+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-21T10:41:07.452+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-21T10:41:07.484+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-21T10:41:07.484+0100 [grizzly-http-server-2] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-21T10:41:07.486+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-21T10:41:07.816+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-21T10:41:07.840+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-21T10:41:08.088+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-21T10:41:47.624+0100 [grizzly-http-server-0] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker stop
+2023-01-21T10:41:47.625+0100 [grizzly-http-server-0] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker stopped
+2023-01-21T10:41:47.625+0100 [grizzly-http-server-0] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connector Stopped
+2023-01-21T10:42:03.335+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-21T10:42:03.336+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-21T10:42:03.336+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-21T10:42:03.336+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-21T10:42:03.339+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-21T10:42:03.339+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-21T10:42:03.339+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-21T10:42:03.339+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-21T10:42:03.340+0100 [grizzly-http-server-7] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-21T10:42:03.340+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-21T10:42:03.344+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-21T10:42:03.348+0100 [Thread-28] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-21T10:42:03.374+0100 [Thread-28] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-21T10:42:12.210+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker stop
+2023-01-21T10:42:12.211+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker stopped
+2023-01-21T10:42:12.211+0100 [grizzly-http-server-10] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connector Stopped

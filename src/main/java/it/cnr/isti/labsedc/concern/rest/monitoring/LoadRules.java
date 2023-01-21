@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONObject;
 
-import it.cnr.isti.labsedc.concern.ConcernApp;
 import it.cnr.isti.labsedc.concern.consumer.Consumer;
 
 /**
@@ -126,13 +125,11 @@ public class LoadRules {
 
     	JSONObject bodyMessage = new JSONObject(message);
     	if (((String)bodyMessage.get("messageType")).compareTo("loadRules") == 0 ) {
-			if (this.MonitoringStartIfNotStarted()) {
 	    		if (loadRule(
 	    				((JSONObject) bodyMessage)
 	    					.get("event").toString()
     					))
 	 			return Response.status(200).entity("Rule/s sent correctly").build();	
-			}	    	
     	}
 	return Response.status(401).entity("error").build();
 	}
@@ -141,23 +138,23 @@ public class LoadRules {
         	Consumer internalConsumer = new Consumer();
         	return internalConsumer.run(rule);
         }    
-       
-    private boolean MonitoringStartIfNotStarted() {	
-		try {
-			if (ConcernApp.isRunning()) {
-				return true;
-			}
-			else {
-				ConcernApp.getInstance();
-
-				while(!ConcernApp.isRunning()) {
-					Thread.sleep(500);
-				}
-			}
-		} catch(InterruptedException asd) {
-			
-		}
-		return true;
-	}
+//       
+//    private boolean MonitoringStartIfNotStarted() {	
+//		try {
+//			if (ConcernApp.isRunning()) {
+//				return true;
+//			}
+//			else {
+//				ConcernApp.getInstance();
+//
+//				while(!ConcernApp.isRunning()) {
+//					Thread.sleep(500);
+//				}
+//			}
+//		} catch(InterruptedException asd) {
+//			
+//		}
+//		return true;
+//	}
 }
 
