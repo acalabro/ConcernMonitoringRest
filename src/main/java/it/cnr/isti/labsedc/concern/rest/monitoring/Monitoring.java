@@ -1,5 +1,8 @@
 package it.cnr.isti.labsedc.concern.rest.monitoring;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -36,7 +39,6 @@ public class Monitoring {
     @Produces({MediaType.TEXT_HTML})
     public String getIt() {
         return homePage();
-        
     }
     
     private String homePage() {
@@ -113,12 +115,18 @@ public class Monitoring {
     			+ "}\n"
     			+ "</style>"
     			+"<script>\n"
-    			+ "\n"
+    			+ "\n"    			
     			+ "setTimeout(\"location.reload(true);\", 3000);\n"
     			+ "\n"
     			+ "</script>"
+//    			+ "<script>"
+//    			+ "	function suca() {"
+//+ "var theArea = document.getElementsByName(\"debugLog\"); \n" 
+//+ "var length =  document.getElementsByName(\"debugLog\").value.length;"
+//    			+"}"
+//    			+ "</script>"
     			+"<body bgcolor=”#800000\"><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3 style=\"color: white;\">Status: " + MonitoringStatus() 
-    			+ "<div id=\"logs\"><textarea class=\"textarea\" name=\"debugLog\" rows=\"30\" cols=\"200\">\n"
+    			+ "<div id=\"logs\"><textarea class=\"textarea\" name=\"debugLog\" rows=\"30\" cols=\"140\">\n"
 				+ getLoggerData() + "</textarea></div><br />"
 //    			+ " <button onclick=\"show()\">Show/Hide log window</button>\n<br /><br />"
     			+ "<h3 style=\"color: white;\">Rules loaded: " 
@@ -128,7 +136,7 @@ public class Monitoring {
 				+ "<button class=\"tab2\"onclick=\"stopMonitoring()\" id=\"stopMonitoring\" "+ getStopStatus() + ">Stop monitoring</button>\n\t\t\t\t"
 				+"<br />   <br />  	<button class=\"tab2\"onclick=\"myFunction()\" id=\"loadButton\" " + getHiddenStatus() +" >Load rules</button>\n\t\t\t\t"
 				+"					<button id=\"deleteButton\" onclick=\"myFunction2()\" " + getHiddenStatus() +">Delete rules</button>\n<br />"
-				+ "\n"
+				+"<button id=\"suca\" onclick=\"suca()\">Sucarules</button>\n<br />"
 				+ "    	<script>\n"
 				+ "    	function myFunction() {\n"
 				+ "    	    window.open(\"./biecointerface/loadrules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=600\");\n"
@@ -146,7 +154,7 @@ public class Monitoring {
 		    			+ "         if (this.readystate == XMLHttpRequest.DONE && this.status == 200) {\n"
 		    			+ "         }\n"
 		    			+ "    };\n"
-		    			+ "    xhttp.open(\"POST\", \"http://127.0.0.1:8181/monitoring/biecointerface\", true);\n"
+		    			+ "    xhttp.open(\"POST\", \"http://" + "127.0.0.1" + ":8181/monitoring/biecointerface\", true);\n"
 		    			+ "	   xhttp.setRequestHeader('Authorization','746gfbrenkljhGU');"
 		    			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
 		    			+ "    xhttp.send(JSON.stringify({"
@@ -167,7 +175,7 @@ public class Monitoring {
 		    			+ "         if (this.readystate == XMLHttpRequest.DONE && this.status == 200) {\n"
 		    			+ "         }\n"
 		    			+ "    };\n"
-		    			+ "    xhttp.open(\"POST\", \"http://127.0.0.1:8181/monitoring/biecointerface\", true);\n"
+		    			+ "    xhttp.open(\"POST\", \"http://" + "127.0.0.1" + ":8181/monitoring/biecointerface\", true);\n"
 		    			+ "	   xhttp.setRequestHeader('Authorization','746gfbrenkljhGU');"
 		    			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
 		    			+ "    xhttp.send(JSON.stringify({"
@@ -326,5 +334,29 @@ public class Monitoring {
 			}
 		return "";
 	}
+    
+    public static String getLocalIP() {
+    	//Enumeration<?> e;
+		try {
+//			e = NetworkInterface.getNetworkInterfaces();
+//    	while(e.hasMoreElements())
+//    	{
+//    	    NetworkInterface n = (NetworkInterface) e.nextElement();
+//    	    Enumeration<InetAddress> ee = n.getInetAddresses();
+//    	    String i= "";
+//    	    while (ee.hasMoreElements())
+//    	    {
+//    	        i = ee.nextElement().getHostAddress();
+//    	    }
+//    	    if (i!= null) {
+//    	    return i;
+//		}
+		return InetAddress.getLocalHost().getHostName();
+    	} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return "";
+    }
 }
 

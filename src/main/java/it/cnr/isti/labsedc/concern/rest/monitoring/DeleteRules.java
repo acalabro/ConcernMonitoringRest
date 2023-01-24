@@ -77,7 +77,7 @@ public class DeleteRules {
     			+ "        alert(xhttp.statusText);"
     			+ "         }\n"
     			+ "    };\n"
-    			+ "    xhttp.open(\"POST\", \"http://127.0.0.1:8181/monitoring/biecointerface/deleterules\", true);\n"
+    			+ "    xhttp.open(\"POST\", \"http://" + Monitoring.getLocalIP() + ":8181/monitoring/biecointerface/deleterules\", true);\n"
     			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
     			+ "    xhttp.send(JSON.stringify({"
     			+ "    \"jobID\": \"1234\",\n"

@@ -67,7 +67,7 @@ public class LoadRules {
     			+ "         }\n"
     			+ "    };\n"
     			+ "    var textarea = document.getElementById('ruletextarea').value;\n"
-    			+ "    xhttp.open(\"POST\", \"http://127.0.0.1:8181/monitoring/biecointerface/loadrules\", true);\n"
+    			+ "    xhttp.open(\"POST\", \"http://" + Monitoring.getLocalIP() +":8181/monitoring/biecointerface/loadrules\", true);\n"
     			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
     			+ "    xhttp.send(JSON.stringify({"
     			+ "    \"jobID\": \"1234\",\n"
