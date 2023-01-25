@@ -18,7 +18,7 @@ public class KieLauncher {
 	public static void main(String[] args) throws InterruptedException {
 		DroolsKieTest asd = new DroolsKieTest();
 		asd.start();
-
+		
 		DroolsKieTest.loadRule();
 		
 		Thread.sleep(1000);
@@ -47,5 +47,16 @@ public class KieLauncher {
 		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		logger.info(toPrint);
 		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	}
+	public static void printInfo(String toPrint) {
+		logger.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+		logger.info(toPrint);
+		logger.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+	}
+	
+	public static void printEvent(Object evt) {
+		logger.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+		logger.info(evt.toString());
+		logger.info("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 	}
 }

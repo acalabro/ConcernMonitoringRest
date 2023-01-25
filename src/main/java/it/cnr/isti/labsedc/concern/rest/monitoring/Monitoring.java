@@ -136,7 +136,7 @@ public class Monitoring {
 				+ "<button class=\"tab2\"onclick=\"stopMonitoring()\" id=\"stopMonitoring\" "+ getStopStatus() + ">Stop monitoring</button>\n\t\t\t\t"
 				+"<br />   <br />  	<button class=\"tab2\"onclick=\"myFunction()\" id=\"loadButton\" " + getHiddenStatus() +" >Load rules</button>\n\t\t\t\t"
 				+"					<button id=\"deleteButton\" onclick=\"myFunction2()\" " + getHiddenStatus() +">Delete rules</button>\n<br />"
-				+"<button id=\"suca\" onclick=\"suca()\">Sucarules</button>\n<br />"
+				//+"<button id=\"suca\" onclick=\"suca()\">Sucarules</button>\n<br />"
 				+ "    	<script>\n"
 				+ "    	function myFunction() {\n"
 				+ "    	    window.open(\"./biecointerface/loadrules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=600\");\n"

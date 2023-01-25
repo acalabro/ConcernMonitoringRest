@@ -42,9 +42,9 @@ public class Consumer extends Thread{
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {
 			cons.init(brokerUrl,"vera", "griselda");
-			String digitalTwin = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/genericRulesList/digitalTwin.drl");
+			String ictgw = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/ictgw/checkEventSequence.drl");
 			logger.info("sending rule");
-			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(digitalTwin, "DTMetaRule"));
+			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(ictgw, "noMultipleOccurrences"));
 			logger.info("rule sent");
 
 			/*
