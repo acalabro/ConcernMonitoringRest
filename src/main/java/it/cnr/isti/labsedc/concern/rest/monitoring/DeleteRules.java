@@ -78,7 +78,7 @@ public class DeleteRules {
     			+ "         }\n"
     			+ "    };\n"
 //    			+ "    xhttp.open(\"POST\", \"http://" + Monitoring.getLocalIP() + ":8181/monitoring/biecointerface/deleterules\", true);\n"
-				+ "    xhttp.open(\"POST\", \"http://146.48.81.167:8181/monitoring/biecointerface/deleterules\", true);\n"
+				+ "    xhttp.open(\"POST\", \"http://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":8181/monitoring/biecointerface/deleterules\", true);\n"
 				+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
     			+ "    xhttp.send(JSON.stringify({"
     			+ "    \"jobID\": \"1234\",\n"

@@ -4,6 +4,8 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import it.cnr.isti.labsedc.concern.ConcernApp;
+
 import java.io.IOException;
 import java.net.URI;
 
@@ -13,8 +15,8 @@ import java.net.URI;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
-	public static final String BASE_URI = "http://0.0.0.0:8181/";
-	//public static final String BASE_URI = "http://127.0.0.1:8181/";
+	public static final String BASE_URI = "http://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":8181/";
+
 	private static HttpServer server;
 
     /**

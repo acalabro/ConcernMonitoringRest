@@ -26290,3 +26290,846 @@ CepType: DROOLS
 2023-01-26T00:22:15.079+0100 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.KieLauncher - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 2023-01-26T00:22:15.079+0100 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.KieLauncher - Unattended event - Rule fired:checkStarter
 2023-01-26T00:22:15.079+0100 [Thread-4] INFO  it.cnr.isti.labsedc.concern.utils.KieLauncher - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2023-01-27T14:57:46.343+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-27T14:57:46.348+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-27T14:57:46.355+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-27T14:57:46.373+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-27T14:57:46.572+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-27T14:57:46.572+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-27T14:57:46.572+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-27T14:57:46.615+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-27T14:57:46.615+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-27T14:57:46.618+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-27T14:57:47.067+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-27T14:57:47.124+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-27T14:57:47.626+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-27T14:58:05.821+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Jan 24, 2023 - 17:41:32
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernICTGatewayEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+
+//Check a sequence of events strictly
+
+dialect "java"
+
+declare ConcernICTGatewayEvent
+    @role( event )
+    @timestamp( timestamp )
+    @expires(2m)
+end
+
+
+declare FirstAndSecondEvent
+    @role( event )
+    @expires(2m)
+    @timestamp ( timestamp )
+    destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second : ConcernICTGatewayEvent
+	name : String
+	timestamp : long
+end
+
+declare FirstAndSecondAndThirdEvent
+    @role( event )
+    @expires(2m)
+    @timestamp ( timestamp )
+	destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second: ConcernICTGatewayEvent
+	third : ConcernICTGatewayEvent
+	name: String
+	timestamp : long
+end
+
+rule "checkFirst"
+no-loop
+salience 1000
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == false);
+
+then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+		KieLauncher.printInfo("Session started - Rule fired:" + drools.getRule().getName());	
+end
+
+rule "checkStarter"
+no-loop
+salience 999
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.consumed == false);
+	not(ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true, 
+		this before $aEvent) || FirstAndSecondEvent() || FirstAndSecondAndThirdEvent()
+		);
+then
+		retract($aEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+
+
+rule "doubleStart"
+no-loop
+salience 998
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == false,
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+rule "catchFirstAndCheckSecond"
+no-loop
+salience 997
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "REGISTRATION_RESPONSE" || this.ICTMessageType != "REGISTRATION_RESPONSE" ||  this.ICTMessageCategory != "REGISTRATION",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+
+rule "catchFirstAndSecond"
+no-loop
+salience 996
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.ICTMessageType == "AUTHENTICATION_REQUEST",
+		this.ICTMessageCategory == "AUTHENTICATION",
+		this.consumed == true
+		);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID,
+		this.destinationID == $aEvent.getDestinationID,
+		this.name == "REGISTRATION_RESPONSE",
+		this.ICTMessageType == "REGISTRATION_RESPONSE",
+		this.ICTMessageCategory == "REGISTRATION",
+		this after $aEvent);
+	
+then
+	FirstAndSecondEvent captured = new FirstAndSecondEvent();
+	captured.setTimestamp($aEvent.getTimestamp());
+	captured.setFirst($aEvent);
+	captured.setSecond($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first and second created - Rule fired:" + drools.getRule().getName());
+end
+
+rule "checkForCorrectThird"
+no-loop
+salience 995
+dialect "java"
+when
+	$aEvent: FirstAndSecondEvent();
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "TOPOLOGY_ELEMENTS_RESPONSE" || this.ICTMessageType != "TOPOLOGY_ELEMENTS_RESPONSE" ||  this.ICTMessageCategory != "DATA",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+rule "catchSecondAndThird"
+no-loop
+salience 994
+dialect "java"
+when
+	$aEvent: FirstAndSecondEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENTS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENTS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);	
+then
+	FirstAndSecondAndThirdEvent captured = new FirstAndSecondAndThirdEvent();
+	captured.setTimestamp($aEvent.getTimestamp());
+	captured.setFirst($aEvent.getFirst());
+	captured.setSecond($aEvent.getSecond());
+	captured.setThird($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first, second and third created - Rule fired:" + drools.getRule().getName());
+end
+
+rule "checkForCorrectFourth"
+no-loop
+salience 993
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "TOPOLOGY_ELEMENT_DETAILS_RESPONSE" || this.ICTMessageType != "TOPOLOGY_ELEMENT_DETAILS_RESPONSE" ||  this.ICTMessageCategory != "DATA",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());	
+end
+
+
+rule "catchThirdAndFourth"
+no-loop
+salience 991
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);
+	
+then
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("Cycle completed - Rule fired:" + drools.getRule().getName());
+end
+
+2023-01-27T14:58:06.465+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-27T14:58:06.465+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 9
+2023-01-27T15:00:05.415+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-01-27T15:00:05.419+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-01-27T15:00:05.426+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-01-27T15:00:05.448+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-01-27T15:00:05.649+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-01-27T15:00:05.649+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-01-27T15:00:05.649+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-01-27T15:00:05.692+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-01-27T15:00:05.693+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-01-27T15:00:05.695+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-01-27T15:00:06.257+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-01-27T15:00:06.308+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-01-27T15:00:06.800+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-01-27T15:00:14.619+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Jan 24, 2023 - 17:41:32
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernICTGatewayEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+
+//Check a sequence of events strictly
+
+dialect "java"
+
+declare ConcernICTGatewayEvent
+    @role( event )
+    @timestamp( timestamp )
+    @expires(2m)
+end
+
+
+declare FirstAndSecondEvent
+    @role( event )
+    @expires(2m)
+    @timestamp ( timestamp )
+    destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second : ConcernICTGatewayEvent
+	name : String
+	timestamp : long
+end
+
+declare FirstAndSecondAndThirdEvent
+    @role( event )
+    @expires(2m)
+    @timestamp ( timestamp )
+	destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second: ConcernICTGatewayEvent
+	third : ConcernICTGatewayEvent
+	name: String
+	timestamp : long
+end
+
+rule "checkFirst"
+no-loop
+salience 1000
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == false);
+
+then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+		KieLauncher.printInfo("Session started - Rule fired:" + drools.getRule().getName());	
+end
+
+rule "checkStarter"
+no-loop
+salience 999
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.consumed == false);
+	not(ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true, 
+		this before $aEvent) || FirstAndSecondEvent() || FirstAndSecondAndThirdEvent()
+		);
+then
+		retract($aEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+
+
+rule "doubleStart"
+no-loop
+salience 998
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == false,
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+rule "catchFirstAndCheckSecond"
+no-loop
+salience 997
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "REGISTRATION_RESPONSE" || this.ICTMessageType != "REGISTRATION_RESPONSE" ||  this.ICTMessageCategory != "REGISTRATION",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+
+rule "catchFirstAndSecond"
+no-loop
+salience 996
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.ICTMessageType == "AUTHENTICATION_REQUEST",
+		this.ICTMessageCategory == "AUTHENTICATION",
+		this.consumed == true
+		);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID,
+		this.destinationID == $aEvent.getDestinationID,
+		this.name == "REGISTRATION_RESPONSE",
+		this.ICTMessageType == "REGISTRATION_RESPONSE",
+		this.ICTMessageCategory == "REGISTRATION",
+		this after $aEvent);
+	
+then
+	FirstAndSecondEvent captured = new FirstAndSecondEvent();
+	captured.setTimestamp($aEvent.getTimestamp());
+	captured.setFirst($aEvent);
+	captured.setSecond($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first and second created - Rule fired:" + drools.getRule().getName());
+end
+
+rule "checkForCorrectThird"
+no-loop
+salience 995
+dialect "java"
+when
+	$aEvent: FirstAndSecondEvent();
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "TOPOLOGY_ELEMENTS_RESPONSE" || this.ICTMessageType != "TOPOLOGY_ELEMENTS_RESPONSE" ||  this.ICTMessageCategory != "DATA",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+rule "catchSecondAndThird"
+no-loop
+salience 994
+dialect "java"
+when
+	$aEvent: FirstAndSecondEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENTS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENTS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);	
+then
+	FirstAndSecondAndThirdEvent captured = new FirstAndSecondAndThirdEvent();
+	captured.setTimestamp($aEvent.getTimestamp());
+	captured.setFirst($aEvent.getFirst());
+	captured.setSecond($aEvent.getSecond());
+	captured.setThird($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first, second and third created - Rule fired:" + drools.getRule().getName());
+end
+
+rule "checkForCorrectFourth"
+no-loop
+salience 993
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "TOPOLOGY_ELEMENT_DETAILS_RESPONSE" || this.ICTMessageType != "TOPOLOGY_ELEMENT_DETAILS_RESPONSE" ||  this.ICTMessageCategory != "DATA",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());	
+end
+
+
+rule "catchThirdAndFourth"
+no-loop
+salience 991
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);
+	
+then
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("Cycle completed - Rule fired:" + drools.getRule().getName());
+end
+
+2023-01-27T15:00:15.321+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-27T15:00:15.321+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 9
+2023-01-27T15:00:32.319+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 8
+2023-01-27T15:00:32.320+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule checkFirst removed
+2023-01-27T15:00:32.320+0100 [grizzly-http-server-7] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 8
+2023-01-27T15:00:35.253+0100 [grizzly-http-server-10] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 7
+2023-01-27T15:00:35.254+0100 [grizzly-http-server-10] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule doubleStart removed
+2023-01-27T15:00:35.254+0100 [grizzly-http-server-10] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 7
+2023-01-27T15:00:37.384+0100 [grizzly-http-server-13] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 6
+2023-01-27T15:00:37.384+0100 [grizzly-http-server-13] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule catchSecondAndThird removed
+2023-01-27T15:00:37.385+0100 [grizzly-http-server-13] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 6
+2023-01-27T15:00:39.511+0100 [grizzly-http-server-0] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2023-01-27T15:00:39.512+0100 [grizzly-http-server-0] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule checkForCorrectFourth removed
+2023-01-27T15:00:39.513+0100 [grizzly-http-server-0] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 5
+2023-01-27T15:00:41.966+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
+2023-01-27T15:00:41.966+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule catchFirstAndCheckSecond removed
+2023-01-27T15:00:41.966+0100 [grizzly-http-server-3] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 4
+2023-01-27T15:00:44.467+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
+2023-01-27T15:00:44.468+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule checkForCorrectThird removed
+2023-01-27T15:00:44.468+0100 [grizzly-http-server-6] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 3
+2023-01-27T15:00:48.194+0100 [grizzly-http-server-8] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 2
+2023-01-27T15:00:48.194+0100 [grizzly-http-server-8] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule catchFirstAndSecond removed
+2023-01-27T15:00:48.195+0100 [grizzly-http-server-8] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 2
+2023-01-27T15:00:50.424+0100 [grizzly-http-server-11] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
+2023-01-27T15:00:50.425+0100 [grizzly-http-server-11] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule checkStarter removed
+2023-01-27T15:00:50.426+0100 [grizzly-http-server-11] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 1
+2023-01-27T15:00:53.457+0100 [grizzly-http-server-14] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 0
+2023-01-27T15:00:53.459+0100 [grizzly-http-server-14] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule catchThirdAndFourth removed
+2023-01-27T15:00:53.461+0100 [grizzly-http-server-14] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - Rule active: 0
+2023-01-27T15:01:00.556+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Jan 24, 2023 - 17:41:32
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernICTGatewayEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+
+//Check a sequence of events strictly
+
+dialect "java"
+
+declare ConcernICTGatewayEvent
+    @role( event )
+    @timestamp( timestamp )
+    @expires(2m)
+end
+
+
+declare FirstAndSecondEvent
+    @role( event )
+    @expires(2m)
+    @timestamp ( timestamp )
+    destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second : ConcernICTGatewayEvent
+	name : String
+	timestamp : long
+end
+
+declare FirstAndSecondAndThirdEvent
+    @role( event )
+    @expires(2m)
+    @timestamp ( timestamp )
+	destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second: ConcernICTGatewayEvent
+	third : ConcernICTGatewayEvent
+	name: String
+	timestamp : long
+end
+
+rule "checkFirst"
+no-loop
+salience 1000
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == false);
+
+then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+		KieLauncher.printInfo("Session started - Rule fired:" + drools.getRule().getName());	
+end
+
+rule "checkStarter"
+no-loop
+salience 999
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.consumed == false);
+	not(ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true, 
+		this before $aEvent) || FirstAndSecondEvent() || FirstAndSecondAndThirdEvent()
+		);
+then
+		retract($aEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+
+
+rule "doubleStart"
+no-loop
+salience 998
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == false,
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+rule "catchFirstAndCheckSecond"
+no-loop
+salience 997
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "REGISTRATION_RESPONSE" || this.ICTMessageType != "REGISTRATION_RESPONSE" ||  this.ICTMessageCategory != "REGISTRATION",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+
+rule "catchFirstAndSecond"
+no-loop
+salience 996
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.ICTMessageType == "AUTHENTICATION_REQUEST",
+		this.ICTMessageCategory == "AUTHENTICATION",
+		this.consumed == true
+		);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID,
+		this.destinationID == $aEvent.getDestinationID,
+		this.name == "REGISTRATION_RESPONSE",
+		this.ICTMessageType == "REGISTRATION_RESPONSE",
+		this.ICTMessageCategory == "REGISTRATION",
+		this after $aEvent);
+	
+then
+	FirstAndSecondEvent captured = new FirstAndSecondEvent();
+	captured.setTimestamp($aEvent.getTimestamp());
+	captured.setFirst($aEvent);
+	captured.setSecond($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first and second created - Rule fired:" + drools.getRule().getName());
+end
+
+rule "checkForCorrectThird"
+no-loop
+salience 995
+dialect "java"
+when
+	$aEvent: FirstAndSecondEvent();
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "TOPOLOGY_ELEMENTS_RESPONSE" || this.ICTMessageType != "TOPOLOGY_ELEMENTS_RESPONSE" ||  this.ICTMessageCategory != "DATA",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+rule "catchSecondAndThird"
+no-loop
+salience 994
+dialect "java"
+when
+	$aEvent: FirstAndSecondEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENTS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENTS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);	
+then
+	FirstAndSecondAndThirdEvent captured = new FirstAndSecondAndThirdEvent();
+	captured.setTimestamp($aEvent.getTimestamp());
+	captured.setFirst($aEvent.getFirst());
+	captured.setSecond($aEvent.getSecond());
+	captured.setThird($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first, second and third created - Rule fired:" + drools.getRule().getName());
+end
+
+rule "checkForCorrectFourth"
+no-loop
+salience 993
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "TOPOLOGY_ELEMENT_DETAILS_RESPONSE" || this.ICTMessageType != "TOPOLOGY_ELEMENT_DETAILS_RESPONSE" ||  this.ICTMessageCategory != "DATA",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());	
+end
+
+
+rule "catchThirdAndFourth"
+no-loop
+salience 991
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);
+	
+then
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("Cycle completed - Rule fired:" + drools.getRule().getName());
+end
+
+2023-01-27T15:01:00.716+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-01-27T15:01:00.716+0100 [ActiveMQ Session Task-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 9
+2023-02-02T12:02:19.823+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-02-02T12:02:19.824+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-02-02T12:02:19.828+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-02-02T12:02:19.836+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-02-02T12:02:20.071+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-02-02T12:02:20.071+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-02-02T12:02:20.072+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-02-02T12:02:20.115+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-02-02T12:02:20.116+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-02-02T12:02:20.119+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-02-02T12:02:20.321+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-02-02T12:02:20.338+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-02-02T12:02:20.546+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-02-02T12:02:31.014+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker stop
+2023-02-02T12:02:31.015+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker stopped
+2023-02-02T12:02:31.015+0100 [grizzly-http-server-3] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connector Stopped

@@ -42,6 +42,8 @@ public class ConcernApp extends Thread
 	private static boolean runningInJMS = true;
 	private static String mqttBrokerUrl;
 	private static MqttClient listenerClient;
+	
+	public static String IPAddressWhereTheInstanceIsRunning = "127.0.0.1";
 
 	private static Thread INSTANCE;
         
@@ -73,7 +75,7 @@ public class ConcernApp extends Thread
     	
     	//brokerUrl = "tcp://activemq:61616";
     	if(runningInJMS) {
-    	brokerUrlJMS = "tcp://0.0.0.0:61616";
+    	brokerUrlJMS = "tcp://" + IPAddressWhereTheInstanceIsRunning + ":61616";
     	maxMemoryUsage = 128000l;
     	maxCacheUsage = 128000l;
     	factory = new ActiveMQConnectionFactory(brokerUrlJMS);
@@ -133,7 +135,7 @@ public class ConcernApp extends Thread
 
 	    	logger.debug("Channels Management Registry created");
 	    	String CEPInstanceName = "InstanceOne";
-	    	listenerClient = new MqttClient("tcp://0.0.0.0:1883",MqttClient.generateClientId());
+	    	listenerClient = new MqttClient("tcp://" + IPAddressWhereTheInstanceIsRunning + ":1883",MqttClient.generateClientId());
 	    	ChannelsManagementRegistry.setMqttClient(listenerClient);
 	    	ChannelsManagementRegistry.setMqttChannel(topic);
 	    	
