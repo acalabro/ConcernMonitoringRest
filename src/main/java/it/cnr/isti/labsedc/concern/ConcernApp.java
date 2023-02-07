@@ -1,5 +1,9 @@
 package it.cnr.isti.labsedc.concern;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -43,8 +47,10 @@ public class ConcernApp extends Thread
 	private static String mqttBrokerUrl;
 	private static MqttClient listenerClient;
 	
-	public static String IPAddressWhereTheInstanceIsRunning = "127.0.0.1";
+	public static String IPAddressWhereTheInstanceIsRunning = GetIP();
 
+	//public static String IPAddressWhereTheInstanceIsRunning = "0.0.0.0";
+			
 	private static Thread INSTANCE;
         
     public static Thread getInstance() throws InterruptedException {
@@ -54,8 +60,8 @@ public class ConcernApp extends Thread
         }
         return INSTANCE;
     }
-    
-    public static boolean isRunning() {
+
+	public static boolean isRunning() {
     	if (INSTANCE == null)
     		return false;
     	return true;
@@ -75,7 +81,7 @@ public class ConcernApp extends Thread
     	
     	//brokerUrl = "tcp://activemq:61616";
     	if(runningInJMS) {
-    	brokerUrlJMS = "tcp://" + IPAddressWhereTheInstanceIsRunning + ":61616";
+    	brokerUrlJMS = "tcp://0.0.0.0:61616";
     	maxMemoryUsage = 128000l;
     	maxCacheUsage = 128000l;
     	factory = new ActiveMQConnectionFactory(brokerUrlJMS);
@@ -251,5 +257,23 @@ public class ConcernApp extends Thread
 			}
 		}
 		return "";
+	}
+	
+	private static String GetIP() {
+    	String ip;
+    	URL whatismyip;
+		try {
+			whatismyip = new URL("http://checkip.amazonaws.com");
+	    	BufferedReader in = new BufferedReader(new InputStreamReader(
+	    			whatismyip.openStream()));
+	    	ip = in.readLine(); //you get the IP as a String
+	    	in.close();
+	    	System.out.println(ip);
+	    	return ip;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return "localhost";
 	}
 }

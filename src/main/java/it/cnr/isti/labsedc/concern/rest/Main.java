@@ -15,8 +15,7 @@ import java.net.URI;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
-	public static final String BASE_URI = "http://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":8181/";
-
+	public static final String BASE_URI = "http://0.0.0.0:8181/";
 	private static HttpServer server;
 
     /**
@@ -27,6 +26,8 @@ public class Main {
         // create a resource config that scans for JAX-RS resources and providers
         // in it.cnr.isti.labsedc.concern.rest package
         final ResourceConfig rc = new ResourceConfig().packages("it.cnr.isti.labsedc.concern.rest");
+
+    	System.out.println("Current IP: " + BASE_URI );
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI

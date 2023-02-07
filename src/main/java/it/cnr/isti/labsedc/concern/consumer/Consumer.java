@@ -9,6 +9,7 @@ import javax.jms.JMSException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import it.cnr.isti.labsedc.concern.ConcernApp;
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.event.ConcernEvaluationRequestEvent;
 import it.cnr.isti.labsedc.concern.eventListener.ChannelProperties;
@@ -23,7 +24,7 @@ public class Consumer extends Thread{
 	}
 	
 	private static boolean sendRule(String rule) {
-		String brokerUrl = "tcp://localhost:61616";
+		String brokerUrl = "tcp://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":61616";
 
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {
@@ -37,7 +38,7 @@ public class Consumer extends Thread{
 	}
 	
 	private static void sendRule() {
-		String brokerUrl = "tcp://localhost:61616";
+		String brokerUrl = "tcp://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":61616";
 
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {
