@@ -5,6 +5,7 @@ import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernICTGatewayEvent;
 import it.cnr.isti.labsedc.concern.utils.KieLauncher;
 import it.cnr.isti.labsedc.concern.utils.Calculator;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
 
 //Check a sequence of events strictly
 
@@ -75,7 +76,7 @@ when
 		);
 then
 		retract($aEvent);
-		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
 end
 
 
@@ -100,7 +101,7 @@ when
 then
 		retract($aEvent);
 		retract($bEvent);
-		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
 end
 
 rule "catchFirstAndCheckSecond"
@@ -122,7 +123,7 @@ when
 then
 		retract($aEvent);
 		retract($bEvent);
-		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
 end
 
 
@@ -176,7 +177,7 @@ when
 then
 		retract($aEvent);
 		retract($bEvent);
-		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
 end
 
 rule "catchSecondAndThird"
@@ -222,7 +223,7 @@ when
 then
 		retract($aEvent);
 		retract($bEvent);
-		KieLauncher.printWarning("Unattended event - Rule fired:" + drools.getRule().getName());	
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());	
 end
 
 

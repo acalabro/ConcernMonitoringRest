@@ -35,6 +35,17 @@
             <DefaultRolloverStrategy max="10"/>
             <param name="Append" value="false" />     
         </RollingFile>
+        
+        <RollingFile name="notificationLog" fileName="${APP_LOG_ROOT}/notification-info.log"
+            filePattern="${APP_LOG_ROOT}/notification-info-%d{yyyy-MM-dd}-%i.log" >
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+            <param name="Append" value="false" />     
+        </RollingFile>
     </Appenders>
 
     <Loggers>
@@ -42,35 +53,34 @@
         <Logger name="it.cnr.isti.labsedc.concern.storage" additivity="false" level="trace">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
-            <AppenderRef ref="errorLog" />
             <AppenderRef ref="Console"  />
         </Logger>
 
         <Logger name="it.cnr.isti.labsedc.concern.cep" additivity="false" level="debug">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
-            <AppenderRef ref="errorLog" />
             <AppenderRef ref="Console"  />
         </Logger>
 
        <Logger name="it.cnr.isti.labsedc.concern.broker" additivity="false" level="trace">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
-            <AppenderRef ref="errorLog" />
             <AppenderRef ref="Console"  />
         </Logger>
 
         <Logger name="it.cnr.isti.labsedc.concern" additivity="false" level="info">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
-            <AppenderRef ref="errorLog" />
             <AppenderRef ref="Console"  />
         </Logger>
+
+        <Logger name="it.cnr.isti.labsedc.concern.notification" additivity="false" level="debug">
+            <AppenderRef ref="notificationLog" />
+        </Logger>        
 
         <Root level="warn">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
-            <AppenderRef ref="errorLog" />
             <AppenderRef ref="Console"  />
         </Root>
 

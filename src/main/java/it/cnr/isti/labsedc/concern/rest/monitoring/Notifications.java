@@ -1,9 +1,9 @@
 package it.cnr.isti.labsedc.concern.rest.monitoring;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 import it.cnr.isti.labsedc.concern.ConcernApp;
 
@@ -21,6 +21,36 @@ public class Notifications {
 	 private String homePage() {
 		return"<!DOCTYPE html><head><meta charset=\"utf-8\"><title>Runtime Monitoring</title>"
 				+ "</head>"
+    			+"<style type =\"text/css\">\n"		
+			    +"	button{\n"
+			    + "            outline: 0;\n"
+			    + "            border: 0;\n"
+			    + "            cursor: pointer;\n"
+			    + "            will-change: box-shadow,transform;\n"
+			    + "            background: radial-gradient( 100% 100% at 100% 0%, #89E5FF 0%, #5468FF 100% );\n"
+			    + "            box-shadow: 0px 2px 4px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px rgb(58 65 111 / 50%);\n"
+			    + "            padding: 0 32px;\n"
+			    + "            border-radius: 6px;\n"
+			    + "            color: #fff;\n"
+			    + "            height: 48px;\n"
+			    + "            font-size: 18px;\n"
+			    + "            text-shadow: 0 1px 0 rgb(0 0 0 / 40%);\n"
+			    + "            transition: box-shadow 0.15s ease,transform 0.15s ease;\n"
+			    + "            :hover {\n"
+			    + "                box-shadow: 0px 4px 8px rgb(45 35 66 / 40%), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #3c4fe0;\n"
+			    + "                transform: translateY(-2px);\n"
+			    + "            }\n"
+			    + "            :active{\n"
+			    + "                box-shadow: inset 0px 3px 7px #3c4fe0;\n"
+			    + "                transform: translateY(2px);\n"
+			    + "            }"
+			    +"button:disabled,\n"
+			    + "button[disabled]{\n"
+			    + "  border: 1px solid #999999;\n"
+			    + "  background-color: #cccccc;\n"
+			    + "  color: #666666;\n"
+			    + "}"
+			    + "</style>\n"			
 				+"<style type =\"text/css\">\n"
 			    + ".textarea {\n"
 			    + "  background-color: #dddddd;\n"
@@ -60,8 +90,9 @@ public class Notifications {
 				+ "\n"
 				+ "</script>"
 				+"<body bgcolor=”#800000\"><center><h2 style=\"color: green;\">Runtime Monitoring Notifications</h2><h3 style=\"color: white;\">" 
-				+ "<div id=\"logs\"><textarea class=\"textarea\" name=\"debugLog\" rows=\"14\" cols=\"80\">\n"
+				+ "<div id=\"logs\"><textarea class=\"textarea\" name=\"debugLog\" rows=\"13\" cols=\"80\">\n"
 				+ getNotificationData() + "</textarea></div><br />"
+				+ "<button onClick=\"window.location.reload();\">Reload Notifications</button>"
 				+ "<br /></center></body></html>";  
 	 }
 	 

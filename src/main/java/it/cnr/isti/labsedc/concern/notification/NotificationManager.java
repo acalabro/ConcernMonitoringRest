@@ -16,7 +16,7 @@ public class NotificationManager extends Thread {
 	}
 	
 	public static void NotifyToConsumer(String consumerName, String violationMessage) {
-		logger.info(violationMessage);
+		logger.info("\nReceived violation event from: " + consumerName + "\nRaised violation: " + violationMessage + "\n\n");
 //		try {
 //			logger.info("Creating response topic");
 //			topic = session.createTopic(ChannelsManagementRegistry.getConsumerChannel(consumerName));

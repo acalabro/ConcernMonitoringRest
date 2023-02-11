@@ -49,7 +49,7 @@ public class ConcernApp extends Thread
 	
 	public static String IPAddressWhereTheInstanceIsRunning = GetIP();
 
-//	public static String IPAddressWhereTheInstanceIsRunning = "127.0.0.1";
+	//public static String IPAddressWhereTheInstanceIsRunning = "10.0.0.228";
 			
 	private static Thread INSTANCE;
         
@@ -232,6 +232,10 @@ public class ConcernApp extends Thread
 		return Sub.readFile(System.getProperty("user.dir")+ "/logs/app-debug.log");
 	}
 	
+	public static String getNotificationData() {
+		return Sub.readFile(System.getProperty("user.dir")+ "/logs/notification-info.log");
+	}
+	
 	public static int getAmountOfLoadedRules() {
 		if (cepMan != null) {
 			return cepMan.getAmountOfLoadedRules();
@@ -275,9 +279,5 @@ public class ConcernApp extends Thread
 			e.printStackTrace();
 		}
     	return "localhost";
-	}
-
-	public static String getNotificationData() {
-		return "Notification TEST";
 	}
 }
