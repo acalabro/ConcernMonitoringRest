@@ -1,0 +1,134 @@
+rule "catchThirdAndFourth"
+no-loop
+salience 991
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);
+	
+then
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("Cycle completed - Rule fired:" + drools.getRule().getName());
+end
+
+
+
+
+
+
+
+rule "timeFailingForCatchThirdAndFourth"
+no-loop
+salience 992
+dialect "java"
+when
+	$aEvent : FirstAndSecondAndThirdEvent();
+		
+	not(ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageCategory == "DATA") ;
+	
+then
+	retract($aEvent);
+	KieLauncher.printWarning("Cycle not completed in the expected timeframe - Rule fired:" + drools.getRule().getName());
+end
+
+
+
+
+//created Jan 24, 2023 - 17:41:32
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernICTGatewayEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+
+//Check a sequence of events strictly
+
+dialect "java"
+
+declare ConcernICTGatewayEvent
+    @role( event )
+    @timestamp( timestamp )
+    @expires (24h)
+end
+
+declare FirstAndSecondEvent
+    @role( event )
+	destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second: ConcernICTGatewayEvent
+	name: String
+end
+
+rule "catchFirstAndSecond"
+no-loop
+salience 100
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.ICTMessageType == "AUTHENTICATION_REQUEST",
+		this.ICTMessageCategory == "AUTHENTICATION"
+		);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID,
+		this.destinationID == $aEvent.getDestinationID,
+		this.name == "REGISTRATION_RESPONSE",
+		this.ICTMessageType == "REGISTRATION_RESPONSE",
+		this.ICTMessageCategory == "REGISTRATION",
+		this after $aEvent);
+	
+then
+	FirstAndSecondEvent captured = new FirstAndSecondEvent();
+	captured.setFirst($aEvent);
+	captured.setSecond($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first and second created");
+end
+
+rule "catchFirstAndCheckSecond"
+no-loop
+salience 100
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.ICTMessageType == "AUTHENTICATION_REQUEST",
+		this.ICTMessageCategory == "AUTHENTICATION");
+		
+		not(ConcernICTGatewayEvent( this != $aEvent,
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "REGISTRATION_RESPONSE",
+		this.ICTMessageType == "REGISTRATION_RESPONSE",
+		this.ICTMessageCategory == "REGISTRATION",
+		this after [0s,24h] $aEvent));
+	
+then
+		retract($aEvent);
+		KieLauncher.printWarning("Unattended event");	
+end

@@ -34,6 +34,7 @@
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/storage/StorageController.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/rest/Main.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/probe/SUAProbe.java
+/home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/rest/monitoring/Notifications.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/probe/ConcernProbe.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/logger/LoggerComponent.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/broker/BrokerManager.java

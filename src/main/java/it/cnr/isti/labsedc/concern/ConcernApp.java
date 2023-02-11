@@ -49,7 +49,7 @@ public class ConcernApp extends Thread
 	
 	public static String IPAddressWhereTheInstanceIsRunning = GetIP();
 
-	//public static String IPAddressWhereTheInstanceIsRunning = "0.0.0.0";
+//	public static String IPAddressWhereTheInstanceIsRunning = "127.0.0.1";
 			
 	private static Thread INSTANCE;
         
@@ -275,5 +275,9 @@ public class ConcernApp extends Thread
 			e.printStackTrace();
 		}
     	return "localhost";
+	}
+
+	public static String getNotificationData() {
+		return "Notification TEST";
 	}
 }
