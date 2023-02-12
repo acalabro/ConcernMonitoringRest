@@ -33,7 +33,6 @@
                 <SizeBasedTriggeringPolicy size="19500KB" />
             </Policies>
             <DefaultRolloverStrategy max="10"/>
-            <param name="Append" value="false" />     
         </RollingFile>
         
         <RollingFile name="notificationLog" fileName="${APP_LOG_ROOT}/notification-info.log"
@@ -44,34 +43,39 @@
                 <SizeBasedTriggeringPolicy size="19500KB" />
             </Policies>
             <DefaultRolloverStrategy max="10"/>
-            <param name="Append" value="false" />     
+        </RollingFile>
+
+        <RollingFile name="storageLog" fileName="${APP_LOG_ROOT}/storage-info.log"
+            filePattern="${APP_LOG_ROOT}/storage-info-%d{yyyy-MM-dd}-%i.log" >
+            <LevelRangeFilter minLevel="INFO" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
         </RollingFile>
     </Appenders>
 
     <Loggers>
 
-        <Logger name="it.cnr.isti.labsedc.concern.storage" additivity="false" level="trace">
-            <AppenderRef ref="debugLog" />
-            <AppenderRef ref="infoLog"  />
+        <Logger name="it.cnr.isti.labsedc.concern.storage" additivity="false" level="debug">
+            <AppenderRef ref="storageLog" />
             <AppenderRef ref="Console"  />
         </Logger>
 
         <Logger name="it.cnr.isti.labsedc.concern.cep" additivity="false" level="debug">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
-            <AppenderRef ref="Console"  />
         </Logger>
 
        <Logger name="it.cnr.isti.labsedc.concern.broker" additivity="false" level="trace">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
-            <AppenderRef ref="Console"  />
         </Logger>
 
-        <Logger name="it.cnr.isti.labsedc.concern" additivity="false" level="info">
+        <Logger name="it.cnr.isti.labsedc.concern" additivity="false" level="debug">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
-            <AppenderRef ref="Console"  />
         </Logger>
 
         <Logger name="it.cnr.isti.labsedc.concern.notification" additivity="false" level="debug">
@@ -79,6 +83,7 @@
         </Logger>        
 
         <Root level="warn">
+            <AppenderRef ref="storageLog" />
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
             <AppenderRef ref="Console"  />

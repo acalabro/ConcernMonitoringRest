@@ -12,7 +12,7 @@ public class NotificationManager extends Thread {
 	public NotificationManager() {
 		ConcernApp.componentStarted.put(this.getClass().getSimpleName(), true);
 		logger = LogManager.getLogger(NotificationManager.class);
-
+		ConcernApp.componentStarted.put(this.getClass().getSimpleName(), true);
 	}
 	
 	public static void NotifyToConsumer(String consumerName, String violationMessage) {

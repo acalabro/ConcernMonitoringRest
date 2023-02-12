@@ -18,7 +18,6 @@ import it.cnr.isti.labsedc.concern.broker.BrokerManager;
 import it.cnr.isti.labsedc.concern.cep.CepType;
 import it.cnr.isti.labsedc.concern.cep.ComplexEventProcessorManager;
 import it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager;
-import it.cnr.isti.labsedc.concern.consumer.Consumer;
 import it.cnr.isti.labsedc.concern.notification.NotificationManager;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 import it.cnr.isti.labsedc.concern.requestListener.ServiceListenerManager;
@@ -29,9 +28,9 @@ public class ConcernApp extends Thread
 {
 	private static BrokerManager broker;
 	private static ComplexEventProcessorManager cepMan;
-	private static NotificationManager notificationManager;
+	public static NotificationManager notificationManager;
 	private static ChannelsManagementRegistry channelRegistry;
-	private static MySQLStorageController storageManager;
+	public static MySQLStorageController storageManager;
 	
 	private static String brokerUrlJMS;
 	private static Long maxMemoryUsage;
@@ -47,9 +46,9 @@ public class ConcernApp extends Thread
 	private static String mqttBrokerUrl;
 	private static MqttClient listenerClient;
 	
-	public static String IPAddressWhereTheInstanceIsRunning = GetIP();
+	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
 
-	//public static String IPAddressWhereTheInstanceIsRunning = "10.0.0.228";
+	public static String IPAddressWhereTheInstanceIsRunning = "10.0.0.228";
 			
 	private static Thread INSTANCE;
         
@@ -94,45 +93,6 @@ public class ConcernApp extends Thread
     		logger.debug("Starting components");
     		StartComponents(listenerClient,mqttBrokerUrl, "serotoninData");
     	}
-    }
-
-    public static void DemoStart() {
-
-    	System.out.println("------------------------------------------------------");
-    	System.out.println("-------Starting Auditing Framework session-------");
-    	System.out.println("------------------------------------------------------");
-    	Thread ruleSender = new Consumer();
-		ruleSender.start();
-  	
-    	System.out.println("------------------------------------------------------");
-    	System.out.println("-------------Rules and metarules injected-------------");
-    	System.out.println("------------------------------------------------------");
-    	
-//    	
-//    	System.out.println("-------------------Starting DTProbe-------------------");
-//    	try {
-//			DTProbe.main(null);
-//		} catch (InterruptedException | UnknownHostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//    	System.out.println("------------------------------------------------------");
-//    	System.out.println("-------------------DT Probe started-------------------");
-//    	System.out.println("------------------------------------------------------");
-//    	
-//    	
-//    	System.out.println("-------------------Starting SUAProbe-------------------");
-//    	try {
-//			SUAProbe.main(null);
-//		} catch (InterruptedException | UnknownHostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//    	System.out.println("------------------------------------------------------");
-//    	System.out.println("-------------------SUA Probe started-------------------");
-//    	System.out.println("------------------------------------------------------");
-//    	
-//    	
     }
     
     public static void StartComponents(MqttClient listenerClient, String mqttBrokerUrl, String topic) {
@@ -189,9 +149,9 @@ public class ConcernApp extends Thread
 		channelRegistry = new ChannelsManagementRegistry();
 
     	logger.debug("Channels Management Registry created");
-    	System.out.println("PATH: " + System.getProperty("user.dir")+ "/src/main/resources/startupRule.drl");
+    	//System.out.println("PATH: " + System.getProperty("user.dir")+ "/src/main/resources/startupRule.drl");
     	channelRegistry.setConnectionFactory(factory);
-
+    	
     	storageManager = new MySQLStorageController();
     	storageManager.connectToDB();
     	  	
@@ -211,7 +171,7 @@ public class ConcernApp extends Thread
     		System.out.println("wait for First CEP start");
     		Thread.sleep(100);
     	}
-    	
+    	System.out.println(getStartedComponentsList());
     	if(SHUTDOWN) {
 	    	ServiceListenerManager.killAllServiceListeners();
 	    	ActiveMQBrokerManager.StopActiveMQBroker();
@@ -279,5 +239,22 @@ public class ConcernApp extends Thread
 			e.printStackTrace();
 		}
     	return "localhost";
+	}
+	
+	public static String getStartedComponentsList() {
+		java.util.Iterator<String> i = componentStarted.keySet().iterator();
+		java.util.Iterator<Boolean> b = componentStarted.values().iterator();
+		String component = "<p>";
+		while (i.hasNext()) {
+			component = component + i.next();
+			if (b.hasNext() && b.hasNext()) {
+				component = component + "<img src=\"./../on.png\"> ";
+			}
+			else {
+				component = component +" <img src=\"./../off.png\"> ";
+			}
+
+		}
+		return component + "</p>";
 	}
 }

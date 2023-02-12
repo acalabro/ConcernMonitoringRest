@@ -140,6 +140,7 @@ public class Monitoring {
 //    			+"}"
 //    			+ "</script>"
     			+"<body bgcolor=”#800000\"><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3 style=\"color: white;\">Status: " + MonitoringStatus() 
+    			+ getComponentStatus() + "\n"
     			+ "<div id=\"logs\"><textarea class=\"textarea\" name=\"debugLog\" rows=\"30\" cols=\"140\">\n"
 				+ getLoggerData() + "</textarea></div><br />"
 //    			+ " <button onclick=\"show()\">Show/Hide log window</button>\n<br /><br />"
@@ -221,6 +222,14 @@ public class Monitoring {
     
     }
      
+	private String getComponentStatus() {
+		if (ConcernApp.isRunning()) {
+			return ConcernApp.getStartedComponentsList();
+		}
+		else
+			return "";
+	}
+
 	@POST
     @Consumes(MediaType.APPLICATION_JSON)
 	public Response biecointerface(
@@ -327,7 +336,6 @@ public class Monitoring {
 	private String DemoStatus() {
 		try {
 			ConcernApp.getInstance();
-			ConcernApp.DemoStart();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

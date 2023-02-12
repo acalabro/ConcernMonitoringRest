@@ -68,7 +68,9 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 	public static int totalRulesLoaded = 0;
 	public static String lastRuleLoadedName;
 
-	public DroolsComplexEventProcessorManager(String instanceName, String staticRuleToLoadAtStartup, String connectionUsername, String connectionPassword, CepType type, boolean runningInJMS) {
+	public DroolsComplexEventProcessorManager(String instanceName, String staticRuleToLoadAtStartup, 
+												String connectionUsername, String connectionPassword, 
+												CepType type, boolean runningInJMS) {
 		super();
 		isUsingJMS = runningInJMS;
 		try{
@@ -268,6 +270,7 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 			eventStream.insert(receivedEvent);
 			logger.info("...CEP named " + this.getInstanceName() + " received an event of type:\n"  + receivedEvent.getClass().getCanonicalName() +" in the stream, sent from " + receivedEvent.getSenderID());
 			if (receivedEvent instanceof ConcernBaseEvent<?>) {
+				ConcernApp.storageManager.saveMessage(receivedEvent);
 				logger.info("with data:" +
 						"\nName: "+ receivedEvent.getName() +
 						"\nDestination: " + receivedEvent.getDestinationID() +
@@ -277,6 +280,7 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 						"\nSessionID: " + receivedEvent.getSessionID() +
 						"\nChecksum: " + receivedEvent.getChecksum() +
 						"\nCepType: " + receivedEvent.getCepType().toString());
+			
 			}
 		}			
 	}
