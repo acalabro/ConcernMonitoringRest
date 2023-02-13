@@ -209,7 +209,6 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 	public void loadRule(ConcernEvaluationRequestEvent<?> receivedEvent) {
 		Object[] packages = kbase.getKiePackages().toArray();
 		for (int m = 0; m< packages.length; m++) {
-		System.out.println("How many rules within package: " + ((KiePackage)packages[m]).getName() + " " + ((KiePackage)packages[m]).getRules().size());
 		}
 		Resource drlToLoad = ResourceFactory.newByteArrayResource(receivedEvent.getData().toString().getBytes());
 		DroolsComplexEventProcessorManager.lastRuleLoadedName = receivedEvent.getEvaluationRuleName();

@@ -46,9 +46,9 @@ public class ConcernApp extends Thread
 	private static String mqttBrokerUrl;
 	private static MqttClient listenerClient;
 	
-	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
+	public static String IPAddressWhereTheInstanceIsRunning = GetIP();
 
-	public static String IPAddressWhereTheInstanceIsRunning = "10.0.0.228";
+	//public static String IPAddressWhereTheInstanceIsRunning = "0.0.0.0";
 			
 	private static Thread INSTANCE;
         
@@ -171,7 +171,6 @@ public class ConcernApp extends Thread
     		System.out.println("wait for First CEP start");
     		Thread.sleep(100);
     	}
-    	System.out.println(getStartedComponentsList());
     	if(SHUTDOWN) {
 	    	ServiceListenerManager.killAllServiceListeners();
 	    	ActiveMQBrokerManager.StopActiveMQBroker();
@@ -244,17 +243,17 @@ public class ConcernApp extends Thread
 	public static String getStartedComponentsList() {
 		java.util.Iterator<String> i = componentStarted.keySet().iterator();
 		java.util.Iterator<Boolean> b = componentStarted.values().iterator();
-		String component = "<p>";
+		String component = "<h3 align=\"left\">";
 		while (i.hasNext()) {
-			component = component + i.next();
+			component = "<font color=\"WHITE\">" + component + i.next() + "</font>";
 			if (b.hasNext() && b.hasNext()) {
-				component = component + "<img src=\"./../on.png\"> ";
+				component = component + " <font color=\"GREEN\">Running</font><br />";
 			}
 			else {
-				component = component +" <img src=\"./../off.png\"> ";
+				component = component +" <font color=\"RED\">Stopped</font><br />";
 			}
 
 		}
-		return component + "</p>";
+		return component + "</h3>";
 	}
 }
