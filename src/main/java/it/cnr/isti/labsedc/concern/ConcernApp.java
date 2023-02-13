@@ -245,7 +245,7 @@ public class ConcernApp extends Thread
 		java.util.Iterator<Boolean> b = componentStarted.values().iterator();
 		String component = "<h3 align=\"left\">";
 		while (i.hasNext()) {
-			component = "<font color=\"WHITE\">" + component + i.next() + "</font>";
+			component = component + i.next();
 			if (b.hasNext() && b.hasNext()) {
 				component = component + " <font color=\"GREEN\">Running</font><br />";
 			}

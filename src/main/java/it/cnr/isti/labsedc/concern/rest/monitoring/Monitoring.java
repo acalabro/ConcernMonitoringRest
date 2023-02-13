@@ -126,7 +126,12 @@ public class Monitoring {
     + "  color: #333333;\n"
     + "  background-color: white;\n"
     + "  border-color: #333333;\n"
-    + "}</style>"		
+    + "}"
+    + "#ruleslist{\n"
+    + "  width:250px;   \n"
+    + "  font-size:1em;\n"
+    + "}"
+    + "</style>"		
 
     			+"<script>\n"
     			+ "\n"    			
@@ -139,7 +144,7 @@ public class Monitoring {
 //+ "var length =  document.getElementsByName(\"debugLog\").value.length;"
 //    			+"}"
 //    			+ "</script>"
-    			+"<body bgcolor=”#800000\"><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3 style=\"color: white;\">Status: " + MonitoringStatus() + "</h3>"
+    			+"<body><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3>Status: " + MonitoringStatus() + "</h3>"
 
     			+ "<div id=\"logs\">"
     				+ "<textarea class=\"textarea\" name=\"debugLog\" rows=\"30\" cols=\"140\">\n"
@@ -162,9 +167,9 @@ public class Monitoring {
     				+ "</div>"
     				
     				+ "<div class=\"column\">"
-    					+ "<h3 style=\"color: white;\">Rules loaded: " 
+    					+ "<h3>Rules loaded: " 
     					+ getAmountOfLoadedRules() + "</h3>"
-    					+ "<h4 style=\"color: white;\">Loaded rules list:</h4>" + getRulesList()
+    					+ "<h4>Loaded rules list:</h4>" + getRulesList()
     				+ "</div>"
 				
     			+"</div>"		
