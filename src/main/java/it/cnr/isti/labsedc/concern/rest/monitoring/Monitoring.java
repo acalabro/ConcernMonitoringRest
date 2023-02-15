@@ -159,17 +159,27 @@ public class Monitoring {
     				+ "</div>"
     				
     				+"<div class=\"column\">"
-	    				+ "<br /><button class=\"tab2\"onclick=\"startMonitoring()\" id=\"startMonitoring\" "+ getStartStatus() + ">Start monitoring</button>\n\t\t\t\t"
-	    				+ "<button class=\"tab2\"onclick=\"stopMonitoring()\" id=\"stopMonitoring\" "+ getStopStatus() + ">Stop monitoring</button>\n\t\t\t\t"
-	    				+"<br /><br /><button class=\"tab2\"onclick=\"loadFunction()\" id=\"loadButton\" " + getHiddenStatus() +" >Load rules</button>\n\t\t\t\t"
-	    				+"<br /><br /><button id=\"deleteButton\" onclick=\"deleteFunction()\" " + getHiddenStatus() +">Delete rules</button>\n\t\t\t\t"
+	    				+ "<br /><button class=\"tab2\"onclick=\"startMonitoring()\" id=\"startMonitoring\" "+
+    				getStartStatus() + 
+    				">Start monitoring</button>\n\t\t\t\t"
+	    				+ "<button class=\"tab2\"onclick=\"stopMonitoring()\" id=\"stopMonitoring\" "+ 
+    				getStopStatus() +
+    				">Stop monitoring</button>\n\t\t\t\t"
+	    				+"<br /><br /><button class=\"tab2\"onclick=\"loadFunction()\" id=\"loadButton\" " + 
+    				getHiddenStatus() +
+    				" >Load rules</button>\n\t\t\t\t"
+	    				+"<br /><br /><button id=\"deleteButton\" onclick=\"deleteFunction()\" " + 
+    				getHiddenStatus() +
+    				">Delete rules</button>\n\t\t\t\t"
 	    				+"<br /><br /><button id=\"notificationButton\" onclick=\"notificationFunction()\">Notifications</button><br />"
     				+ "</div>"
     				
     				+ "<div class=\"column\">"
     					+ "<h3>Rules loaded: " 
-    					+ getAmountOfLoadedRules() + "</h3>"
-    					+ "<h4>Loaded rules list:</h4>" + getRulesList()
+    					+ getAmountOfLoadedRules() + 
+    					"</h3>"
+    					+ "<h4>Loaded rules list:</h4>" + 
+    					getRulesList()
     				+ "</div>"
 				
     			+"</div>"		
@@ -195,7 +205,9 @@ public class Monitoring {
 		    			+ "         if (this.readystate == XMLHttpRequest.DONE && this.status == 200) {\n"
 		    			+ "         }\n"
 		    			+ "    };\n"
-		    			+ "    xhttp.open(\"POST\", \"http://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":8181/monitoring/biecointerface\", true);\n"
+		    			+ "    xhttp.open(\"POST\", \"http://" + 
+		    			ConcernApp.IPAddressWhereTheInstanceIsRunning + ":" + 
+		    			ConcernApp.PortWhereTheInstanceIsRunning + "/monitoring/biecointerface\", true);\n"
 		    			+ "	   xhttp.setRequestHeader('Authorization','746gfbrenkljhGU');"
 		    			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
 		    			+ "    xhttp.send(JSON.stringify({"
@@ -217,7 +229,9 @@ public class Monitoring {
 		    			+ "         if (this.readystate == XMLHttpRequest.DONE && this.status == 200) {\n"
 		    			+ "         }\n"
 		    			+ "    };\n"
-		    			+ "    xhttp.open(\"POST\", \"http://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":8181/monitoring/biecointerface\", true);\n"
+		    			+ "    xhttp.open(\"POST\", \"http://" + 
+		    			ConcernApp.IPAddressWhereTheInstanceIsRunning + ":" + 
+		    			ConcernApp.PortWhereTheInstanceIsRunning + "/monitoring/biecointerface\", true);\n"
 		    			+ "	   xhttp.setRequestHeader('Authorization','746gfbrenkljhGU');"
 		    			+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
 		    			+ "    xhttp.send(JSON.stringify({"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="it.cnr.isti.labsedc.concern.AppTest" time="0.002" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="it.cnr.isti.labsedc.concern.AppTest" time="0.004" errors="0" skipped="0">
   <properties>
     <property name="jansi.mode" value="force"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -24,7 +24,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="stderr.encoding" value="UTF-8"/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/home/acalabro/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf18312864259214192105.tmp"/>
+    <property name="classworlds.conf" value="/home/acalabro/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf2838864298586521098.tmp"/>
     <property name="jansi.force" value="true"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="stdout.encoding" value="UTF-8"/>
@@ -33,7 +33,7 @@
     <property name="java.class.version" value="63.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="5.19.0-29-generic"/>
+    <property name="os.version" value="5.19.0-31-generic"/>
     <property name="user.home" value="/home/acalabro"/>
     <property name="user.timezone" value="Europe/Rome"/>
     <property name="file.encoding" value="UTF-8"/>
@@ -57,7 +57,7 @@
     <property name="java.vendor.url.bug" value="Unknown"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="m2e.build.project.data.socket.port" value="46813"/>
+    <property name="m2e.build.project.data.socket.port" value="34417"/>
   </properties>
-  <testcase classname="it.cnr.isti.labsedc.concern.AppTest" name="testApp" time="0.002"/>
+  <testcase classname="it.cnr.isti.labsedc.concern.AppTest" name="testApp" time="0.004"/>
 </testsuite>

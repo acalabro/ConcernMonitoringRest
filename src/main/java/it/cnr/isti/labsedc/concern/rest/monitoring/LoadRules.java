@@ -100,7 +100,7 @@ public class LoadRules {
     			+ "         }\n"
     			+ "    };\n"
     			+ "    var textarea = document.getElementById('ruletextarea').value;\n"
-				+ "    xhttp.open(\"POST\", \"http://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":8181/monitoring/biecointerface/loadrules\", true);\n"
+				+ "    xhttp.open(\"POST\", \"http://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":" + ConcernApp.PortWhereTheInstanceIsRunning + "/monitoring/biecointerface/loadrules\", true);\n"
 				+ "    xhttp.setRequestHeader(\"Content-type\", \"application/json\");\n"
     			+ "    xhttp.send(JSON.stringify({"
     			+ "    \"jobID\": \"1234\",\n"

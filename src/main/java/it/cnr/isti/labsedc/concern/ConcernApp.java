@@ -41,14 +41,16 @@ public class ConcernApp extends Thread
 	public static HashMap<String, Boolean> componentStarted = new HashMap<String, Boolean>();
 	private static String username;
 	private static String password;
-	private static boolean LOCALBROKER = true;
+	
+	private static boolean LOCALBROKER = true; //where amq is running
+	
 	private static boolean runningInJMS = true;
 	private static String mqttBrokerUrl;
 	private static MqttClient listenerClient;
 	
-	public static String IPAddressWhereTheInstanceIsRunning = GetIP();
-
-	//public static String IPAddressWhereTheInstanceIsRunning = "0.0.0.0";
+	public static String PortWhereTheInstanceIsRunning = "8181";
+	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
+	public static String IPAddressWhereTheInstanceIsRunning = "localhost";
 			
 	private static Thread INSTANCE;
         
@@ -78,15 +80,20 @@ public class ConcernApp extends Thread
     	username = "vera";
     	password = "griselda";
     	
-    	//brokerUrl = "tcp://activemq:61616";
     	if(runningInJMS) {
-    	brokerUrlJMS = "tcp://0.0.0.0:61616";
+    	
+    		if (LOCALBROKER) {
+    			brokerUrlJMS = "tcp://0.0.0.0:61616";
+    		} else {
+    			brokerUrlJMS = System.getenv("AMQ_URL");	
+    		}
     	maxMemoryUsage = 128000l;
     	maxCacheUsage = 128000l;
     	factory = new ActiveMQConnectionFactory(brokerUrlJMS);
     	logger.info(Sub.newSessionLogger());
     	logger.info("Starting components");
     	StartComponents(factory, brokerUrlJMS, maxMemoryUsage, maxCacheUsage);
+    	
     	}
     	else{
     		mqttBrokerUrl="tcp://localhost:1183";
@@ -143,8 +150,13 @@ public class ConcernApp extends Thread
 			logger.debug(ConcernApp.class.getSimpleName() + " is launching the broker.");
 			broker.run();
 			logger.debug(ConcernApp.class.getSimpleName() + " broker launched.");
-		} 
-		factory = new ActiveMQConnectionFactory(username, password, brokerUrl);
+			logger.info("Connecting to ActiveMQ");
+			factory = new ActiveMQConnectionFactory(username, password, brokerUrl);
+		} else
+		{
+			factory = new ActiveMQConnectionFactory(brokerUrl);
+		}
+		logger.info("Connected to ActiveMQ");
 		
 		channelRegistry = new ChannelsManagementRegistry();
 
