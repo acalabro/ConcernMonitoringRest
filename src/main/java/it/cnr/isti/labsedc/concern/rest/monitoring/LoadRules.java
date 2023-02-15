@@ -166,7 +166,7 @@ public class LoadRules {
     					))
 	 			return Response.status(200).entity("Rule/s sent correctly").build();	
     	}
-	return Response.status(401).entity("error").build();
+	return Response.status(401).entity("error, received: " + (String)bodyMessage.get("messageType")).build();
 	}
     
     private boolean loadRule(String rule) {

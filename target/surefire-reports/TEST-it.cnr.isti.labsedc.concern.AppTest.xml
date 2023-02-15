@@ -24,7 +24,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="stderr.encoding" value="UTF-8"/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/home/acalabro/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf2838864298586521098.tmp"/>
+    <property name="classworlds.conf" value="/home/acalabro/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf15844419357474756905.tmp"/>
     <property name="jansi.force" value="true"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="stdout.encoding" value="UTF-8"/>
@@ -57,7 +57,7 @@
     <property name="java.vendor.url.bug" value="Unknown"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="m2e.build.project.data.socket.port" value="34417"/>
+    <property name="m2e.build.project.data.socket.port" value="41507"/>
   </properties>
   <testcase classname="it.cnr.isti.labsedc.concern.AppTest" name="testApp" time="0.004"/>
 </testsuite>

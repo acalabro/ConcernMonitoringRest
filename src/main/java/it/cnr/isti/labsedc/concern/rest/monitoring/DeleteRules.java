@@ -175,7 +175,7 @@ public class DeleteRules {
 	 			return Response.status(200).entity("Rule/s removed correctly").build();	
 			}	    	
     	}
-	return Response.status(401).entity("error").build();
+	return Response.status(401).entity("error, received: " + (String)bodyMessage.get("messageType")).build();
 	}
     
     private boolean deleterule(String ruleName) {
