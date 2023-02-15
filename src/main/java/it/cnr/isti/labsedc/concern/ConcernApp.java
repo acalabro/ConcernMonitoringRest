@@ -50,7 +50,7 @@ public class ConcernApp extends Thread
 	
 	public static String PortWhereTheInstanceIsRunning = "8181";
 	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
-	public static String IPAddressWhereTheInstanceIsRunning = "localhost";
+	public static String IPAddressWhereTheInstanceIsRunning = "127.0.0.1";
 			
 	private static Thread INSTANCE;
         
@@ -69,7 +69,9 @@ public class ConcernApp extends Thread
     }
 
 	public static void killInstance() {
-    	ConcernApp.broker.stopActiveMQBroker();
+    	if (LOCALBROKER) {
+    			ConcernApp.broker.stopActiveMQBroker();
+    	}
     	INSTANCE.interrupt();
     	INSTANCE = null;
     }
@@ -85,7 +87,8 @@ public class ConcernApp extends Thread
     		if (LOCALBROKER) {
     			brokerUrlJMS = "tcp://0.0.0.0:61616";
     		} else {
-    			brokerUrlJMS = System.getenv("AMQ_URL");	
+    			System.out.println(System.getenv("ACTIVEMQ"));
+    			brokerUrlJMS = System.getenv("ACTIVEMQ");	
     		}
     	maxMemoryUsage = 128000l;
     	maxCacheUsage = 128000l;

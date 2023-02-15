@@ -1,0 +1,4 @@
+2023-02-15T09:15:05.785+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-02-15T09:15:06.232+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost
+2023-02-15T14:48:56.730+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Setting up storage with default parameters
+2023-02-15T14:48:57.039+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.storage.MySQLStorageController - Connected successfully to concern on localhost

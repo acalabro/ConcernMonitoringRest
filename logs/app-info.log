@@ -1,0 +1,282 @@
+2023-02-15T09:15:05.493+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-02-15T09:15:05.495+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-02-15T09:15:05.502+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-02-15T09:15:05.781+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connecting to ActiveMQ
+2023-02-15T09:15:05.782+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connected to ActiveMQ
+2023-02-15T09:15:06.466+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-02-15T09:15:06.491+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-02-15T09:15:06.779+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-02-15T14:48:56.374+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+
+-----------------------------------------------------
+- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
+-----------------------------------------------------
+
+
+
+2023-02-15T14:48:56.376+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-02-15T14:48:56.379+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-02-15T14:48:56.728+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connecting to ActiveMQ
+2023-02-15T14:48:56.728+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connected to ActiveMQ
+2023-02-15T14:48:57.197+0100 [grizzly-http-server-2] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-02-15T14:48:57.220+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-02-15T14:48:57.425+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-02-15T14:49:16.947+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Jan 24, 2023 - 17:41:32
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernICTGatewayEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+//Check a sequence of events strictly
+
+dialect "java"
+
+declare ConcernICTGatewayEvent
+    @role( event )
+    @timestamp( timestamp )
+    @expires(2m)
+end
+
+
+declare FirstAndSecondEvent
+    @role( event )
+    @expires(2m)
+    @timestamp ( timestamp )
+    destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second : ConcernICTGatewayEvent
+	name : String
+	timestamp : long
+end
+
+declare FirstAndSecondAndThirdEvent
+    @role( event )
+    @expires(2m)
+    @timestamp ( timestamp )
+	destinationID : String
+	senderID : String	
+	first : ConcernICTGatewayEvent
+	second: ConcernICTGatewayEvent
+	third : ConcernICTGatewayEvent
+	name: String
+	timestamp : long
+end
+
+rule "checkFirst"
+no-loop
+salience 1000
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == false);
+
+then
+		$aEvent.setConsumed(true);
+		update($aEvent);
+		KieLauncher.printInfo("Session started - Rule fired:" + drools.getRule().getName());	
+end
+
+rule "checkStarter"
+no-loop
+salience 999
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.consumed == false);
+	not(ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true, 
+		this before $aEvent) || FirstAndSecondEvent() || FirstAndSecondAndThirdEvent()
+		);
+then
+		retract($aEvent);
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+
+
+rule "doubleStart"
+no-loop
+salience 998
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == false,
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+rule "catchFirstAndCheckSecond"
+no-loop
+salience 997
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.consumed == true);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "REGISTRATION_RESPONSE" || this.ICTMessageType != "REGISTRATION_RESPONSE" ||  this.ICTMessageCategory != "REGISTRATION",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+
+rule "catchFirstAndSecond"
+no-loop
+salience 996
+dialect "java"
+when
+	$aEvent: ConcernICTGatewayEvent(
+		this.senderID == "ICTGW_Probe",
+		this.destinationID == "Monitoring",
+		this.name == "AUTHENTICATION_REQUEST",
+		this.ICTMessageType == "AUTHENTICATION_REQUEST",
+		this.ICTMessageCategory == "AUTHENTICATION",
+		this.consumed == true
+		);
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID,
+		this.destinationID == $aEvent.getDestinationID,
+		this.name == "REGISTRATION_RESPONSE",
+		this.ICTMessageType == "REGISTRATION_RESPONSE",
+		this.ICTMessageCategory == "REGISTRATION",
+		this after $aEvent);
+	
+then
+	FirstAndSecondEvent captured = new FirstAndSecondEvent();
+	captured.setTimestamp($aEvent.getTimestamp());
+	captured.setFirst($aEvent);
+	captured.setSecond($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first and second created - Rule fired:" + drools.getRule().getName());
+end
+
+rule "checkForCorrectThird"
+no-loop
+salience 995
+dialect "java"
+when
+	$aEvent: FirstAndSecondEvent();
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "TOPOLOGY_ELEMENTS_RESPONSE" || this.ICTMessageType != "TOPOLOGY_ELEMENTS_RESPONSE" ||  this.ICTMessageCategory != "DATA",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
+end
+
+rule "catchSecondAndThird"
+no-loop
+salience 994
+dialect "java"
+when
+	$aEvent: FirstAndSecondEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENTS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENTS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);	
+then
+	FirstAndSecondAndThirdEvent captured = new FirstAndSecondAndThirdEvent();
+	captured.setTimestamp($aEvent.getTimestamp());
+	captured.setFirst($aEvent.getFirst());
+	captured.setSecond($aEvent.getSecond());
+	captured.setThird($bEvent);
+	captured.setDestinationID($aEvent.getDestinationID());
+	captured.setSenderID($aEvent.getSenderID());
+	captured.setName($aEvent.getName() + "-" + $bEvent.getName());
+	insert(captured);
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("ComplexEvent first, second and third created - Rule fired:" + drools.getRule().getName());
+end
+
+rule "checkForCorrectFourth"
+no-loop
+salience 993
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name != "TOPOLOGY_ELEMENT_DETAILS_RESPONSE" || this.ICTMessageType != "TOPOLOGY_ELEMENT_DETAILS_RESPONSE" ||  this.ICTMessageCategory != "DATA",
+		this after $aEvent);
+then
+		retract($aEvent);
+		retract($bEvent);
+		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());	
+end
+
+
+rule "catchThirdAndFourth"
+no-loop
+salience 991
+dialect "java"
+when
+	$aEvent: FirstAndSecondAndThirdEvent();
+		
+	$bEvent: ConcernICTGatewayEvent(
+		this.senderID == $aEvent.getSenderID(),
+		this.destinationID == $aEvent.getDestinationID(),
+		this.name == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageType == "TOPOLOGY_ELEMENT_DETAILS_RESPONSE",
+		this.ICTMessageCategory == "DATA",
+		this after $aEvent);
+	
+then
+	retract($aEvent);
+	retract($bEvent);
+	KieLauncher.printInfo("Cycle completed - Rule fired:" + drools.getRule().getName());
+end
+
+2023-02-15T14:49:17.621+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-02-15T14:49:17.621+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 9
