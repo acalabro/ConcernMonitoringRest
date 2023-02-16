@@ -5,11 +5,13 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class MqttListener {
 
+	static MqttClient client2;
+	
 	public static void main(String[] args) {
 	
 	//MOSQUITOTEST
 	try {
-		MqttClient client2 = new MqttClient("tcp://0.0.0.0:1883", MqttClient.generateClientId());
+		client2 = new MqttClient("tcp://0.0.0.0:1883", MqttClient.generateClientId());
 		client2.setCallback( new ConcernMQTTCallBack() );
 		client2.connect();
 		client2.subscribe("iot_data"); 

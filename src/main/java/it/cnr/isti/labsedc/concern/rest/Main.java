@@ -26,6 +26,12 @@ public class Main {
         final ResourceConfig rc = new ResourceConfig().packages("it.cnr.isti.labsedc.concern.rest");
 
     	System.out.println("Current IP: " + BASE_URI );
+    	
+//    	/*CLEAN logs*/
+//    	LoggerComponent.cleanFile(System.getProperty("user.dir")+ "/logs/app-debug.log");
+//    	LoggerComponent.cleanFile(System.getProperty("user.dir")+ "/logs/app-info.log");
+//    	LoggerComponent.cleanFile(System.getProperty("user.dir")+ "/logs/notification-info.log");
+//    	LoggerComponent.cleanFile(System.getProperty("user.dir")+ "/logs/storage-info.log");
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI

@@ -1,5 +1,7 @@
 package it.cnr.isti.labsedc.concern.logger;
 
+import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
@@ -25,6 +27,18 @@ public final class LoggerComponent {
       logger.debug(marker,"Parent log message");
    }
 
-
-
+   public static void cleanFile(String fileName) {
+   		java.io.FileWriter fw;
+   		java.io.PrintWriter pw;
+		try {
+			fw = new java.io.FileWriter(fileName, false);
+	   		pw = new java.io.PrintWriter(fw, false);
+	   		pw.flush();
+	   		pw.close();   	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+   }
+   		
 }

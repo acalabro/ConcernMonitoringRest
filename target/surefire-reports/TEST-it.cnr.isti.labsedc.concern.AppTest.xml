@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="it.cnr.isti.labsedc.concern.AppTest" time="0.003" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="it.cnr.isti.labsedc.concern.AppTest" time="0.004" errors="0" skipped="0">
   <properties>
     <property name="jansi.mode" value="force"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -24,7 +24,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="stderr.encoding" value="UTF-8"/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/home/acalabro/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf17385730998200449225.tmp"/>
+    <property name="classworlds.conf" value="/home/acalabro/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf525838176826961267.tmp"/>
     <property name="jansi.force" value="true"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="stdout.encoding" value="UTF-8"/>
@@ -57,7 +57,7 @@
     <property name="java.vendor.url.bug" value="Unknown"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="m2e.build.project.data.socket.port" value="37585"/>
+    <property name="m2e.build.project.data.socket.port" value="44177"/>
   </properties>
-  <testcase classname="it.cnr.isti.labsedc.concern.AppTest" name="testApp" time="0.003"/>
+  <testcase classname="it.cnr.isti.labsedc.concern.AppTest" name="testApp" time="0.004"/>
 </testsuite>

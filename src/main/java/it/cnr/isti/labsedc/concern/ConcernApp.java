@@ -50,7 +50,7 @@ public class ConcernApp extends Thread
 	
 	public static String PortWhereTheInstanceIsRunning = "8181";
 	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
-	public static String IPAddressWhereTheInstanceIsRunning = "127.0.0.1";
+	public static String IPAddressWhereTheInstanceIsRunning = "146.48.81.167";
 			
 	private static Thread INSTANCE;
         
@@ -95,6 +95,7 @@ public class ConcernApp extends Thread
     	factory = new ActiveMQConnectionFactory(brokerUrlJMS);
     	logger.info(Sub.newSessionLogger());
     	logger.info("Starting components");
+    	
     	StartComponents(factory, brokerUrlJMS, maxMemoryUsage, maxCacheUsage);
     	
     	}
@@ -105,7 +106,9 @@ public class ConcernApp extends Thread
     	}
     }
     
-    public static void StartComponents(MqttClient listenerClient, String mqttBrokerUrl, String topic) {
+   
+
+	public static void StartComponents(MqttClient listenerClient, String mqttBrokerUrl, String topic) {
 		try {
 			channelRegistry = new ChannelsManagementRegistry();
 
