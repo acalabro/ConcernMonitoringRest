@@ -24,7 +24,8 @@ public class Consumer extends Thread{
 	}
 	
 	private static boolean sendRule(String rule) {
-		String brokerUrl = "tcp://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":61616";
+		String brokerUrl = System.getenv("ACTIVEMQ");
+		//String brokerUrl = "tcp://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":61616";
 
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {

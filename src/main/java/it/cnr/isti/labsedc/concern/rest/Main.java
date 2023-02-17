@@ -26,7 +26,7 @@ public class Main {
         final ResourceConfig rc = new ResourceConfig().packages("it.cnr.isti.labsedc.concern.rest");
 
     	System.out.println("Current IP: " + BASE_URI );
-
+    
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(serverUri), rc);

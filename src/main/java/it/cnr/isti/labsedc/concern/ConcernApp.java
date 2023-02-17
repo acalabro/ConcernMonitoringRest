@@ -3,7 +3,9 @@ package it.cnr.isti.labsedc.concern;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,6 +24,7 @@ import it.cnr.isti.labsedc.concern.notification.NotificationManager;
 import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 import it.cnr.isti.labsedc.concern.requestListener.ServiceListenerManager;
 import it.cnr.isti.labsedc.concern.storage.MySQLStorageController;
+import it.cnr.isti.labsedc.concern.utils.DebugMessages;
 import it.cnr.isti.labsedc.concern.utils.Sub;
 
 public class ConcernApp extends Thread
@@ -42,15 +45,15 @@ public class ConcernApp extends Thread
 	private static String username;
 	private static String password;
 	
-	private static boolean LOCALBROKER = true; //where amq is running
+	private static boolean LOCALBROKER = false; //where amq is running
 	
 	private static boolean runningInJMS = true;
 	private static String mqttBrokerUrl;
 	private static MqttClient listenerClient;
 	
 	public static String PortWhereTheInstanceIsRunning = "8181";
-	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
-	public static String IPAddressWhereTheInstanceIsRunning = "localhost";
+	public static String IPAddressWhereTheInstanceIsRunning = GetDockerIP();
+	//public static String IPAddressWhereTheInstanceIsRunning = "localhost";
 			
 	private static Thread INSTANCE;
         
@@ -62,6 +65,17 @@ public class ConcernApp extends Thread
         return INSTANCE;
     }
 
+	private static String GetDockerIP() {
+    	try {
+    		String ip = InetAddress.getLocalHost().getHostAddress();
+    		DebugMessages.println(System.currentTimeMillis(),  ConcernApp.class.getCanonicalName(), "IPv4 container address: " + ip );
+			return ip;
+		} catch (UnknownHostException e) {
+			DebugMessages.error(System.currentTimeMillis(),  ConcernApp.class.getCanonicalName(), "Failed to gather container ip");
+			return "127.0.0.1";
+		}
+	}
+
 	public static boolean isRunning() {
     	if (INSTANCE == null)
     		return false;
@@ -69,7 +83,9 @@ public class ConcernApp extends Thread
     }
 
 	public static void killInstance() {
-    	ConcernApp.broker.stopActiveMQBroker();
+    	if (LOCALBROKER) {
+    		ConcernApp.broker.stopActiveMQBroker();
+    	}
     	INSTANCE.interrupt();
     	INSTANCE = null;
     }
@@ -85,7 +101,7 @@ public class ConcernApp extends Thread
     		if (LOCALBROKER) {
     			brokerUrlJMS = "tcp://0.0.0.0:61616";
     		} else {
-    			brokerUrlJMS = System.getenv("AMQ_URL");	
+    			brokerUrlJMS = System.getenv("ACTIVEMQ");	
     		}
     	maxMemoryUsage = 128000l;
     	maxCacheUsage = 128000l;
@@ -93,7 +109,6 @@ public class ConcernApp extends Thread
     	logger.info(Sub.newSessionLogger());
     	logger.info("Starting components");
     	StartComponents(factory, brokerUrlJMS, maxMemoryUsage, maxCacheUsage);
-    	
     	}
     	else{
     		mqttBrokerUrl="tcp://localhost:1183";
