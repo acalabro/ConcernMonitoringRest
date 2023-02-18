@@ -1,0 +1,5 @@
+2023-02-17T14:52:40.993+0100 [Thread-5] INFO  it.cnr.isti.labsedc.concern.notification.NotificationManager - 
+Received violation event from: ErrorGenerationSimProbe
+Raised violation: Error - More than one failure event in timeframe event - Rule fired:observe errors in timeframe
+
+

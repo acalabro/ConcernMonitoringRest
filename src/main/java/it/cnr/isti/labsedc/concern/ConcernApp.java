@@ -50,7 +50,7 @@ public class ConcernApp extends Thread
 	
 	public static String PortWhereTheInstanceIsRunning = "8181";
 	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
-	public static String IPAddressWhereTheInstanceIsRunning = "146.48.81.167";
+	public static String IPAddressWhereTheInstanceIsRunning = "146.48.84.225";
 			
 	private static Thread INSTANCE;
         
