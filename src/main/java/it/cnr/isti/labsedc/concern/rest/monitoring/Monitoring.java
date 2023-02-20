@@ -147,7 +147,7 @@ public class Monitoring {
     			+"<body><center><h2 style=\"color: green;\">Runtime Monitoring</h2><h3>Status: " + MonitoringStatus() + "</h3>"
 
     			+ "<div id=\"logs\">"
-    				+ "<textarea class=\"textarea\" name=\"debugLog\" rows=\"30\" cols=\"140\">\n"
+    				+ "<textarea class=\"textarea\" name=\"debugLog\" rows=\"25\" cols=\"190\">\n"
 					+ getLoggerData() + "</textarea>"
 				+ "</div><br />"
 
@@ -185,12 +185,12 @@ public class Monitoring {
     			+"</div>"		
 				+ "    	<script>\n"
 				+ "    	function loadFunction() {\n"
-				+ "    	    window.open(\"./biecointerface/loadrules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=500,height=600\");\n"
+				+ "    	    window.open(\"./biecointerface/loadrules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=750,height=550\");\n"
 				+ "    	}\n"
 				+ "    	</script>"
 				+ "    	<script>\n"
 				+ "    	function notificationFunction() {\n"
-				+ "    	    window.open(\"./biecointerface/notifications\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=700,height=420\");\n"
+				+ "    	    window.open(\"./biecointerface/notifications\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=700,height=520\");\n"
 				+ "    	}\n"
 				+ "    	</script>"
 				+ "    	<script>\n"

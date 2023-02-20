@@ -32,4 +32,18 @@ public class Sub {
 			  +"- NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -\n"
 			  +"-----------------------------------------------------\n\n\n";
 	}
+	
+	 public static void cleanFile(String fileName) {
+	   		java.io.FileWriter fw;
+	   		java.io.PrintWriter pw;
+			try {
+				fw = new java.io.FileWriter(fileName, false);
+		   		pw = new java.io.PrintWriter(fw, false);
+		   		pw.flush();
+		   		pw.close();   	
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+	   }
 }

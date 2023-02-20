@@ -4,6 +4,8 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import it.cnr.isti.labsedc.concern.utils.Sub;
+
 import java.io.IOException;
 import java.net.URI;
 
@@ -27,11 +29,11 @@ public class Main {
 
     	System.out.println("Current IP: " + BASE_URI );
     	
-//    	/*CLEAN logs*/
-//    	LoggerComponent.cleanFile(System.getProperty("user.dir")+ "/logs/app-debug.log");
-//    	LoggerComponent.cleanFile(System.getProperty("user.dir")+ "/logs/app-info.log");
-//    	LoggerComponent.cleanFile(System.getProperty("user.dir")+ "/logs/notification-info.log");
-//    	LoggerComponent.cleanFile(System.getProperty("user.dir")+ "/logs/storage-info.log");
+    	/*CLEAN logs*/
+    	Sub.cleanFile(System.getProperty("user.dir")+ "/logs/app-debug.log");
+    	Sub.cleanFile(System.getProperty("user.dir")+ "/logs/app-info.log");
+    	Sub.cleanFile(System.getProperty("user.dir")+ "/logs/notification-info.log");
+    	Sub.cleanFile(System.getProperty("user.dir")+ "/logs/storage-info.log");
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI

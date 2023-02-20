@@ -86,11 +86,11 @@ public class Notifications {
 				+ "</style>"
 				+"<script>\n"
 				+ "\n"    			
-				+ "setTimeout(\"location.reload(true);\", 45000);\n"
+				+ "setTimeout(\"location.reload(true);\", 3000);\n"
 				+ "\n"
 				+ "</script>"
 				+"<body bgcolor=”#800000\"><center><h2 style=\"color: green;\">Runtime Monitoring Notifications</h2><h3 style=\"color: white;\">" 
-				+ "<div id=\"logs\"><textarea class=\"textarea\" name=\"debugLog\" rows=\"13\" cols=\"80\">\n"
+				+ "<div id=\"logs\"><textarea class=\"textarea\" name=\"debugLog\" rows=\"20\" cols=\"120\">\n"
 				+ getNotificationData() + "</textarea></div><br />"
 				+ "<button onClick=\"window.location.reload();\">Reload Notifications</button>"
 				+ "<br /></center></body></html>";  

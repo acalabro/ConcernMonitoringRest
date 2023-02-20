@@ -51,7 +51,8 @@ public class ConcernApp extends Thread
 	public static String PortWhereTheInstanceIsRunning = "8181";
 	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
 	public static String IPAddressWhereTheInstanceIsRunning = "146.48.84.225";
-			
+	//public static String IPAddressWhereTheInstanceIsRunning = "10.0.0.228";
+	
 	private static Thread INSTANCE;
         
     public static Thread getInstance() throws InterruptedException {
