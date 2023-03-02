@@ -11,7 +11,6 @@ import java.util.HashMap;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.poi.util.SystemOutLogger;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -34,7 +33,7 @@ public class ConcernApp extends Thread
 	private static ChannelsManagementRegistry channelRegistry;
 	public static MySQLStorageController storageManager;
 	
-	private static String brokerUrlJMS;
+	public static String brokerUrlJMS;
 	private static Long maxMemoryUsage;
 	private static Long maxCacheUsage;
 	public static ActiveMQConnectionFactory factory;
@@ -44,15 +43,15 @@ public class ConcernApp extends Thread
 	private static String username;
 	private static String password;
 	
-	private static boolean LOCALBROKER = true; //where amq is running
+	private static boolean LOCALBROKER = false; //where amq is running
 	
 	private static boolean runningInJMS = true;
 	private static String mqttBrokerUrl;
 	private static MqttClient listenerClient;
 	
-	public static String PortWhereTheInstanceIsRunning = "8181";
+	public static String PortWhereTheInstanceIsRunning = "4700";
 	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
-	public static String IPAddressWhereTheInstanceIsRunning = "10.0.0.228";
+	public static String IPAddressWhereTheInstanceIsRunning = "localhost";
 	
 	private static Thread INSTANCE;
         

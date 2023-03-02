@@ -24,7 +24,7 @@ public class Consumer extends Thread{
 	}
 	
 	private static boolean sendRule(String rule) {
-		String brokerUrl = "tcp://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":61616";
+		String brokerUrl = ConcernApp.brokerUrlJMS;
 
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {
@@ -38,7 +38,7 @@ public class Consumer extends Thread{
 	}
 	
 	private static void sendRule() {
-		String brokerUrl = "tcp://" + ConcernApp.IPAddressWhereTheInstanceIsRunning + ":61616";
+		String brokerUrl = ConcernApp.brokerUrlJMS;
 
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {
