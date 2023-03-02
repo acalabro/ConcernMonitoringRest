@@ -1,0 +1,30 @@
+2023-03-02T01:22:57.588+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.notification.NotificationManager - 
+Received violation event from: SevenBullsSimProbe
+Raised violation: Warning - actually system does not received more than 10 quotation per minute - Rule fired:Monitor the quotation received from brokers
+
+
+2023-03-02T01:23:06.104+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.notification.NotificationManager - 
+Received violation event from: SevenBullsSimProbe
+Raised violation: Warning - actually more than 100 transaction per minute has been fired - Rule fired:counting transaction in a timeframe
+
+
+2023-03-02T01:23:15.745+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.notification.NotificationManager - 
+Received violation event from: SevenBullsSimProbe
+Raised violation: Warning - The training queue size is overriding threshold - Rule fired:Monitoring the training requests queue
+
+
+2023-03-02T01:23:20.754+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.notification.NotificationManager - 
+Received violation event from: SevenBullsSimProbe
+Raised violation: Warning - The optimization queue size is overriding threshold - Rule fired:Monitoring the optimization requests queue
+
+
+2023-03-02T01:23:25.761+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.notification.NotificationManager - 
+Received violation event from: SevenBullsSimProbe
+Raised violation: Warning - The number of errors in DLQ Queue is overriding threshold - Rule fired:Monitoring the number of errors in DLQ Queue
+
+
+2023-03-02T01:24:07.709+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.notification.NotificationManager - 
+Received violation event from: SevenBullsSimProbe
+Raised violation: Warning - actually system does not received more than 10 quotation per minute - Rule fired:Monitor the quotation received from brokers
+
+

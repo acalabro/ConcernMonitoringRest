@@ -19,6 +19,7 @@
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/rules/RoutingUtilities.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/consumer/Consumer.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/cep/DroolsComplexEventProcessorManager.java
+/home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/event/ConcernAnemometerEvent.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/event/Event.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/register/ChannelsManagementRegistry.java
 /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/java/it/cnr/isti/labsedc/concern/utils/KieLauncher.java

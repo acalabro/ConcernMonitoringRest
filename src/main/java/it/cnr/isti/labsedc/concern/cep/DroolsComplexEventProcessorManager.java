@@ -178,21 +178,26 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 										ConcernICTGatewayEvent<?> receivedEvent = (ConcernICTGatewayEvent<?>) msg.getObject();
 										insertEvent(receivedEvent);		
 									} else {
-										if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
-											ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
-											if (receivedEvent.getCepType() == CepType.DROOLS) {
-												logger.info("...CEP named " + this.getInstanceName() + " receives rules "  + receivedEvent.getData() );
-												loadRule(receivedEvent);	
+//										if(msg.getObject() instanceof ConcernAnemometerEvent<?>) {
+//											ConcernAnemometerEvent<?> receivedEvent = (ConcernAnemometerEvent<?>) msg.getObject();
+//											insertEvent(receivedEvent);
+//										} else {
+											if (msg.getObject() instanceof ConcernEvaluationRequestEvent<?>) {		
+												ConcernEvaluationRequestEvent<?> receivedEvent = (ConcernEvaluationRequestEvent<?>) msg.getObject();
+												if (receivedEvent.getCepType() == CepType.DROOLS) {
+													logger.info("...CEP named " + this.getInstanceName() + " receives rules "  + receivedEvent.getData() );
+													loadRule(receivedEvent);
+												}
 											}
-										}
+										//}
 									}
 								}
 							}
 						}
 					}
 				}	catch(ClassCastException | JMSException asd) {
-					logger.error(asd.getMessage());
-					logger.error("error on casting or getting ObjectMessage");
+					logger.debug(asd.getMessage());
+					logger.debug("error on casting or getting ObjectMessage");
 			}
 		}
 		if (message instanceof TextMessage) {
@@ -267,10 +272,10 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 	private void insertEvent(ConcernAbstractEvent<?> receivedEvent) {
 		if (eventStream != null && receivedEvent != null) {
 			eventStream.insert(receivedEvent);
-			logger.info("...CEP named " + this.getInstanceName() + " received an event of type:\n"  + receivedEvent.getClass().getCanonicalName() +" in the stream, sent from " + receivedEvent.getSenderID());
+			logger.debug("...CEP named " + this.getInstanceName() + " received an event of type:\n"  + receivedEvent.getClass().getCanonicalName() +" in the stream, sent from " + receivedEvent.getSenderID());
 			if (receivedEvent instanceof ConcernBaseEvent<?>) {
 				ConcernApp.storageManager.saveMessage(receivedEvent);
-				logger.info("with data:" +
+				logger.debug("with data:" +
 						"\nName: "+ receivedEvent.getName() +
 						"\nDestination: " + receivedEvent.getDestinationID() +
 						"\nData: " + receivedEvent.getData() +
@@ -281,6 +286,9 @@ public class DroolsComplexEventProcessorManager extends ComplexEventProcessorMan
 						"\nCepType: " + receivedEvent.getCepType().toString());
 			
 			}
+//			if (receivedEvent instanceof ConcernAnemometerEvent<?>) {
+//				ConcernApp.storageManager.saveWindData((ConcernAnemometerEvent<?>)receivedEvent);
+//			}
 		}			
 	}
 

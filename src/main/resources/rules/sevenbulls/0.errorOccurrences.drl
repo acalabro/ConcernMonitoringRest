@@ -1,0 +1,31 @@
+//created Feb 17, 2023 - 16:55:32
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+//Check occurrences of error events
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+    @expires(2m)
+end
+
+rule "observe errors in timeframe"
+no-loop
+salience 10
+dialect "java"
+when 
+
+Number( longValue > 1 ) from accumulate(
+	        ConcernBaseEvent(name == "ERROR_NAME", senderID == "SevenBullsSimProbe" ) over window:time( 60s ),
+	        count(1) )   	 		
+    then
+	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Error - More than one failure event in timeframe event - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());	
+end

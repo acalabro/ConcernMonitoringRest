@@ -1,0 +1,38 @@
+//created Feb 17, 2023 - 23:22:50
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+import java.util.*;
+import java.lang.*;
+
+//Monitoring the optimization requests queue 
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )    
+    @expires(1m)
+end
+
+rule "Monitoring the optimization requests queue"
+no-loop
+salience 10
+dialect "java"
+when 
+
+$aEvent: ConcernBaseEvent(
+		this.getSenderID == "SevenBullsSimProbe",
+		this.getDestinationID == "Monitoring",
+		this.getName == "Optimization_Queue_Size");
+		
+		eval(Calculator.checkIfItIsGreater($aEvent.getData(),50));
+		
+    then
+	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - The optimization queue size is overriding threshold - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
+	retract($aEvent);	
+end

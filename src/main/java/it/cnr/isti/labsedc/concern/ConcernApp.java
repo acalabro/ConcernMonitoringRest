@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.poi.util.SystemOutLogger;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -50,8 +52,7 @@ public class ConcernApp extends Thread
 	
 	public static String PortWhereTheInstanceIsRunning = "8181";
 	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
-	public static String IPAddressWhereTheInstanceIsRunning = "146.48.84.225";
-	//public static String IPAddressWhereTheInstanceIsRunning = "10.0.0.228";
+	public static String IPAddressWhereTheInstanceIsRunning = "10.0.0.228";
 	
 	private static Thread INSTANCE;
         
@@ -94,6 +95,12 @@ public class ConcernApp extends Thread
     	maxMemoryUsage = 128000l;
     	maxCacheUsage = 128000l;
     	factory = new ActiveMQConnectionFactory(brokerUrlJMS);
+    	//factory.setTrustAllPackages(true);
+    	String[] packages = new String[] { "java.lang", "java.util", "it.cnr.isti.labsedc", "javax.security", "org.apache.activemq", "java.util" };
+    	  	
+    	factory.setTrustedPackages(Arrays.asList(packages));
+    	
+    	System.out.println(factory.getTrustedPackages().toArray().toString());
     	logger.info(Sub.newSessionLogger());
     	logger.info("Starting components");
     	

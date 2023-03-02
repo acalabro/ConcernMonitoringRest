@@ -57,7 +57,7 @@ when
 then
 		$aEvent.setConsumed(true);
 		update($aEvent);
-		KieLauncher.printInfo("Session started - Rule fired:" + drools.getRule().getName());	
+		KieLauncher.printInfo("Session started - Rule fired:" + drools.getRule().getName());		
 end
 
 rule "checkStarter"
@@ -76,7 +76,7 @@ when
 		);
 then
 		retract($aEvent);
-		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
+		NotificationManager.NotifyViolation($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());	
 end
 
 
@@ -101,7 +101,7 @@ when
 then
 		retract($aEvent);
 		retract($bEvent);
-		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
+		NotificationManager.NotifyViolation($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());	
 end
 
 rule "catchFirstAndCheckSecond"
@@ -123,7 +123,7 @@ when
 then
 		retract($aEvent);
 		retract($bEvent);
-		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
+		NotificationManager.NotifyViolation($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());	
 end
 
 
@@ -160,7 +160,7 @@ then
 	insert(captured);
 	retract($aEvent);
 	retract($bEvent);
-	KieLauncher.printInfo("ComplexEvent first and second created - Rule fired:" + drools.getRule().getName());
+	KieLauncher.printInfo("ComplexEvent first and second created - Rule fired:" + drools.getRule().getName());	
 end
 
 rule "checkForCorrectThird"
@@ -177,7 +177,7 @@ when
 then
 		retract($aEvent);
 		retract($bEvent);
-		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());
+		NotificationManager.NotifyViolation($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());	
 end
 
 rule "catchSecondAndThird"
@@ -206,7 +206,7 @@ then
 	insert(captured);
 	retract($aEvent);
 	retract($bEvent);
-	KieLauncher.printInfo("ComplexEvent first, second and third created - Rule fired:" + drools.getRule().getName());
+	KieLauncher.printInfo("ComplexEvent first, second and third created - Rule fired:" + drools.getRule().getName());	
 end
 
 rule "checkForCorrectFourth"
@@ -223,7 +223,7 @@ when
 then
 		retract($aEvent);
 		retract($bEvent);
-		NotificationManager.NotifyToConsumer($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName());	
+		NotificationManager.NotifyViolation($aEvent.getSenderID(), "Unattended event - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());		
 end
 
 
@@ -245,5 +245,5 @@ when
 then
 	retract($aEvent);
 	retract($bEvent);
-	KieLauncher.printInfo("Cycle completed - Rule fired:" + drools.getRule().getName());
+	KieLauncher.printInfo("Cycle completed - Rule fired:" + drools.getRule().getName());	
 end

@@ -1,33 +1,53 @@
 package it.cnr.isti.labsedc.concern.notification;
 
+import java.util.Map;
+
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import it.cnr.isti.labsedc.concern.ConcernApp;
+import it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry;
 
 public class NotificationManager extends Thread {
 
 	private static Logger logger;
+	private static Session session;
 	
 	public NotificationManager() {
 		ConcernApp.componentStarted.put(this.getClass().getSimpleName(), true);
 		logger = LogManager.getLogger(NotificationManager.class);
 		ConcernApp.componentStarted.put(this.getClass().getSimpleName(), true);
+		
+	}
+	
+	public static void NotifyViolation(String eventTriggeredBy, String violationMessage, String ruleViolated) {
+		logger.info("\nReceived violation event from: " + eventTriggeredBy + "\nRaised violation: " + violationMessage + "\n\n");
+		ConcernApp.storageManager.saveViolation(eventTriggeredBy, violationMessage, ruleViolated, System.currentTimeMillis());
+	}
+	
+	public static void NotifyViolation(String eventTriggeredBy, String violationMessage, String ruleViolated, Map<String,Object> metaData) {
+		logger.info("\nReceived violation event from: " + eventTriggeredBy + "\nRaised violation: " + violationMessage + "\n\n");
+		ConcernApp.storageManager.saveViolation(eventTriggeredBy, violationMessage, ruleViolated, System.currentTimeMillis(), metaData);
 	}
 	
 	public static void NotifyToConsumer(String consumerName, String violationMessage) {
-		logger.info("\nReceived violation event from: " + consumerName + "\nRaised violation: " + violationMessage + "\n\n");
-//		try {
-//			logger.info("Creating response topic");
-//			topic = session.createTopic(ChannelsManagementRegistry.getConsumerChannel(consumerName));
-//
-//        MessageProducer producer = session.createProducer(topic);
-//		TextMessage msg = session.createTextMessage(violationMessage);
-//		producer.send(msg);
-//		} catch (JMSException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			logger.info("Creating response topic");
+			Topic topic = session.createTopic(ChannelsManagementRegistry.getConsumerChannel(consumerName));
+
+        MessageProducer producer = session.createProducer(topic);
+		TextMessage msg = session.createTextMessage(violationMessage);
+		producer.send(msg);
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void NotifyToGroundStation(String port, String notificationMessage) {
