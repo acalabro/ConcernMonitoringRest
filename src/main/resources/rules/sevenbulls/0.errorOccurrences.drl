@@ -24,7 +24,7 @@ dialect "java"
 when 
 
 Number( longValue > 1 ) from accumulate(
-	        ConcernBaseEvent(name == "ERROR_NAME", senderID == "SevenBullsSimProbe" ) over window:time( 60s ),
+	        ConcernBaseEvent(name == "generic_error", senderID == "SevenBullsSimProbe" ) over window:time( 60s ),
 	        count(1) )   	 		
     then
 	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Error - More than one failure event in timeframe event - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());	

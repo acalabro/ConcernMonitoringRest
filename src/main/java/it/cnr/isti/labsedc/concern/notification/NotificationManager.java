@@ -26,10 +26,10 @@ public class NotificationManager extends Thread {
 		
 	}
 	
-	public static void NotifyViolation(String eventTriggeredBy, String violationMessage, String ruleViolated) {
-		logger.info("\nReceived violation event from: " + eventTriggeredBy + "\nRaised violation: " + violationMessage + "\n\n");
-		ConcernApp.storageManager.saveViolation(eventTriggeredBy, violationMessage, ruleViolated, System.currentTimeMillis());
-	}
+//	public static void NotifyViolation(String eventTriggeredBy, String violationMessage, String ruleViolated) {
+//		logger.info("\nReceived violation event from: " + eventTriggeredBy + "\nRaised violation: " + violationMessage + "\n\n");
+//		ConcernApp.storageManager.saveViolation(eventTriggeredBy, violationMessage, ruleViolated, System.currentTimeMillis());
+//	}
 	
 	public static void NotifyViolation(String eventTriggeredBy, String violationMessage, String ruleViolated, Map<String,Object> metaData) {
 		logger.info("\nReceived violation event from: " + eventTriggeredBy + "\nRaised violation: " + violationMessage + "\n\n");

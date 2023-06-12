@@ -3,10 +3,12 @@ it/cnr/isti/labsedc/concern/register/TopicAndProperties.class
 it/cnr/isti/labsedc/concern/requestListener/ServiceListenerManager.class
 it/cnr/isti/labsedc/concern/utils/DroolsKieTest.class
 it/cnr/isti/labsedc/concern/storage/StorageController.class
+it/cnr/isti/labsedc/concern/rest/monitoring/Notifications.class
 it/cnr/isti/labsedc/concern/rest/monitoring/MessageClass.class
 it/cnr/isti/labsedc/concern/rest/Main.class
 it/cnr/isti/labsedc/concern/storage/InfluxDBStorageController.class
 it/cnr/isti/labsedc/concern/utils/MqttNetworkProbe$1.class
+it/cnr/isti/labsedc/concern/utils/ComplexSimplaRulesScriptCreator.class
 it/cnr/isti/labsedc/concern/gui/Main$2.class
 it/cnr/isti/labsedc/concern/cep/ComplexEventProcessorManager.class
 it/cnr/isti/labsedc/concern/event/ConcernCANbusEvent.class
@@ -15,10 +17,12 @@ it/cnr/isti/labsedc/concern/broker/ActiveMQBrokerManager.class
 it/cnr/isti/labsedc/concern/client/ClientManager.class
 it/cnr/isti/labsedc/concern/event/ConcernGlobalPlanEvent.class
 it/cnr/isti/labsedc/concern/event/Event.class
+it/cnr/isti/labsedc/concern/rest/monitoring/DeleteRules.class
 it/cnr/isti/labsedc/concern/consumer/Consumer.class
 it/cnr/isti/labsedc/concern/utils/KieLauncher.class
 it/cnr/isti/labsedc/concern/mediator/JMStoJSONConverter.class
 it/cnr/isti/labsedc/concern/ConcernApp.class
+it/cnr/isti/labsedc/concern/rest/monitoring/LoadRules.class
 it/cnr/isti/labsedc/concern/utils/ConnectionManager.class
 it/cnr/isti/labsedc/concern/consumer/ConcernConsumer.class
 it/cnr/isti/labsedc/concern/utils/Sub.class
@@ -33,8 +37,8 @@ it/cnr/isti/labsedc/concern/event/ConcernBaseEvent.class
 it/cnr/isti/labsedc/concern/gui/Main$CustomOutputStream.class
 it/cnr/isti/labsedc/concern/register/ChannelsManagementRegistry.class
 it/cnr/isti/labsedc/concern/eventListener/EventListenerTask.class
-it/cnr/isti/labsedc/concern/probe/ConcernAbstractProbe.class
 it/cnr/isti/labsedc/concern/mediator/Mediator.class
+it/cnr/isti/labsedc/concern/probe/ConcernAbstractProbe.class
 it/cnr/isti/labsedc/concern/gui/Main$1.class
 it/cnr/isti/labsedc/concern/utils/BiecoMessageTypes.class
 it/cnr/isti/labsedc/concern/event/ConcernICTGatewayEvent.class
@@ -52,8 +56,10 @@ it/cnr/isti/labsedc/concern/gui/Main.class
 it/cnr/isti/labsedc/concern/rest/monitoring/EventEntryPoint.class
 it/cnr/isti/labsedc/concern/event/ConcernDTForecast.class
 it/cnr/isti/labsedc/concern/requestListener/ServiceListenerTask.class
+it/cnr/isti/labsedc/concern/event/ConcernAnemometerEvent.class
 it/cnr/isti/labsedc/concern/event/ConcernAbstractEvent.class
 it/cnr/isti/labsedc/concern/utils/DebugMessages.class
+it/cnr/isti/labsedc/concern/rest/monitoring/ActiveMQ.class
 it/cnr/isti/labsedc/concern/event/ConcernProbeEvent.class
 it/cnr/isti/labsedc/concern/eventListener/EventListenerManager.class
 it/cnr/isti/labsedc/concern/mediator/JSONtoJMSConverter.class

@@ -1,4 +1,4 @@
-2023-03-02T01:21:20.551+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+2023-06-12T16:39:48.874+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
 
 -----------------------------------------------------
 - NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
@@ -6,48 +6,14 @@
 
 
 
-2023-03-02T01:21:20.552+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
-2023-03-02T01:21:20.555+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
-2023-03-02T01:21:20.758+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connecting to ActiveMQ
-2023-03-02T01:21:20.758+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connected to ActiveMQ
-2023-03-02T01:21:21.142+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
-2023-03-02T01:21:21.166+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
-2023-03-02T01:21:21.392+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
-2023-03-02T01:21:27.542+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Mar 01, 2023 - 22:32:47
-package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.Calculator;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-//Monitor the transaction amount
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-    @expires(1m)
-end
-
-rule "counting transaction in a timeframe"
-no-loop
-salience 10
-dialect "java"
-when 
-
-Number( longValue > 100 ) from accumulate(
-	        ConcernBaseEvent(name == "TransactionStart", senderID == "SevenBullsSimProbe" ) over window:time( 60s ),
-	        count(1))   	 		
-    then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - actually more than 100 transaction per minute has been fired - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-end
-2023-03-02T01:21:28.007+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:21:28.007+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:21:28.007+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
-2023-03-02T01:21:45.502+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Mar 01, 2023 - 22:57:21
+2023-06-12T16:39:48.877+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-06-12T16:39:48.881+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-06-12T16:39:49.101+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connecting to ActiveMQ
+2023-06-12T16:39:49.102+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connected to ActiveMQ
+2023-06-12T16:39:49.676+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-06-12T16:39:49.706+0200 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-06-12T16:39:49.996+0200 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-06-12T16:40:01.099+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Mar 01, 2023 - 22:57:21
 package it.cnr.isti.labsedc.concern.event;
 import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
@@ -63,144 +29,45 @@ dialect "java"
 declare ConcernBaseEvent
     @role( event )
     @timestamp( timestamp )
-    @expires(90s)
+    @expires(60s)
 end
 
-rule "Monitor the quotation received from brokers"
+rule "At least one quotation per hour"
 no-loop
 salience 10
 dialect "java"
 when 
 
-not (Number( longValue > 10 ) from accumulate(
-	        $evt : ConcernBaseEvent(name == "QuotationFromBroker", senderID == "SevenBullsSimProbe" ) over window:time( 60s ),
-	        count(1)));
+	not(
+		$evt : ConcernBaseEvent(
+					name == "QuotationFromBroker", 
+					senderID == "SevenBullsSimProbe" ) 
+				over window:time(10s))
+	
     then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - actually system does not received more than 10 quotation per minute - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-end
-2023-03-02T01:21:45.584+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:21:45.585+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:21:45.585+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 2
-2023-03-02T01:21:56.997+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Feb 17, 2023 - 23:22:50
-package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.Calculator;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-import java.util.*;
-import java.lang.*;
-
-//Monitoring the training requests queue 
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )    
-    @expires(1m)
+	NotificationManager.NotifyViolation(
+	"SevenBullsSimProbe", "Warning - actually system does not received any quotation in the last 60 minutes - Rule fired:" + drools.getRule().getName(),
+	drools.getRule().getName(), 
+	drools.getRule().getMetaData()
+	);
 end
 
-rule "Monitoring the training requests queue"
+rule "More than 100 quotation per hour"
 no-loop
 salience 10
 dialect "java"
 when 
 
-$aEvent: ConcernBaseEvent(
-		this.getSenderID == "SevenBullsSimProbe",
-		this.getDestinationID == "Monitoring",
-		this.getName == "Training_Queue_Size");
-		
-		eval(Calculator.checkIfItIsGreater($aEvent.getData(),100));
-		
+Number( longValue > 100 ) from accumulate(
+	        $evt : ConcernBaseEvent(name == "QuotationFromBroker", senderID == "SevenBullsSimProbe" ) over window:time( 60m ),
+	        count(1));
     then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - The training queue size is overriding threshold - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-	retract($aEvent);	
+	NotificationManager.NotifyViolation(
+	"SevenBullsSimProbe", "Warning - system received more than 100 quotation per hour - Rule fired:" + drools.getRule().getName(),
+	drools.getRule().getName(), 
+	drools.getRule().getMetaData()
+	);
 end
-2023-03-02T01:21:57.063+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:21:57.063+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:21:57.063+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-03-02T01:22:16.093+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Feb 17, 2023 - 23:22:50
-package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.Calculator;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-import java.util.*;
-import java.lang.*;
-
-//Monitoring the optimization requests queue 
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )    
-    @expires(1m)
-end
-
-rule "Monitoring the optimization requests queue"
-no-loop
-salience 10
-dialect "java"
-when 
-
-$aEvent: ConcernBaseEvent(
-		this.getSenderID == "SevenBullsSimProbe",
-		this.getDestinationID == "Monitoring",
-		this.getName == "Optimization_Queue_Size");
-		
-		eval(Calculator.checkIfItIsGreater($aEvent.getData(),50));
-		
-    then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - The optimization queue size is overriding threshold - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-	retract($aEvent);	
-end
-2023-03-02T01:22:16.136+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:22:16.136+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:22:16.136+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
-2023-03-02T01:22:32.228+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Feb 17, 2023 - 23:22:50
-package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.Calculator;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-import java.util.*;
-import java.lang.*;
-
-//Monitoring the optimization requests queue 
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-    @expires(1m)
-end
-
-rule "Monitoring the number of errors in DLQ Queue"
-no-loop
-salience 10
-dialect "java"
-when 
-
-$aEvent: ConcernBaseEvent(
-		this.getSenderID == "SevenBullsSimProbe",
-		this.getDestinationID == "Monitoring",
-		this.getName == "Errors_in_DLQ");
-		
-		eval(Calculator.checkIfItIsGreater($aEvent.getData(),1000));
-		
-    then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - The number of errors in DLQ Queue is overriding threshold - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-	retract($aEvent);	
-end
-2023-03-02T01:22:32.274+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:22:32.274+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:22:32.274+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
+2023-06-12T16:40:01.662+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-06-12T16:40:01.663+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
+2023-06-12T16:40:01.663+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 2

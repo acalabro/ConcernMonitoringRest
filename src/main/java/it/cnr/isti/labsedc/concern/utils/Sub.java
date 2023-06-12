@@ -19,6 +19,9 @@ public class Sub {
 		Path fileName = Path.of(filePath);
 
 	    text = Files.readString(fileName, StandardCharsets.ISO_8859_1);
+	    if (text.length() > 1999999) {
+	    	
+	    }
 	    		} catch (IOException e) {
 			e.printStackTrace();
 		}

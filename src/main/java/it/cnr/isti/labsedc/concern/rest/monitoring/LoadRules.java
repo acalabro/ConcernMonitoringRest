@@ -92,7 +92,12 @@ public class LoadRules {
     		    + "  color: #666666;\n"
     		    + "}"
     			+ "</style>\n"
-    			+ "     <script type = \"text/javascript\">\n"
+				+ "    	<script>\n"
+				+ "    	function loadRulesDB() {\n"
+				+ "    	    window.open(\"./browseruledb\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=900,height=500\");\n"
+				+ "    	}\n"
+				+ "    	</script>"
+    			+ "<script type = \"text/javascript\">\n"
     			+"function executePost() {\n"
     			+ "    var xhttp = new XMLHttpRequest();\n"
     			+ "    xhttp.onreadystatechange = function() {\n"
@@ -121,12 +126,15 @@ public class LoadRules {
     			+ "          Concern Rules Loading\n"
     			+ "        </h1>\n"
     			+ "        <div>\n"
-    			+ "            <input type=\"file\">\n"
     			+ "            <textarea cols=\"80\" rows=\"20\"\n"
     			+ "                      placeholder=\"rules loaded will appear here\" id=\"ruletextarea\">\n"
     			+ "            </textarea>\n"
+    			+ "            <input type=\"file\">\n"
     			+ "            <br />\n"
-    			+ "            <button onclick=\"executePost()\">Sent loaded rules to the Monitor</button>\n"
+    			+ "            <br />"
+    			+ "<button class=\"tab2\"onclick=\"loadRulesDB()\" id=\"loadRulesDB\">Load rules from DB</button><br />\n\t\t\t\t"
+    			
+    			+ "<button onclick=\"executePost()\">Sent loaded rules to the Monitor</button>\n"
     			+ "        </div>\n"
     			+ "    </center>\n"
     			+ "        <script type=\"text/javascript\">\n"
@@ -174,23 +182,5 @@ public class LoadRules {
         	Consumer internalConsumer = new Consumer();
         	return internalConsumer.run(rule);
         }    
-//       
-//    private boolean MonitoringStartIfNotStarted() {	
-//		try {
-//			if (ConcernApp.isRunning()) {
-//				return true;
-//			}
-//			else {
-//				ConcernApp.getInstance();
-//
-//				while(!ConcernApp.isRunning()) {
-//					Thread.sleep(500);
-//				}
-//			}
-//		} catch(InterruptedException asd) {
-//			
-//		}
-//		return true;
-//	}
 }
 

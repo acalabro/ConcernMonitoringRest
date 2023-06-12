@@ -3,6 +3,7 @@ package it.cnr.isti.labsedc.concern.storage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -10,8 +11,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import it.cnr.isti.labsedc.concern.ConcernApp;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernAnemometerEvent;
 import it.cnr.isti.labsedc.concern.event.Event;
 
 public class MySQLStorageController implements StorageController {
@@ -101,32 +100,6 @@ public class MySQLStorageController implements StorageController {
 	}
 
 	public boolean saveViolation(String eventTriggeredBy, String violationMessage, String ruleViolated,
-			long currentTimeMillis) {
-		try {
-			if (this.con != null && !this.con.isClosed()) {
-					 String query = " insert into violation (violationMessage, probeNameThatTriggersError, ruleViolatedName, violationTimestamp  )"
-						        + " values (?, ?, ?, ?)";
-			
-				      // create the mysql insert preparedstatement
-				      PreparedStatement preparedStmt = this.con.prepareStatement(query);
-				      preparedStmt.setString (1, violationMessage);
-				      preparedStmt.setString (2, eventTriggeredBy);
-				      preparedStmt.setString(3, ruleViolated);
-				      preparedStmt.setLong(4, currentTimeMillis);
-				      // execute the preparedstatement
-				      preparedStmt.execute();
-				      logger.info("Violation on rule " + ruleViolated + " stored.");
-				      return true;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			logger.error("Failure on storing violation on db");
-			return false;
-		}
-		return false;		
-	}
-
-	public boolean saveViolation(String eventTriggeredBy, String violationMessage, String ruleViolated,
 			long currentTimeMillis, Map<String, Object> metaData) {
 
 		try {
@@ -154,26 +127,44 @@ public class MySQLStorageController implements StorageController {
 		
 	}
 
-//	public void saveWindData(ConcernAnemometerEvent<?> receivedEvent) {
-//
-//		try {
-//			if (this.con != null && !this.con.isClosed()) {
-//					 String query = " insert into anemometer (timest, windangle, windstrength, gustangle, guststrength)"
-//						        + " values (?, ?, ?, ?, ?)";			
-//				      // create the mysql insert preparedstatement
-//				      PreparedStatement preparedStmt = this.con.prepareStatement(query);
-//				      preparedStmt.setDouble (1, receivedEvent.getTimestamp());
-//				      preparedStmt.setInt(2, receivedEvent.getWindAngle());
-//				      preparedStmt.setInt(3, receivedEvent.getWindStrenght());
-//				      preparedStmt.setInt(4, receivedEvent.getGustAngle());
-//				      preparedStmt.setInt(5, receivedEvent.getGustStrength());
-//				      // execute the preparedstatement
-//				      preparedStmt.execute();
-//				      logger.info("Anemometer Event" + receivedEvent.getName()+ " stored.");
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			logger.error("Failure on storing violation on db");
-//		}
-//	}
+	public String getRules() {
+		try {
+			if (this.con != null && !this.con.isClosed()) {
+					 String query = "select * from rule;";			
+				      // create the mysql insert preparedstatement
+				      PreparedStatement preparedStmt = this.con.prepareStatement(query);
+				      // execute the preparedstatement
+				      
+				      String beginTableString = "<table class=\"hoverTable\">\n";
+				      String endTableString = "</table>";
+				      
+				      ResultSet rs = preparedStmt.executeQuery();
+				      logger.info("Executed loadRules query.");
+				      String rowString = "";
+				      String header = "<tr>"
+				    		  + "<th>Rule Name</th>"
+				    		  + "<th>Rule Language</th>"
+				    		  + "<th>Rule Text</th>"
+				    		  + "<th>Rule Property Tested</th>"
+				      		  + "</tr>";
+				      String globalString = "";
+				      while(rs.next())
+				      {
+				    	  rowString = "<tr>";
+				    	  rowString = rowString + " <td> " + rs.getString(2) + "</td>";
+				    	  rowString = rowString + " <td> " + rs.getString(3) + "</td>";
+				    	  rowString = rowString + " <td> " + rs.getString(4) + "</td>";
+				    	  rowString = rowString + " <td> " + rs.getString(5) + "</td>";
+				    	  rowString = rowString + "</tr>";
+				    	  globalString = globalString + rowString;
+				      }
+				      return beginTableString + header + globalString + endTableString;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			logger.error("Failure on loadin rules from db");
+			return null;
+		}
+		return null;		
+	}
 }

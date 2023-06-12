@@ -1,4 +1,4 @@
-2023-03-02T01:21:20.551+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
+2023-06-12T16:39:48.874+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - 
 
 -----------------------------------------------------
 - NEW MONITORING SESSION - ALL COMPONENTS RESTARTED -
@@ -6,60 +6,26 @@
 
 
 
-2023-03-02T01:21:20.552+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
-2023-03-02T01:21:20.555+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.ConcernApp - ConcernApp is launching the broker.
-2023-03-02T01:21:20.555+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
-2023-03-02T01:21:20.562+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
-2023-03-02T01:21:20.735+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
-2023-03-02T01:21:20.735+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
-2023-03-02T01:21:20.736+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
-2023-03-02T01:21:20.757+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
-2023-03-02T01:21:20.758+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
-2023-03-02T01:21:20.758+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.ConcernApp - ConcernApp broker launched.
-2023-03-02T01:21:20.758+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connecting to ActiveMQ
-2023-03-02T01:21:20.758+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connected to ActiveMQ
-2023-03-02T01:21:20.759+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry - into ChannelsManagementRegistry
-2023-03-02T01:21:20.759+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry - ChannelsManagementRegistry started
-2023-03-02T01:21:20.759+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry - ChannelsManagementRegistry loaded in registry.
-2023-03-02T01:21:20.759+0100 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.ConcernApp - Channels Management Registry created
-2023-03-02T01:21:21.142+0100 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
-2023-03-02T01:21:21.166+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
-2023-03-02T01:21:21.392+0100 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
-2023-03-02T01:21:27.542+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Mar 01, 2023 - 22:32:47
-package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.Calculator;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-
-//Monitor the transaction amount
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-    @expires(1m)
-end
-
-rule "counting transaction in a timeframe"
-no-loop
-salience 10
-dialect "java"
-when 
-
-Number( longValue > 100 ) from accumulate(
-	        ConcernBaseEvent(name == "TransactionStart", senderID == "SevenBullsSimProbe" ) over window:time( 60s ),
-	        count(1))   	 		
-    then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - actually more than 100 transaction per minute has been fired - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-end
-2023-03-02T01:21:28.007+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:21:28.007+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:21:28.007+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 1
-2023-03-02T01:21:45.502+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Mar 01, 2023 - 22:57:21
+2023-06-12T16:39:48.877+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Starting components
+2023-06-12T16:39:48.881+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.ConcernApp - ConcernApp is launching the broker.
+2023-06-12T16:39:48.881+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Start SSL Broker
+2023-06-12T16:39:48.892+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Creating TrasportConnector
+2023-06-12T16:39:49.070+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Waiting for broker start
+2023-06-12T16:39:49.070+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - broker started
+2023-06-12T16:39:49.070+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Enabling SSL ConnectionFactory
+2023-06-12T16:39:49.100+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Connection sucessfully created
+2023-06-12T16:39:49.101+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.broker.ActiveMQBrokerManager - Component ActiveMQBrokerManager loaded in registry.
+2023-06-12T16:39:49.101+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.ConcernApp - ConcernApp broker launched.
+2023-06-12T16:39:49.101+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connecting to ActiveMQ
+2023-06-12T16:39:49.102+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.ConcernApp - Connected to ActiveMQ
+2023-06-12T16:39:49.103+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry - into ChannelsManagementRegistry
+2023-06-12T16:39:49.103+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry - ChannelsManagementRegistry started
+2023-06-12T16:39:49.103+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.register.ChannelsManagementRegistry - ChannelsManagementRegistry loaded in registry.
+2023-06-12T16:39:49.103+0200 [grizzly-http-server-1] DEBUG it.cnr.isti.labsedc.concern.ConcernApp - Channels Management Registry created
+2023-06-12T16:39:49.676+0200 [grizzly-http-server-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - CEP creation 
+2023-06-12T16:39:49.706+0200 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne creates a listening channel called: DROOLS-InstanceOne
+2023-06-12T16:39:49.996+0200 [Thread-24] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne created Session and fires rules /home/acalabro/eclipse-workspace/ConcernMonitoringRest/src/main/resources/startupRule.drl with knowledgePackages: [[Package name=it.cnr.isti.labsedc.concern.event]]
+2023-06-12T16:40:01.099+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Mar 01, 2023 - 22:57:21
 package it.cnr.isti.labsedc.concern.event;
 import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
 import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
@@ -75,1464 +41,1167 @@ dialect "java"
 declare ConcernBaseEvent
     @role( event )
     @timestamp( timestamp )
-    @expires(90s)
+    @expires(60s)
 end
 
-rule "Monitor the quotation received from brokers"
+rule "At least one quotation per hour"
 no-loop
 salience 10
 dialect "java"
 when 
 
-not (Number( longValue > 10 ) from accumulate(
-	        $evt : ConcernBaseEvent(name == "QuotationFromBroker", senderID == "SevenBullsSimProbe" ) over window:time( 60s ),
-	        count(1)));
+	not(
+		$evt : ConcernBaseEvent(
+					name == "QuotationFromBroker", 
+					senderID == "SevenBullsSimProbe" ) 
+				over window:time(10s))
+	
     then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - actually system does not received more than 10 quotation per minute - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-end
-2023-03-02T01:21:45.584+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:21:45.585+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:21:45.585+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 2
-2023-03-02T01:21:56.997+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Feb 17, 2023 - 23:22:50
-package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.Calculator;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-import java.util.*;
-import java.lang.*;
-
-//Monitoring the training requests queue 
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )    
-    @expires(1m)
+	NotificationManager.NotifyViolation(
+	"SevenBullsSimProbe", "Warning - actually system does not received any quotation in the last 60 minutes - Rule fired:" + drools.getRule().getName(),
+	drools.getRule().getName(), 
+	drools.getRule().getMetaData()
+	);
 end
 
-rule "Monitoring the training requests queue"
+rule "More than 100 quotation per hour"
 no-loop
 salience 10
 dialect "java"
 when 
 
-$aEvent: ConcernBaseEvent(
-		this.getSenderID == "SevenBullsSimProbe",
-		this.getDestinationID == "Monitoring",
-		this.getName == "Training_Queue_Size");
-		
-		eval(Calculator.checkIfItIsGreater($aEvent.getData(),100));
-		
+Number( longValue > 100 ) from accumulate(
+	        $evt : ConcernBaseEvent(name == "QuotationFromBroker", senderID == "SevenBullsSimProbe" ) over window:time( 60m ),
+	        count(1));
     then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - The training queue size is overriding threshold - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-	retract($aEvent);	
+	NotificationManager.NotifyViolation(
+	"SevenBullsSimProbe", "Warning - system received more than 100 quotation per hour - Rule fired:" + drools.getRule().getName(),
+	drools.getRule().getName(), 
+	drools.getRule().getMetaData()
+	);
 end
-2023-03-02T01:21:57.063+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:21:57.063+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:21:57.063+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 3
-2023-03-02T01:22:16.093+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Feb 17, 2023 - 23:22:50
-package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.Calculator;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-import java.util.*;
-import java.lang.*;
-
-//Monitoring the optimization requests queue 
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )    
-    @expires(1m)
-end
-
-rule "Monitoring the optimization requests queue"
-no-loop
-salience 10
-dialect "java"
-when 
-
-$aEvent: ConcernBaseEvent(
-		this.getSenderID == "SevenBullsSimProbe",
-		this.getDestinationID == "Monitoring",
-		this.getName == "Optimization_Queue_Size");
-		
-		eval(Calculator.checkIfItIsGreater($aEvent.getData(),50));
-		
-    then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - The optimization queue size is overriding threshold - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-	retract($aEvent);	
-end
-2023-03-02T01:22:16.136+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:22:16.136+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:22:16.136+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 4
-2023-03-02T01:22:32.228+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne receives rules //created Feb 17, 2023 - 23:22:50
-package it.cnr.isti.labsedc.concern.event;
-import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
-import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
-import it.cnr.isti.labsedc.concern.utils.KieLauncher;
-import it.cnr.isti.labsedc.concern.utils.Calculator;
-import it.cnr.isti.labsedc.concern.notification.NotificationManager;
-import java.util.*;
-import java.lang.*;
-
-//Monitoring the optimization requests queue 
-
-dialect "java"
-
-declare ConcernBaseEvent
-    @role( event )
-    @timestamp( timestamp )
-    @expires(1m)
-end
-
-rule "Monitoring the number of errors in DLQ Queue"
-no-loop
-salience 10
-dialect "java"
-when 
-
-$aEvent: ConcernBaseEvent(
-		this.getSenderID == "SevenBullsSimProbe",
-		this.getDestinationID == "Monitoring",
-		this.getName == "Errors_in_DLQ");
-		
-		eval(Calculator.checkIfItIsGreater($aEvent.getData(),1000));
-		
-    then
-	NotificationManager.NotifyViolation("SevenBullsSimProbe", "Warning - The number of errors in DLQ Queue is overriding threshold - Rule fired:" + drools.getRule().getName(), drools.getRule().getName(), drools.getRule().getMetaData());
-	retract($aEvent);	
-end
-2023-03-02T01:22:32.274+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
-2023-03-02T01:22:32.274+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
-2023-03-02T01:22:32.274+0100 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 5
-2023-03-02T01:22:57.583+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:40:01.662+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne load rules received into the knowledgeBase
+2023-06-12T16:40:01.663+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: java.lang 0
+2023-06-12T16:40:01.663+0200 [ActiveMQ Session Task-1] INFO  it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - How many rules within package: it.cnr.isti.labsedc.concern.event 2
+2023-06-12T16:40:18.155+0200 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:22:57.604+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: ERROR_NAME
+2023-06-12T16:40:18.201+0200 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: 
 Destination: Monitoring
-Data: ERROR_PAYLOAD
+Data: 
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716577566
+Timestamp: 1686580818127
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:00.588+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.121+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:00.599+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: ERROR_NAME
-Destination: Monitoring
-Data: ERROR_PAYLOAD
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716580583
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:02.593+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:02.605+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716582588
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.601+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.615+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585596
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.617+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.630+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585600
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.632+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.639+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585605
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.639+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.646+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585608
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.647+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.651+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585612
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.652+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.656+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585616
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.657+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.662+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585622
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.662+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.668+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585626
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.668+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.675+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585629
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.675+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.679+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585632
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.680+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.684+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585634
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.685+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.689+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585636
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.690+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.694+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585638
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.695+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.699+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585639
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.700+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.704+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585641
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.705+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.708+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585642
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.709+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.713+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585643
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.713+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.721+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585644
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.721+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.726+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585645
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.727+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.731+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585646
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.732+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.737+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585648
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.737+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.742+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585649
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.742+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.747+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585650
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.747+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.751+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585651
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.752+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.755+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585652
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.756+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.762+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585653
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.762+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.769+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585654
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.770+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.775+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585655
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.776+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.783+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585656
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.784+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.789+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585657
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.789+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.793+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585658
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.794+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.798+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585659
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.799+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.802+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585660
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.803+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.808+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585660
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.808+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.813+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585661
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.814+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.818+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585662
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.818+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.823+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585663
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.823+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.827+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585664
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.827+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.831+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585665
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.831+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.835+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585665
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.836+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.840+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585666
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.840+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.844+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585667
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.845+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.848+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585668
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.849+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.852+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585669
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.852+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.858+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585670
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.859+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.865+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585671
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.866+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.876+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585672
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.876+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.880+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585672
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.881+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.885+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585673
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.886+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.891+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585674
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.892+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.896+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585674
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.897+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.901+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585675
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.902+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.906+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585676
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.906+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.910+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585677
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.910+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.914+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585678
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.915+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.919+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585679
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.920+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.923+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585679
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.923+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.927+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585680
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.927+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.932+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585681
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.932+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.936+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585682
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.936+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.940+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585682
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.940+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.944+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585683
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.945+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.948+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585684
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.948+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.952+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585685
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.952+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.955+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585685
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.956+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.959+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585686
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.960+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.965+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585687
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.965+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.969+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585687
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.969+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.973+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585688
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.973+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.977+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585688
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.977+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.981+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585689
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.982+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.987+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585689
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.987+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.992+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585690
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.993+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:05.997+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585691
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:05.997+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.001+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585691
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.002+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.005+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585692
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.006+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.009+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585692
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.010+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.015+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585693
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.015+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.020+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585694
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.020+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.023+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585694
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.024+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.027+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585695
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.027+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.031+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585695
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.031+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.036+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585696
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.036+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.040+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585697
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.040+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.044+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585697
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.044+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.048+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585698
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.049+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.052+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585698
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.052+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.056+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585699
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.056+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.059+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585699
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.059+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.062+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585700
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.063+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.066+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585701
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.066+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.070+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585702
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.071+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.075+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585702
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.076+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.081+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585703
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.081+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.086+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585703
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.086+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.089+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585704
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.090+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.093+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585705
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.094+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.097+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585705
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.098+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.103+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585706
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:06.103+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:06.108+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: TransactionStart
-Destination: Monitoring
-Data: Transaction_Payload
-SenderID: SevenBullsSimProbe
-Timestamp: 1677716585707
-SessionID: sessionID
-Checksum: noChecksum
-CepType: DROOLS
-2023-03-02T01:23:07.714+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
-it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:07.724+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.129+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716587708
+Timestamp: 1686580888096
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.720+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.130+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.726+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.136+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590716
+Timestamp: 1686580888119
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.727+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.137+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.732+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.144+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590719
+Timestamp: 1686580888121
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.732+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.145+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.737+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.151+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590721
+Timestamp: 1686580888123
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.737+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.152+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.742+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.158+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590722
+Timestamp: 1686580888126
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.742+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.159+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.748+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.164+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590723
+Timestamp: 1686580888127
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.749+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.165+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.754+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.170+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590723
+Timestamp: 1686580888129
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.755+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.172+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.761+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.177+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590724
+Timestamp: 1686580888131
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.761+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.178+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.767+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.184+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590725
+Timestamp: 1686580888132
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.768+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.185+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.776+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.189+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590726
+Timestamp: 1686580888133
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:10.777+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.190+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:10.785+0100 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+2023-06-12T16:41:28.195+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
 Name: QuotationFromBroker
 Destination: Monitoring
 Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716590727
+Timestamp: 1686580888134
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:12.734+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.195+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:12.741+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: Training_Queue_Size
+2023-06-12T16:41:28.200+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
 Destination: Monitoring
-Data: 40
+Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716592729
+Timestamp: 1686580888135
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:15.741+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.201+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:15.749+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: Training_Queue_Size
+2023-06-12T16:41:28.207+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
 Destination: Monitoring
-Data: 120
+Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716595737
+Timestamp: 1686580888136
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:17.745+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.208+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:17.753+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: Optimization_Queue_Size
+2023-06-12T16:41:28.213+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
 Destination: Monitoring
-Data: 20
+Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716597741
+Timestamp: 1686580888138
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:20.750+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.214+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:20.760+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: Optimization_Queue_Size
+2023-06-12T16:41:28.220+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
 Destination: Monitoring
-Data: 51
+Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716600746
+Timestamp: 1686580888139
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:22.754+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.221+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:22.764+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: Errors_in_DLQ
+2023-06-12T16:41:28.226+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
 Destination: Monitoring
-Data: 800
+Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716602750
+Timestamp: 1686580888140
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS
-2023-03-02T01:23:25.759+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+2023-06-12T16:41:28.226+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
 it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
-2023-03-02T01:23:25.766+0100 [ActiveMQ Session Task-1] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
-Name: Errors_in_DLQ
+2023-06-12T16:41:28.232+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
 Destination: Monitoring
-Data: 1001
+Data: QuotationFromBroker_Payload
 SenderID: SevenBullsSimProbe
-Timestamp: 1677716605755
+Timestamp: 1686580888142
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.233+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.239+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888144
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.240+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.247+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888145
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.248+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.253+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888146
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.254+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.260+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888147
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.261+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.266+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888149
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.266+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.271+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888150
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.272+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.277+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888150
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.279+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.284+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888152
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.285+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.289+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888153
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.290+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.296+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888154
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.297+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.301+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888155
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.301+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.305+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888156
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.306+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.310+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888157
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.310+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.316+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888159
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.317+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.320+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888160
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.321+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.325+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888161
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.326+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.330+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888162
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.331+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.335+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888163
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.336+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.340+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888163
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.341+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.345+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888164
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.346+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.351+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888165
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.352+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.356+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888166
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.357+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.361+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888167
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.361+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.369+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888167
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.369+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.373+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888168
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.374+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.378+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888169
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.379+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.382+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888170
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.383+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.388+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888171
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.388+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.392+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888172
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.393+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.398+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888173
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.398+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.403+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888174
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.403+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.408+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888175
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.408+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.412+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888176
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.413+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.416+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888177
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.417+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.422+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888178
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.422+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.426+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888179
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.427+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.432+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888179
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.433+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.437+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888180
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.438+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.443+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888181
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.444+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.448+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888181
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.449+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.453+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888182
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.453+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.457+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888184
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.458+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.462+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888184
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.463+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.467+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888185
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.467+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.473+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888186
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.473+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.478+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888187
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.478+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.483+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888188
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.483+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.489+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888189
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.489+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.496+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888190
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.497+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.503+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888191
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.504+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.510+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888192
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.510+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.515+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888193
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.516+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.520+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888193
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.521+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.526+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888194
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.527+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.531+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888195
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.532+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.538+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888195
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.538+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.553+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888196
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.554+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.563+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888197
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.564+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.570+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888197
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.570+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.576+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888198
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.577+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.582+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888199
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.583+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.587+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888200
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.588+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.593+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888202
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.593+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.597+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888203
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.598+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.604+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888204
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.605+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.617+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888205
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.618+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.625+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888206
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.626+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.634+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888207
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.634+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.639+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888208
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.639+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.648+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888210
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.649+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.654+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888211
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.655+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.662+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888212
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.662+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.670+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888212
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.670+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.678+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888213
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.678+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.684+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888214
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.685+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.692+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888215
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.692+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.699+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888215
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.700+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.709+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888216
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.709+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.717+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888217
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.718+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.722+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888217
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.723+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.727+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888218
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.727+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.732+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888218
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:28.733+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:28.736+0200 [ActiveMQ Session Task-2] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580888219
+SessionID: sessionID
+Checksum: noChecksum
+CepType: DROOLS
+2023-06-12T16:41:37.750+0200 [ActiveMQ Session Task-3] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - ...CEP named InstanceOne received an event of type:
+it.cnr.isti.labsedc.concern.event.ConcernBaseEvent in the stream, sent from SevenBullsSimProbe
+2023-06-12T16:41:37.755+0200 [ActiveMQ Session Task-3] DEBUG it.cnr.isti.labsedc.concern.cep.DroolsComplexEventProcessorManager - with data:
+Name: QuotationFromBroker
+Destination: Monitoring
+Data: QuotationFromBroker_Payload
+SenderID: SevenBullsSimProbe
+Timestamp: 1686580897733
 SessionID: sessionID
 Checksum: noChecksum
 CepType: DROOLS

@@ -148,7 +148,7 @@ public class Monitoring {
 
     			+ "<div id=\"logs\">"
     				+ "<textarea class=\"textarea\" name=\"debugLog\" rows=\"25\" cols=\"190\">\n"
-					+ getLoggerData() + "</textarea>"
+					+ getLoggerData() + "</textarea><br />This page will be reloaded every 45 seconds."
 				+ "</div><br />"
 
     			+ "<div class=\"row\">"
@@ -185,12 +185,12 @@ public class Monitoring {
     			+"</div>"		
 				+ "    	<script>\n"
 				+ "    	function loadFunction() {\n"
-				+ "    	    window.open(\"./biecointerface/loadrules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=750,height=550\");\n"
+				+ "    	    window.open(\"./biecointerface/loadrules\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=750,height=750\");\n"
 				+ "    	}\n"
 				+ "    	</script>"
 				+ "    	<script>\n"
 				+ "    	function notificationFunction() {\n"
-				+ "    	    window.open(\"./biecointerface/notifications\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=700,height=520\");\n"
+				+ "    	    window.open(\"./biecointerface/notifications\", \"_blank\", \"toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=900,height=530\");\n"
 				+ "    	}\n"
 				+ "    	</script>"
 				+ "    	<script>\n"
