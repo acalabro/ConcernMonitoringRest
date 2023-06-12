@@ -1,0 +1,54 @@
+//created Mar 01, 2023 - 22:57:21
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+import it.cnr.isti.labsedc.concern.notification.NotificationManager;
+
+//Monitor the quotation received from brokers
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+    @expires(60s)
+end
+
+rule "At least one quotation per hour"
+no-loop
+salience 10
+dialect "java"
+when 
+
+	not(
+		$evt : ConcernBaseEvent(
+					name == "QuotationFromBroker", 
+					senderID == "SevenBullsSimProbe" ) 
+				over window:time(60m))
+    then
+	NotificationManager.NotifyViolation(
+	"SevenBullsSimProbe", "Warning - actually system does not received any quotation in the last 60 minutes - Rule fired:" + drools.getRule().getName(),
+	drools.getRule().getName(), 
+	drools.getRule().getMetaData()
+	);
+end
+
+rule "More than 100 quotation per hour"
+no-loop
+salience 10
+dialect "java"
+when 
+
+Number( longValue > 100 ) from accumulate(
+	        $evt : ConcernBaseEvent(name == "QuotationFromBroker", senderID == "SevenBullsSimProbe" ) over window:time( 60m ),
+	        count(1));
+    then
+	NotificationManager.NotifyViolation(
+	"SevenBullsSimProbe", "Warning - system received more than 100 quotation per hour - Rule fired:" + drools.getRule().getName(),
+	drools.getRule().getName(), 
+	drools.getRule().getMetaData()
+	);
+end
