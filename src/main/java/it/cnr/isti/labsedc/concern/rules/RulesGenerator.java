@@ -103,7 +103,7 @@ public class RulesGenerator {
 		String then = "";
 
 		then = "\tthen\n\n"
-					+ "\tKieLauncher.printer(\"rule autogen-rule-"+ forecast.getSessionID() + "-"+ forecast.getSenderID() +"-rule matched\");\n"
+					+ "\tKieLauncher.printer(System.currentTimeMillis() + \"rule autogen-rule-"+ forecast.getSessionID() + "-"+ forecast.getSenderID() +"-rule matched\");\n"
 					+ "end";		
 		return packages + header + when + then;
 	}

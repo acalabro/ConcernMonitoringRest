@@ -43,7 +43,7 @@ public class ConcernApp extends Thread
 	private static String username;
 	private static String password;
 
-	private static boolean LOCALBROKER = false; //where amq is running
+	private static boolean LOCALBROKER = true; //where amq is running
 	
 	private static boolean runningInJMS = true;
 	private static String mqttBrokerUrl;
@@ -51,8 +51,8 @@ public class ConcernApp extends Thread
 	
 	//public static String PortWhereTheInstanceIsRunning = "4700";
 	public static String PortWhereTheInstanceIsRunning = "8181";
-	public static String IPAddressWhereTheInstanceIsRunning = GetIP();
-	//public static String IPAddressWhereTheInstanceIsRunning = "localhost";
+	//public static String IPAddressWhereTheInstanceIsRunning = GetIP();
+	public static String IPAddressWhereTheInstanceIsRunning = "localhost";
 	
 	private static Thread INSTANCE;
         
@@ -100,7 +100,6 @@ public class ConcernApp extends Thread
     	  	
     	factory.setTrustedPackages(Arrays.asList(packages));
     	
-    	System.out.println(factory.getTrustedPackages().toArray().toString());
     	logger.info(Sub.newSessionLogger());
     	logger.info("Starting components");
     	

@@ -38,14 +38,20 @@ public class Consumer extends Thread{
 	}
 	
 	private static void sendRule() {
+
 		String brokerUrl = ConcernApp.brokerUrlJMS;
+		if (brokerUrl == null) {
+			brokerUrl = "tcp://localhost:61616";
+		}
 
 		ConcernAbstractConsumer cons = new ConcernAbstractConsumer();
 		try {
 			cons.init(brokerUrl,"vera", "griselda");
-			String ictgw = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/ictgw/checkEventSequence.drl");
+			
+			//String ictgw = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/ictgw/checkEventSequence.drl");
+			String testRuleString = Consumer.readFile(System.getProperty("user.dir")+ "/src/main/resources/rules/test/SingleRule.drl");
 			logger.info("sending rule");
-			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(ictgw, "noMultipleOccurrences"));
+			cons.sendEvaluationRequest("DROOLS-InstanceOne", sendingRule(testRuleString, "noMultipleOccurrences"));
 			logger.info("rule sent");
 
 			/*

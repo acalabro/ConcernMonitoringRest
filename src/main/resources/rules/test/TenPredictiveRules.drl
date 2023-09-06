@@ -1,0 +1,148 @@
+//created on: Nov 30, 2021
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.rules.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+
+rule "autogenRule01"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin",
+this.getDestinationID == "Monitoring");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+
+rule "autogenRule02"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin2",
+this.getDestinationID == "Monitoring");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+rule "autogenRule03"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin3",
+this.getDestinationID == "Monitoring3");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+
+rule "autogenRule04"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin4",
+this.getDestinationID == "Monitoring4");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+rule "autogenRule05"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin5",
+this.getDestinationID == "Monitoring5");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+
+rule "autogenRule06"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin6",
+this.getDestinationID == "Monitoring6");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+rule "autogenRule07"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin7",
+this.getDestinationID == "Monitoring7");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+
+rule "autogenRule08"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin8",
+this.getDestinationID == "Monitoring8");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+rule "autogenRule09"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin9",
+this.getDestinationID == "Monitoring9");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end
+
+
+rule "autogenRule12"
+no-loop
+salience 10
+dialect "java"
+when
+$aEvent : ConcernDTForecast(
+this.getSenderID == "DigitalTwin10",
+this.getDestinationID == "Monitoring10");
+then
+RulesGenerator.generateRuleFromDTForecast($aEvent);
+retract($aEvent);	
+end

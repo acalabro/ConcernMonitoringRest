@@ -1,0 +1,30 @@
+
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+
+//Communication delay between LocalPlanner and GlobalPlanner exceed 20ms
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+	
+	rule "SimpleCgheck11"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+	then					                 
+		retract($aEvent);
+	end

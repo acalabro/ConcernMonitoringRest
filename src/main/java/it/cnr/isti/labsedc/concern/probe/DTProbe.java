@@ -53,7 +53,7 @@ public class DTProbe extends ConcernAbstractProbe {
 		logger.info("Creating Message ");
 
 		ConcernDTForecast<String> forecast = new ConcernDTForecast<String>(System.currentTimeMillis(),		
-				"DT_probe","Monitoring","noSession","noChecksum","DTForecasting", forecastedEvents,				
+				"DigitalTwin2","Monitoring","noSession","noChecksum","DTForecasting", forecastedEvents,				
 				CepType.DROOLS, false, confidenceIntervalInSeconds, "DT_probe", propertyForecasted, "0");
 
 		return forecast;

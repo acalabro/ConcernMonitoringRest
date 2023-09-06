@@ -1,0 +1,132 @@
+package it.cnr.isti.labsedc.concern.event;
+
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.rules.RulesGenerator;
+
+dialect "java"
+
+declare ConcernDTForecast
+    @role( event )
+    @timestamp( timestamp )
+end
+
+//Communication delay between LocalPlanner and GlobalPlanner exceed 20ms
+
+dialect "java"
+
+declare ConcernBaseEvent
+    @role( event )
+    @timestamp( timestamp )
+end
+
+declare LatencyEvent
+    @role( event )
+	latency : float
+	first : ConcernBaseEvent
+	second: ConcernBaseEvent
+end
+	
+	
+	rule "SimpleCgheck11"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+	then					                 
+		retract($aEvent);
+	end
+	
+		rule "SimpleCtyuytutheck22"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner1", 
+									this.getDestinationID == "GlobalPlanner1");
+									
+	then					                 
+		retract($aEvent);
+	KieLauncher.printer(System.currentTimeMillis() + "Boundary violated");
+	end
+	
+	
+		rule "SimplrtytryeCheck33"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner2", 
+									this.getDestinationID == "GlobalPlanner2");
+									
+	then					                 
+		retract($aEvent);
+	end
+	
+	
+		rule "SimpleewrweCheck44"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner3", 
+									this.getDestinationID == "GlobalPlanner3");
+									
+	then					                 
+		retract($aEvent);
+	end
+	
+	
+		rule "SimpqweqweleCheck55"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner4", 
+									this.getDestinationID == "GlobalPlanner4");
+									
+	then					                 
+		retract($aEvent);
+	end
+	
+	
+		rule "SimplasdeCheck66"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner5", 
+									this.getDestinationID == "GlobalPlanner5");
+									
+	then					                 
+		retract($aEvent);
+	end
+	
+	
+		rule "SimpaleCheck77"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner6", 
+									this.getDestinationID == "GlobalPlanner6");
+									
+	then					                 
+		retract($aEvent);
+	end
+	
+	

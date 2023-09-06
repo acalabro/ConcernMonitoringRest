@@ -24,6 +24,7 @@ it/cnr/isti/labsedc/concern/mediator/JMStoJSONConverter.class
 it/cnr/isti/labsedc/concern/ConcernApp.class
 it/cnr/isti/labsedc/concern/rest/monitoring/LoadRules.class
 it/cnr/isti/labsedc/concern/utils/ConnectionManager.class
+it/cnr/isti/labsedc/concern/rest/monitoring/BrowseRuleDB.class
 it/cnr/isti/labsedc/concern/consumer/ConcernConsumer.class
 it/cnr/isti/labsedc/concern/utils/Sub.class
 it/cnr/isti/labsedc/concern/utils/Calculator.class

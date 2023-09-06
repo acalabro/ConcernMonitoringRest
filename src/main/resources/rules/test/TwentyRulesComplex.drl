@@ -1,0 +1,365 @@
+	
+//created on: DEC 07, 2022
+package it.cnr.isti.labsedc.concern.event;
+import it.cnr.isti.labsedc.concern.event.ConcernProbeEvent;
+import it.cnr.isti.labsedc.concern.utils.KieLauncher;
+import it.cnr.isti.labsedc.concern.utils.Calculator;
+import it.cnr.isti.labsedc.concern.event.ConcernAbstractEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernBaseEvent;
+import it.cnr.isti.labsedc.concern.event.ConcernDTForecast;
+import it.cnr.isti.labsedc.concern.rules.RulesGenerator;
+
+dialect "java"
+
+declare LatencyEvent
+    @role( event )
+	latency : float
+	first : ConcernBaseEvent
+	second: ConcernBaseEvent
+end
+	
+	
+	
+	rule "localGlobsdfalAvgDqqqqqqqqqqqqqqqqqqqqqqelayCheck300"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+	
+	rule "localGlobsdfalAvgDelayCheck301"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+	
+	
+	rule "calculatsdfeAverage301"
+	no-loop
+	salience 5
+	dialect "java"
+	when
+
+	    Number( longValue > 20 ) from accumulate(
+	        LatencyEvent( $latency : latency ) over window:length( 10 ),
+	        average( $latency ) )
+	then
+		KieLauncher.printer(System.currentTimeMillis() + "Boundary violated");
+	end
+	
+	
+	
+		
+	
+	rule "localGlobalsdfdsfAvgDqweelayCheck300"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+	
+	rule "localGlobasdfsdflAvgwqeDelayCheck301"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+	
+	
+	rule "calculatesdfsdfAvqweqwerage301"
+	no-loop
+	salience 5
+	dialect "java"
+	when
+
+	    Number( longValue > 20 ) from accumulate(
+	        LatencyEvent( $latency : latency ) over window:length( 10 ),
+	        average( $latency ) )
+	then
+		KieLauncher.printer(System.currentTimeMillis() + "Boundary violated");
+	end
+	
+	
+		
+	
+	rule "localGlosdfsdfbalAvgDeldfgdfgayCheck300"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+	
+	rule "localGlodsfsdfbalAvgDelafdgdfyCheck301"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+	
+	
+	rule "calculasdfsdfteAdfgdfverage301"
+	no-loop
+	salience 5
+	dialect "java"
+	when
+
+	    Number( longValue > 20 ) from accumulate(
+	        LatencyEvent( $latency : latency ) over window:length( 10 ),
+	        average( $latency ) )
+	then
+		KieLauncher.printer(System.currentTimeMillis() + "Boundary violated");
+	end
+	
+	
+		
+	
+	rule "localGlsdfsdfobalAvgDeerfegegflayCheck300"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+	
+	rule "localGlosdfsdfbalAverfererfegDelayCheck301"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+	
+	
+	rule "calculate2sdfdsf3rewdewAqwewrwedwefweverage301"
+	no-loop
+	salience 5
+	dialect "java"
+	when
+
+	    Number( longValue > 20 ) from accumulate(
+	        LatencyEvent( $latency : latency ) over window:length( 10 ),
+	        average( $latency ) )
+	then
+		KieLauncher.printer(System.currentTimeMillis() + "Boundary violated");
+	end
+	
+		
+	
+	rule "localGlsdfdsfobalAvgDeqweqweqwewqeqwelayCheck300"
+	no-loop
+	salience 10
+	dialect "java"
+	when
+	
+		$aEvent: ConcernBaseEvent(this.getSenderID == "LocalPlanner", 
+									this.getDestinationID == "GlobalPlanner");
+									
+		$bEvent: ConcernBaseEvent(this.getSenderID == "GlobalPlanner",
+									this.getSessionID == $aEvent.getSessionID,
+									this.getData == $aEvent.getData,
+									this.getName == $aEvent.getName,
+									this.getChecksum == $aEvent.getChecksum,
+									this after $aEvent);
+	then					
+		LatencyEvent warning = new LatencyEvent();
+		warning.setLatency(
+			Calculator.latency(
+				$bEvent.getTimestamp(),
+                $aEvent.getTimestamp()));
+		KieLauncher.printer("latencyEventCreated " + warning.getLatency());
+		
+		insert(warning);	                    
+		retract($aEvent);
+    	retract($bEvent);	
+	end
+	
+		
+	rule "calculasdfdsfte23rewdewAqwewrwedwerwerwefweverage301"
+	no-loop
+	salience 5
+	dialect "java"
+	when
+
+	    Number( longValue > 20 ) from accumulate(
+	        LatencyEvent( $latency : latency ) over window:length( 10 ),
+	        average( $latency ) )
+	then
+		KieLauncher.printer(System.currentTimeMillis() + "Boundary violated");
+	end
+	
+	
